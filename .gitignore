@@ -2,7 +2,7 @@
 !.gitignore
 !/kubernetes
 *.DS_Store
-*.kubeconfig.yaml
-*.talosconfig.yaml
+/kubernetes/**/kubeconfig.yaml
+/kubernetes/**/talosconfig.yaml
 *.age.agekey
 *.ondir
