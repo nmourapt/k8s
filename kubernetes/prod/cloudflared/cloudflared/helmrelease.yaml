@@ -17,3 +17,5 @@ spec:
   valuesFrom:
     - kind: Secret
       name: cloudflared-values
+  values:
+    existingSecret: cloudflared-values
