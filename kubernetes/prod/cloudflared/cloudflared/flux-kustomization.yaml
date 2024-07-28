@@ -12,3 +12,10 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  resources:
+    - helmrelease.yaml
+    - values/values.sops.yaml

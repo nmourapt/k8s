@@ -12,5 +12,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  resources:
-    - cloudflared/flux-kustomization.yaml
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
