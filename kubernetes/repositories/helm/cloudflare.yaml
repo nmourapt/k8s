@@ -1,0 +1,9 @@
+# kubernetes/repositories/helm/cloudflare.yaml
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: cloudflare
+  namespace: flux-system
+spec:
+  interval: 1h  # Check every 1 hour
+  url: https://cloudflare.github.io/helm-charts

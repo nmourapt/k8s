@@ -1,0 +1,2 @@
+# kubernetes/prod/cloudflared/cloudflared/values/values.sops.yaml
+tunnelToken: "SOPS_TOKEN_PLACEHOLDER"
