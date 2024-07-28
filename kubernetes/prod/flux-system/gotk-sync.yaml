@@ -25,9 +25,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  dependsOn:
+    - name: repositories
   decryption:
     provider: sops
     secretRef:
       name: sops-age
-  dependsOn:
-    - name: repositories
