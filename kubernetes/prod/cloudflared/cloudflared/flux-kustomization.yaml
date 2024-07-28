@@ -16,6 +16,3 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-  resources:
-    - helmrelease.yaml
-    - values/values.sops.yaml
