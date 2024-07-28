@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: cloudflared-values
+    namespace: cloudflared
 type: Opaque
 data:
     values.yaml: ENC[AES256_GCM,data:wQLBQk8Mj33UDJi8wilRJwZBqzeVXZdkaYUrDf13nsTpOxyPTcv+9dxcS91FWOZCqv2pumPgLE8r7HcPl5zJNcDMaKcGtKNN0qLuYpjRvFzexOACaPA/jn2kuurGYe1HZJsWIrlGquB3Z7hCXE3BHNNfyFTeLYE2N9/SPyHXh8o2EaGYPpeVKtRjHvn32sKasrcLdFappndujOwqMEaS89/Uk37emX4nkDLat5Vra1n4VSe+Y1q6vv+z+oZcNprFKV6SFrSpClhsDpXaa8KqoV/iBKqr/tGs5jh+J6/v+SUdkKGDjlKCqRpk1AxTVBrJ7HOAzp68qNKz8IEYYC4J3n2c/9VOQnlt,iv:VFISRcArewN7MS5BinjfmGeTTIsOjIEq9bAzWdKCxZg=,tag:oE0LK5aLuozFPCUCZ9LVnQ==,type:str]
