@@ -2,6 +2,8 @@
 !.gitignore
 !/kubernetes
 *.DS_Store
+/kubernetes/prod/values.yaml
+/kubernetes/prod/values.sops.yaml
 /kubernetes/**/kubeconfig.yaml
 /kubernetes/**/talosconfig.yaml
 *.age.agekey

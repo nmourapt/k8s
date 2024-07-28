@@ -1,4 +1,4 @@
-# kubernetes/dev/.sops.yaml
+# kubernetes/prod/.sops.yaml
 creation_rules:
   - path_regex: .*values.yaml$
     age: "age10p70n0z6ter2m7yw2tz55ufhukkxkjkhy9etclfd06fuxqwef46qmr5gwn"
