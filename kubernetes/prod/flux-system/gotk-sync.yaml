@@ -20,14 +20,16 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/prod
+  path: ./flux-system
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   dependsOn:
     - name: repositories
+    - name: prod
   decryption:
     provider: sops
     secretRef:
       name: sops-age
+      
