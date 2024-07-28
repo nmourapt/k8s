@@ -1,7 +1,7 @@
 # kubernetes/dev/.sops.yaml
 creation_rules:
-  - encrypted_regex: '^(data|stringData)$'
-    path_regex: '.*\.sops\.yaml$'
-    key_groups:
-      - age:
-          keys: ["age10p70n0z6ter2m7yw2tz55ufhukkxkjkhy9etclfd06fuxqwef46qmr5gwn"]
+  - path_regex: .*values.yaml$
+    age: "age10p70n0z6ter2m7yw2tz55ufhukkxkjkhy9etclfd06fuxqwef46qmr5gwn"
+  - path_regex: .*.yaml
+    encrypted_regex: ^(data|stringData)$
+    age: "age10p70n0z6ter2m7yw2tz55ufhukkxkjkhy9etclfd06fuxqwef46qmr5gwn"
