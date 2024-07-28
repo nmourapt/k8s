@@ -1,0 +1,13 @@
+context: home-omni-prod
+contexts:
+    home-omni-prod:
+        endpoints:
+            - https://omni.nmoura.pt/
+        nodes:
+            - talosserver1
+            - talosserver2
+            - talosserver3
+        auth:
+            siderov1:
+                identity: nuno@babybites.pt
+        cluster: prod
