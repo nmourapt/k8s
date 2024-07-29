@@ -4,7 +4,6 @@
 *.DS_Store
 /kubernetes/**/kubeconfig.yaml
 /kubernetes/**/talosconfig.yaml
-/kubernetes/**/clearvalues.yaml
 /kubernetes/**/clearsecret.yaml
 *.age.agekey
 *.ondir
