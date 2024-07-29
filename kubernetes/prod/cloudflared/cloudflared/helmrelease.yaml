@@ -14,11 +14,9 @@ spec:
         kind: HelmRepository
         name: cloudflare
         namespace: flux-system
-  #valuesFrom:
-  #- kind: Secret
-  #  name: cloudflared-secrets
-  #  valuesKey: values.yaml
+  valuesFrom:
+  - kind: Secret
+    name: cloudflared-secrets
+    valuesKey: values.yaml
   values:
     replicaCount: 2
-    cloudflare:
-      tunnelToken: eyJhIjoiZDk0ZDBlYmVmNjU4Y2JkOTIxNjZkNjMzYzhmMDY1YzkiLCJ0IjoiYTAzZGQ1MTktZjRjNS00MDE0LWIzNjItNTgxMjY4YTdkYmU2IiwicyI6Ik1qYzFZVGMwWlRrdE9ESXlOUzAwTnpNMkxUZ3laakV0TmpnNU5tRTNaVEEwTVdGaiJ9
