@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: cloudflare
-      #version: 0.1.x
+      version: 1.4.x
       sourceRef:
         kind: HelmRepository
         name: kubitodev
