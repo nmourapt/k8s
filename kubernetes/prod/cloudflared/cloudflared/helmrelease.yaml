@@ -5,7 +5,7 @@ metadata:
   name: cloudflared
   namespace: cloudflared
 spec:
-  interval: 1m
+  interval: 5m
   chart:
     spec:
       chart: cloudflare-tunnel-remote
