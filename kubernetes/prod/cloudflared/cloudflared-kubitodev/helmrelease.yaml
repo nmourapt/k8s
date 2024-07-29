@@ -23,5 +23,5 @@ spec:
       repository: cloudflare/cloudflared
       tag: latest
     replicaCount: 2
-    metrics:
-      enabled: true
+    #metrics:
+    #  enabled: true
