@@ -5,10 +5,10 @@ metadata:
   name: cloudflared
   namespace: cloudflared
 spec:
-  interval: 1h
+  interval: 1m
   chart:
     spec:
-      chart: cloudflare/cloudflare-tunnel-remote
+      chart: cloudflare-tunnel-remote
       #version: "0.6.2"
       sourceRef:
         kind: HelmRepository
