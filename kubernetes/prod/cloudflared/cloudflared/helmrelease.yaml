@@ -9,14 +9,16 @@ spec:
   chart:
     spec:
       chart: cloudflare-tunnel-remote
-      #version: "0.6.2"
+      version: 0.1.x
       sourceRef:
         kind: HelmRepository
         name: cloudflare
         namespace: flux-system
+  #valuesFrom:
+  #- kind: Secret
+  #  name: cloudflared-secrets
+  #  valuesKey: values.yaml
   values:
     replicaCount: 2
-  valuesFrom:
-  - kind: Secret
-    name: cloudflared-secrets
-    valuesKey: values.yaml
+    cloudflare:
+      tunnelToken: eyJhIjoiZDk0ZDBlYmVmNjU4Y2JkOTIxNjZkNjMzYzhmMDY1YzkiLCJ0IjoiYTAzZGQ1MTktZjRjNS00MDE0LWIzNjItNTgxMjY4YTdkYmU2IiwicyI6Ik1qYzFZVGMwWlRrdE9ESXlOUzAwTnpNMkxUZ3laakV0TmpnNU5tRTNaVEEwTVdGaiJ9
