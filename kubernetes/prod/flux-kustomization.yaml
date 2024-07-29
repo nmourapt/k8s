@@ -5,14 +5,14 @@ metadata:
   name: prod
   namespace: flux-system
 spec:
-  interval: 1h  # Check every 1 hour
+  interval: 1m  # Check every 1 minute
   path: "./kubernetes/prod"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  decryption:
+  decryption: 
     provider: sops
     secretRef:
       name: sops-age

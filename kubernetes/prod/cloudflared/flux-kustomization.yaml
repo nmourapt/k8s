@@ -5,7 +5,7 @@ metadata:
   name: cloudflared-namespace
   namespace: flux-system
 spec:
-  interval: 1h  # Check every 1 hour
+  interval: 1m  # Check every 1 minute
   path: "./kubernetes/prod/cloudflared"
   prune: true
   sourceRef:
