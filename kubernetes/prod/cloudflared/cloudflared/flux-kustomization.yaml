@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: cloudflared-app
+  name: repositories
   namespace: flux-system
 spec:
   interval: 1h  # Check every 1 hour
