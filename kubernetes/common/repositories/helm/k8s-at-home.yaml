@@ -1,10 +1,8 @@
-# kubernetes/repositories/helm/cloudflare.yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: geek-cookbook
+  name: k8s-at-home
   namespace: flux-system
 spec:
   interval: 1h  # Check every 1 hour
-  url: https://geek-cookbook.com/charts/
-
+  url: https://k8s-at-home.com/charts/
