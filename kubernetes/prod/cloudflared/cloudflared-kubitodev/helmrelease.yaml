@@ -2,21 +2,26 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: cloudflared-test
+  name: cloudflared-kubitodev
   namespace: cloudflared
 spec:
   interval: 1m
   chart:
     spec:
-      chart: cloudflare-tunnel-remote
-      version: 0.1.x
+      chart: cloudflared
+      version: 1.4.x
       sourceRef:
         kind: HelmRepository
-        name: cloudflare
+        name: kubitodev
         namespace: flux-system
   valuesFrom:
   - kind: Secret
-    name: cloudflared-test-secrets
+    name: cloudflared-secrets-kubitodev
     valuesKey: values.yaml
   values:
+    image:
+      repository: cloudflare/cloudflared
+      tag: latest
     replicaCount: 2
+    #metrics:
+    #  enabled: true

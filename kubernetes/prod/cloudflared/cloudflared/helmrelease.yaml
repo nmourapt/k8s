@@ -8,20 +8,15 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: cloudflared
-      version: 1.4.x
+      chart: cloudflare-tunnel-remote
+      version: 0.1.x
       sourceRef:
         kind: HelmRepository
-        name: kubitodev
+        name: cloudflare
         namespace: flux-system
   valuesFrom:
   - kind: Secret
     name: cloudflared-secrets
     valuesKey: values.yaml
   values:
-    image:
-      repository: cloudflare/cloudflared
-      tag: latest
     replicaCount: 2
-    #metrics:
-    #  enabled: true
