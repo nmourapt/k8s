@@ -8,7 +8,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: cloudflare
+      chart: cloudflared
       version: 1.4.x
       sourceRef:
         kind: HelmRepository
@@ -23,3 +23,5 @@ spec:
       repository: cloudflare/cloudflared
       tag: latest
     replicaCount: 2
+    metrics:
+      enabled: true
