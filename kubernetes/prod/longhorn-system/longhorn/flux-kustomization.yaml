@@ -1,12 +1,12 @@
-# kubernetes/prod/cloudflared/flux-kustomization.yaml
+# kubernetes/prod/cloudflared/cloudflared/flux-kustomization.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: cloudflared-ns
+  name: longhorn-app
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/prod/cloudflared"
+  path: "./kubernetes/prod/longhorn-system/longhorn"
   prune: true
   sourceRef:
     kind: GitRepository
