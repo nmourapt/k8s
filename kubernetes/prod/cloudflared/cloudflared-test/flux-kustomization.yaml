@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/prod/cloudflared-test/cloudflared"
+  path: "./kubernetes/prod/cloudflared/cloudflared-test"
   prune: true
   sourceRef:
     kind: GitRepository
