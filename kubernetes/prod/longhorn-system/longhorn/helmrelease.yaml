@@ -34,3 +34,5 @@ spec:
         jobList: [{"name":"default", "isGroup":true}]
       # -- Setting that allows you to enable automatic snapshot removal during filesystem trim for a Longhorn StorageClass. (Options: "ignored", "enabled", "disabled")
       removeSnapshotsDuringFilesystemTrim: ignored
+    longhornUI:
+      replicas: 1  # -- Replica count for Longhorn UI.
