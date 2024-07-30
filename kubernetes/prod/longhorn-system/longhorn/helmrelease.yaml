@@ -19,3 +19,18 @@ spec:
       storageOverProvisioningPercentage: 150
       # -- Percentage of minimum available disk capacity. When the minimum available capacity exceeds the total available capacity, the disk becomes unschedulable until more space is     made available for use. The default value is "25".
       storageMinimalAvailablePercentage: 10
+    persistence:
+      defaultClass: true  # -- Setting that allows you to specify the default Longhorn StorageClass.
+      defaultFsType: ext4  # -- Filesystem type of the default Longhorn StorageClass.
+      defaultMkfsParams: ""  # -- mkfs parameters of the default Longhorn StorageClass.
+      defaultClassReplicaCount: 3  # -- Replica count of the default Longhorn StorageClass.
+      defaultDataLocality: disabled  # -- Data locality of the default Longhorn StorageClass. (Options: "disabled", "best-effort")
+      reclaimPolicy: Retain  # -- Reclaim policy that provides instructions for handling of a volume after its claim is released. (Options: "Retain", "Delete")
+      migratable: false  # -- Setting that allows you to enable live migration of a Longhorn volume from one node to another.
+      nfsOptions: ""  # -- Set NFS mount options for Longhorn StorageClass for RWX volumes
+      recurringJobSelector:
+        enable: true  # -- Setting that allows you to enable the recurring job selector for a Longhorn StorageClass.
+        # -- Recurring job selector for a Longhorn StorageClass. Ensure that quotes are used correctly when specifying job parameters. (Example: `[{"name":"backup", "isGroup":true}]`)
+        jobList: [{"name":"default", "isGroup":true}]
+      # -- Setting that allows you to enable automatic snapshot removal during filesystem trim for a Longhorn StorageClass. (Options: "ignored", "enabled", "disabled")
+      removeSnapshotsDuringFilesystemTrim: ignored
