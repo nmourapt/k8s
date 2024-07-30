@@ -30,7 +30,8 @@ spec:
         # -- Additional ingressRoute middlewares (e.g. for authentication)
         middlewares: []
         # -- TLS options (e.g. secret containing certificate)
-        # tls: nmoura-pt-tls
+        tls: 
+          secretName: nmoura-pt-tls
       healthcheck:
         # -- Create an IngressRoute for the healthcheck probe
         enabled: true
@@ -41,4 +42,8 @@ spec:
           - name: ping@internal
             kind: TraefikService
         entryPoints: ["traefik"]
-        # tls: nmoura-pt-tls
+        tls: 
+          secretName: nmoura-pt-tls
+    additionalArguments:
+      - --entryPoints.web.http.redirections.entryPoint.to: websecure
+      - --entryPoints.web.http.redirections.entryPoint.scheme: https
