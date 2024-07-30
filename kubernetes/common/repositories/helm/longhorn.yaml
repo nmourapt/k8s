@@ -1,4 +1,3 @@
-# kubernetes/repositories/helm/cloudflare.yaml
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:

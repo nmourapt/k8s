@@ -1,0 +1,44 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: traefik
+      version: 30.0.x
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  values:
+    ingressRoute:
+      dashboard:
+        enabled: true
+        annotations: 
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+        services:
+          - name: api@internal
+            kind: TraefikService
+        # -- Specify the allowed entrypoints to use for the dashboard ingress route,     (e.g. traefik, web, websecure).
+        # By default, it's using traefik entrypoint, which is not exposed.
+        # /!\ Do not expose your dashboard without any protection over the internet /    !\
+        entryPoints: ["traefik", "web", "websecure"]
+        # -- Additional ingressRoute middlewares (e.g. for authentication)
+        middlewares: []
+        # -- TLS options (e.g. secret containing certificate)
+        # tls: nmoura-pt-tls
+      healthcheck:
+        # -- Create an IngressRoute for the healthcheck probe
+        enabled: true
+        annotations: 
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        matchRule: PathPrefix(`/ping`)
+        services:
+          - name: ping@internal
+            kind: TraefikService
+        entryPoints: ["traefik"]
+        # tls: nmoura-pt-tls
