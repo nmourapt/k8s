@@ -31,7 +31,7 @@ spec:
         middlewares: []
         # -- TLS options (e.g. secret containing certificate)
         tls: 
-          secretName: default/nmoura-pt-tls
+          secretName: nmoura-pt-tls
       healthcheck:
         # -- Create an IngressRoute for the healthcheck probe
         enabled: true
@@ -43,7 +43,7 @@ spec:
             kind: TraefikService
         entryPoints: ["traefik"]
         tls: 
-          secretName: default/nmoura-pt-tls
+          secretName: nmoura-pt-tls
     additionalArguments:
       - --entryPoints.web.http.redirections.entryPoint.to: websecure
       - --entryPoints.web.http.redirections.entryPoint.scheme: https
