@@ -62,8 +62,7 @@ spec:
         hosts:
           - host: autobrr.nmoura.pt
             paths:
-              - path: /*
-                pathType: Prefix
+              - path: /
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
