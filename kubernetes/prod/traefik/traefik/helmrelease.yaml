@@ -23,10 +23,7 @@ spec:
         services:
           - name: api@internal
             kind: TraefikService
-        # -- Specify the allowed entrypoints to use for the dashboard ingress route,     (e.g. traefik, web, websecure).
-        # By default, it's using traefik entrypoint, which is not exposed.
-        # /!\ Do not expose your dashboard without any protection over the internet /    !\
-        entryPoints: ["traefik", "web", "websecure"]
+        entryPoints: ["websecure"]
         # -- Additional ingressRoute middlewares (e.g. for authentication)
         middlewares: []
         # -- TLS options (e.g. secret containing certificate)
@@ -47,3 +44,38 @@ spec:
     additionalArguments:
       - --entryPoints.web.http.redirections.entryPoint.to: websecure
       - --entryPoints.web.http.redirections.entryPoint.scheme: https
+    metrics:
+      prometheus:
+        service:
+          enabled: true
+        disableAPICheck: false
+        serviceMonitor:
+          enabled: true
+          metricRelabelings:
+            - sourceLabels: [__name__]
+              separator: ;
+              regex: ^fluentd_output_status_buffer_(oldest|newest)_.+
+              replacement: $1
+              action: drop
+          relabelings:
+            - sourceLabels: [__meta_kubernetes_pod_node_name]
+              separator: ;
+              regex: ^(.*)$
+              targetLabel: nodename
+              replacement: $1
+              action: replace
+          jobLabel: traefik
+          interval: 30s
+          honorLabels: true
+        prometheusRule:
+          enabled: true
+          rules:
+            - alert: TraefikDown
+              expr: up{job="traefik"} == 0
+              for: 5m
+              labels:
+                context: traefik
+                severity: warning
+              annotations:
+                summary: "Traefik Down"
+                description: "{{ $labels.pod }} on {{ $labels.nodename }} is down"
