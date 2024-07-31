@@ -32,15 +32,11 @@ spec:
       healthcheck:
         # -- Create an IngressRoute for the healthcheck probe
         enabled: true
-        annotations: 
-          cert-manager.io/cluster-issuer: letsencrypt-prod
         matchRule: Host(`traefik.nmoura.pt`) && PathPrefix(`/ping`)
         services:
           - name: ping@internal
             kind: TraefikService
         entryPoints: ["traefik"]
-        tls: 
-          secretName: nmoura-pt-tls
     additionalArguments:
       - --entryPoints.web.http.redirections.entryPoint.to: websecure
       - --entryPoints.web.http.redirections.entryPoint.scheme: https
