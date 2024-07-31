@@ -19,7 +19,7 @@ spec:
         enabled: true
         annotations: 
           cert-manager.io/cluster-issuer: letsencrypt-prod
-        matchRule: PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+        matchRule: Host(`traefik.nmoura.pt`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
         services:
           - name: api@internal
             kind: TraefikService
@@ -37,7 +37,7 @@ spec:
         enabled: true
         annotations: 
           cert-manager.io/cluster-issuer: letsencrypt-prod
-        matchRule: PathPrefix(`/ping`)
+        matchRule: Host(`traefik.nmoura.pt`) && PathPrefix(`/ping`)
         services:
           - name: ping@internal
             kind: TraefikService
