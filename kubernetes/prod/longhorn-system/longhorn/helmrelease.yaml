@@ -44,5 +44,3 @@ spec:
       secureBackends: false
       tlsSecret: nmoura-pt-tls
       path: /
-      annotations:
-      secrets: nmoura-pt-tls
