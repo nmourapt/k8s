@@ -44,17 +44,6 @@ spec:
         - secretName: nmoura-pt-tls
           hosts:
           - grafana.nmoura.pt
-      grafana.ini:
-        auth.generic_oauth:
-          enabled = true
-          client_id = c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2
-          client_secret = 7f5d3c9a172d651a45ac7db9b5fbb0c4c11d53e21084849558002e22807a892c
-          auth_url = https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2/authorization
-          token_url = https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2/token
-        users:
-          allow_sign_up = false
-          auto_assign_org = true
-          auto_assign_org_role = Editor
     alertmanager:
       ingress:
         enabled: true
