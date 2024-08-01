@@ -28,9 +28,9 @@ spec:
         paths:
           - /
         tls: 
-          secretName: nmoura-pt-tls
+        - secretName: nmoura-pt-tls
           hosts:
-            - prometheus.nmoura.pt
+          - prometheus.nmoura.pt
     grafana:
       ingress:
         enabled: true
@@ -40,9 +40,9 @@ spec:
         paths:
           - /
         tls: 
-          secretName: nmoura-pt-tls
+        - secretName: nmoura-pt-tls
           hosts:
-            - grafana.nmoura.pt
+          - grafana.nmoura.pt
     alertmanager:
       ingress:
         enabled: true
@@ -52,6 +52,6 @@ spec:
         paths:
           - /
         tls: 
-          secretName: nmoura-pt-tls
+        - secretName: nmoura-pt-tls
           hosts:
-            - alertmanager.nmoura.pt
+          - alertmanager.nmoura.pt
