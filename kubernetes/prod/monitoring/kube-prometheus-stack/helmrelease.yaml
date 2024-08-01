@@ -32,7 +32,6 @@ spec:
           hosts:
           - prometheus.nmoura.pt
     grafana:
-      defaultDashboardsTimezone: Europe/Lisbon
       ingress:
         enabled: true
         ingressClassName: traefik
