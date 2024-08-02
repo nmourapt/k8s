@@ -23,8 +23,8 @@ spec:
       config:
         enabled: true
         type: pvc
-        mountPath: /var/opt/thelounge
-        nameOverride: var-opt-thelounge
+        mountPath: /config
+        nameOverride: config
         readOnly: false
         accessMode: ReadWriteOnce
         size: 1Gi
