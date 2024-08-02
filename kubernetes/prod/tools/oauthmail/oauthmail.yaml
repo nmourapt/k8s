@@ -47,13 +47,13 @@ spec:
       containers:
         - env:
             - name: LOGFILE
-              value: true
+              value: "true"
             - name: DEBUG 
-              value: false
+              value: "true"
             - name: CACHE_STORE
               value: /config/credstore.config
             - name: LOCAL_SERVER_AUTH
-              value: true
+              value: "true"
           image: blacktirion/email-oauth2-proxy-docker
           name: oauthmail
           ports:
