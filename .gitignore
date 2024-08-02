@@ -2,6 +2,6 @@
 !.gitignore
 !/kubernetes
 /kubernetes/**/utils/
-/kubernetes/**/clearsecret.yaml
+/**/clearsecret.yaml
 *.DS_Store
 *.ondir
