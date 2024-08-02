@@ -16,7 +16,7 @@ spec:
   values:
     service:
       annotations:
-        service.beta.kubernetes.io/cilium-global-service: true
+        service.beta.kubernetes.io/cilium-global-service: "true"
         service.beta.kubernetes.io/cilium-loadbalancer-ip: "192.168.202.101"
       loadBalancerIP: "192.168.202.101"
     ingressRoute:
