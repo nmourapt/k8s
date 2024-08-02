@@ -1,0 +1,98 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-oauthmail-config
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     namespace: tools
+     name: oauthmail-config
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: oauthmail-config
+  namespace: tools
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauthmail
+  namespace: tools
+  labels:
+    app: oauthmail
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: oauthmail
+  template:
+    metadata:
+      labels:
+        app: oauthmail
+    spec:
+      containers:
+        - env:
+            - name: LOGFILE
+              value: true
+            - name: DEBUG 
+              value: false
+            - name: CACHE_STORE
+              value: /config/credstore.config
+            - name: LOCAL_SERVER_AUTH
+              value: true
+          image: blacktirion/email-oauth2-proxy-docker
+          name: oauthmail
+          ports:
+            - containerPort: 1994
+              protocol: TCP
+            - containerPort: 2465
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: oauthmail-config
+      restartPolicy: Always
+      volumes:
+        - name: oauthmail-config
+          persistentVolumeClaim:
+            claimName: oauthmail-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oauthmail-1994
+  namespace: tools
+spec:
+  ports:
+    - port: 1994
+      targetPort: 1994
+      protocol: TCP
+  selector:
+    app: oauthmail
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oauthmail-2465
+  namespace: tools
+spec:
+  ports:
+    - port: 2465
+      targetPort: 2465
+      protocol: TCP
+  selector:
+    app: oauthmail
+
