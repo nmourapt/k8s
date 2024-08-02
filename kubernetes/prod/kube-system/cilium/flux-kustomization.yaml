@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/prod/default/cilium"
+  path: "./kubernetes/prod/kube-system/cilium"
   prune: true
   sourceRef:
     kind: GitRepository
