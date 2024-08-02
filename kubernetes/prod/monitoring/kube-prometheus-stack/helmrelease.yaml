@@ -14,10 +14,10 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-  valuesFrom:
-  - kind: Secret
-    name: kube-prometheus-stack-secrets
-    valuesKey: values.yaml
+  #valuesFrom:
+  #- kind: Secret
+  #  name: kube-prometheus-stack-secrets
+  #  valuesKey: values.yaml
   values:
     prometheus:
       ingress:
@@ -45,6 +45,22 @@ spec:
         - secretName: nmoura-pt-tls
           hosts:
           - grafana.nmoura.pt
+      adminPassword: $2C&&ThRv9$px@fMBUo4KGm$Qre5qL6G
+      grafana.ini:
+        auth.basic:
+          enabled = false
+        auth.generic_oauth:
+          enabled = true
+          scopes = "openid profile groups email"
+          client_id = c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2
+          client_secret = f0c64c113f2a1a5b4b95be215ec73aee771a60035c77a89d63ef159bdb60ed49
+          auth_url = https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2/authorization
+          token_url = https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2/token
+          api_url = https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/c9898db3462ae60ae37a47c5e4a2fbb87eae80bee49776ca48c880796e29b1c2/userinfo
+          auto_login = true
+          allow_sign_up = true
+        server:
+          root_url = https://grafana.nmoura.pt/
     alertmanager:
       ingress:
         enabled: true
