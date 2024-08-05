@@ -1,36 +1,31 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prowlarr
+  name: jellyseerr
   namespace: media
 spec:
   interval: 1m
   chart:
     spec:
-      chart: prowlarr
-      #version: 5.1.x
+      chart: my-jellyseer
+      version: 1.x
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: qjoly
         namespace: flux-system
   values:
-    persistence:
-      config:
-        enabled: true
-        type: pvc
-        mountPath: /config
-        nameOverride: config
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        retain: true
+    image:
+      repository: ghcr.io/sct/overseerr
+      tag: latest
+      # -- image pull policy
+      pullPolicy: IfNotPresent
 
     ingress:
       main:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: indexer.nmoura.pt
+          - host: requests.nmoura.pt
             paths:
               - path: /
       annotations:
@@ -39,4 +34,15 @@ spec:
       tls: 
         secretName: nmoura-pt-tls
         hosts:
-          - indexer.nmoura.pt
+          - requests.nmoura.pt
+    
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /app/config
+        nameOverride: app-config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
