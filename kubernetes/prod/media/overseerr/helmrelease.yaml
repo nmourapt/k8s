@@ -1,21 +1,21 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: jellyseerr
+  name: overseerr
   namespace: media
 spec:
   interval: 1m
   chart:
     spec:
-      chart: my-jellyseer
-      version: 1.x
+      chart: overseerr
+      version: 5.4.x
       sourceRef:
         kind: HelmRepository
-        name: qjoly
+        name: k8s-at-home
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/sct/overseerr
+      repository: sctx/overseerr
       tag: latest
       # -- image pull policy
       pullPolicy: IfNotPresent
