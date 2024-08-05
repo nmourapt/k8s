@@ -45,7 +45,6 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         retain: true
-
       media:
         enabled: false
         mountPath: /media
