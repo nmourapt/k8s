@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: prowlarr
+      version: 5.1.x
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /config
+        nameOverride: config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        retain: true
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: indexer.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - indexer.nmoura.pt
