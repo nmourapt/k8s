@@ -32,7 +32,7 @@ spec:
         hosts:
           - host: indexer.nmoura.pt
             paths:
-              - path: /
+              - path: /config
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
