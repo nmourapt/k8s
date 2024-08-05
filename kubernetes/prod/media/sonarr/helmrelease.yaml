@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: media
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: sonarr
+      version: 16.3.x
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/hotio/sonarr
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: tv.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - tv.nmoura.pt
+    
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /config
+        nameOverride: config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
+      media:
+        enabled: false
+        mountPath: /media
