@@ -27,7 +27,7 @@ spec:
         nameOverride: config
         readOnly: false
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 5Gi
         retain: true
 
     ingress:
