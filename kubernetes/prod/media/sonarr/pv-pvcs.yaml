@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-sonarr-media
+  name: pv-sonarr-synology
 spec:
   capacity:
     storage: 10Ti  # Adjust as needed
@@ -9,16 +9,16 @@ spec:
   - ReadWriteMany
   nfs:
     server: "192.168.202.1"  # Replace with your NFS server
-    path: "/volume1/Media/Series"  # Replace with the path on your NFS server
+    path: "/volume1"  # Replace with the path on your NFS server
   persistentVolumeReclaimPolicy: Retain
   claimRef:
      namespace: media
-     name: pvc-sonarr-media
+     name: pvc-sonarr-synology
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-sonarr-media
+  name: pvc-sonarr-synology
   namespace: media
 spec:
   accessModes:
@@ -26,36 +26,5 @@ spec:
   resources:
     requests:
       storage: 10Ti
-  volumeName: pv-sonarr-media
-  storageClassName: ""
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-sonarr-downloads
-spec:
-  capacity:
-    storage: 10Ti  # Adjust as needed
-  accessModes:
-  - ReadWriteMany
-  nfs:
-    server: "192.168.202.1"  # Replace with your NFS server
-    path: "/volume1/Apps/Downloads"
-  persistentVolumeReclaimPolicy: Retain
-  claimRef:
-     namespace: media
-     name: pvc-sonarr-downloads
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-sonarr-downloads
-  namespace: media
-spec:
-  accessModes:
-  - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Ti
-  volumeName: pv-sonarr-downloads
+  volumeName: pv-sonarr-synology
   storageClassName: ""
