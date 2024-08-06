@@ -20,6 +20,8 @@ spec:
           secretKeyRef:
             name: vaultwarden-secrets
             key: ADMIN_TOKEN
+      - name: DOMAIN
+        value: https://warden.nmoura.pt
 
     ingress:
       main:
