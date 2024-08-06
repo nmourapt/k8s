@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-sonarr-tv
+  name: pv-sonarr-media
 spec:
   capacity:
     storage: 10Ti  # Adjust as needed
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     server: "192.168.202.1"  # Replace with your NFS server
     path: "/volume1/Media/Series"  # Replace with the path on your NFS server
@@ -22,10 +22,11 @@ metadata:
   namespace: media
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 10Ti
+  volumeName: pv-sonarr-media
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -35,7 +36,7 @@ spec:
   capacity:
     storage: 10Ti  # Adjust as needed
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     server: "192.168.202.1"  # Replace with your NFS server
     path: "/volume1/Apps/Downloads"
@@ -51,7 +52,8 @@ metadata:
   namespace: media
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 10Ti
+  volumeName: pv-sonarr-downloads
