@@ -12,7 +12,7 @@ spec:
     path: "/volume1/Media/Series"  # Replace with the path on your NFS server
   persistentVolumeReclaimPolicy: Retain
   claimRef:
-     namespace: namespace
+     namespace: media
      name: pvc-sonarr-media
 ---
 apiVersion: v1
@@ -41,7 +41,7 @@ spec:
     path: "/volume1/Apps/Downloads"
   persistentVolumeReclaimPolicy: Retain
   claimRef:
-     namespace: namespace
+     namespace: media
      name: pvc-sonarr-downloads
 ---
 apiVersion: v1
