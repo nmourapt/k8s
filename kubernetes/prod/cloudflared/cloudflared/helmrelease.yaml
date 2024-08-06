@@ -14,12 +14,9 @@ spec:
         kind: HelmRepository
         name: cloudflare
         namespace: flux-system
-  values:
-    replicaCount: 2
-    cloudflare:
-      # This ensures that Helm pulls the tunnelToken from the secret directly
-      tunnel_token: {{ .Values.tunnelToken }}
   valuesFrom:
   - kind: Secret
-    name: cloudflared-secret
-    valuesKey: tunnelToken
+    name: cloudflared-secrets
+    valuesKey: values.yaml
+  values:
+    replicaCount: 2
