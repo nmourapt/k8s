@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-sonarr-tv
+spec:
+  capacity:
+    storage: 10Ti  # Adjust as needed
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: "192.168.202.1"  # Replace with your NFS server
+    path: "/volume1/Media/Series"  # Replace with the path on your NFS server
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     namespace: namespace
+     name: pvc-sonarr-media
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-sonarr-media
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Ti
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-sonarr-downloads
+spec:
+  capacity:
+    storage: 10Ti  # Adjust as needed
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: "192.168.202.1"  # Replace with your NFS server
+    path: "/volume1/Apps/Downloads"
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     namespace: namespace
+     name: pvc-sonarr-downloads
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-sonarr-downloads
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Ti
