@@ -27,6 +27,7 @@ spec:
     requests:
       storage: 10Ti
   volumeName: pv-sonarr-media
+  storageClassName: ""
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -57,3 +58,4 @@ spec:
     requests:
       storage: 10Ti
   volumeName: pv-sonarr-downloads
+  storageClassName: ""
