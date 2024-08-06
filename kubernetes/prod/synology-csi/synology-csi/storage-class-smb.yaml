@@ -10,6 +10,6 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-name: "cifs-csi-credentials"
   csi.storage.k8s.io/node-stage-secret-namespace: "synology-csi"
   dsm: "192.168.202.1"
-  location: '/volume1/Media'
+  location: '/volume1'
 reclaimPolicy: Retain
 allowVolumeExpansion: true
