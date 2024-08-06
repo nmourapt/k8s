@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: oauthmail
+    app.kubernetes.io/name: oauthmail
+  name: oauthmail-1994
+  namespace: tools
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: oauthmail.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: oauthmail-1994
+            port:
+              number: 1994
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
