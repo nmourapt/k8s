@@ -57,3 +57,18 @@ spec:
         enabled: true
       ui:
         enabled: true
+        ingress:
+          main:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+              - host: hubble.nmoura.pt
+                paths:
+                  - path: /
+          annotations:
+            kubernetes.io/ingress.class: traefik
+            cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          tls: 
+            secretName: nmoura-pt-tls
+            hosts:
+              - hubble.nmoura.pt
