@@ -4,8 +4,8 @@ metadata:
   name: "my-lb-pool"
 spec:
   blocks:
-  - start: "192.168.202.150"
-    stop: "192.168.202.160"
+  - start: "192.168.202.151"
+    stop: "192.168.202.159"
   serviceSelector:
     matchLabels:
       io.kubernetes.service.lb.ippool: my-lb-pool

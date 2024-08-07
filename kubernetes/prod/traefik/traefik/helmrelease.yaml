@@ -14,8 +14,9 @@ spec:
         name: traefik
         namespace: flux-system
   values:
-    #service:
-    #  annotations:
+    service:
+      annotations:
+         io.kubernetes.service.lb.ippool: my-lb-pool
     #    service.beta.kubernetes.io/cilium-global-service: "true"
     #    service.beta.kubernetes.io/cilium-loadbalancer-ip: "192.168.202.101"
     #  spec:
