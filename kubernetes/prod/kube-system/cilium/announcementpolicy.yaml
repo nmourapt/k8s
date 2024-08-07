@@ -1,0 +1,10 @@
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: my-lb-pool-announcement-policy
+spec:
+  serviceSelector:
+    matchLabels:
+      io.kubernetes.service.lb.ippool: my-lb-pool
+  externalIPs: true
+  loadBalancerIPs: true

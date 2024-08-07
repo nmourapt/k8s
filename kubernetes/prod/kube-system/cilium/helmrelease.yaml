@@ -52,7 +52,7 @@ spec:
       - name: mylbpool-announcement-policy
         serviceSelector:
           matchLabels:
-            io.kubernetes.service.lb.ippool:     my-lb-pool
+            io.kubernetes.service.lb.ippool: my-lb-pool
         externalIPs: true
         loadBalancerIPs: true
     
