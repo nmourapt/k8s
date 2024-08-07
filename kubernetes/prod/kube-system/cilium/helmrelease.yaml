@@ -48,3 +48,9 @@ spec:
 
     l2announcements:
       enabled: true
+
+    hubble:
+      relay:
+        enabled: "true"
+      ui:
+        enabled: "true"
