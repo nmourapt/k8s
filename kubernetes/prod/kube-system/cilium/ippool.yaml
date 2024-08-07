@@ -1,0 +1,10 @@
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "my-lb-pool"
+spec:
+  cidrs:
+  - cidr: "192.168.202.96/29"
+  serviceSelector:
+    matchLabels:
+      io.kubernetes.service.lb.ippool: my-lb-pool
