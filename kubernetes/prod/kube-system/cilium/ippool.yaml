@@ -3,8 +3,9 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: "my-lb-pool"
 spec:
-  cidrs:
-  - cidr: "192.168.202.96/29"
+  blocks:
+  - start: "192.168.202.150"
+    stop: "192.168.202.160"
   serviceSelector:
     matchLabels:
       io.kubernetes.service.lb.ippool: my-lb-pool
