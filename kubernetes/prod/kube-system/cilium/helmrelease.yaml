@@ -51,6 +51,6 @@ spec:
 
     hubble:
       relay:
-        enabled: "true"
+        enabled: true
       ui:
-        enabled: "true"
+        enabled: true
