@@ -19,6 +19,22 @@ spec:
       tag: latest
       pullPolicy: IfNotPresent
 
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: calibre.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - calibre.nmoura.pt
+
     persistence:
       config:
         enabled: true
