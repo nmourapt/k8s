@@ -23,4 +23,4 @@ spec:
       config:
         enabled: true
         mountPath: /config
-        existingClaim: pvc-calibre-web-synology
+        existingClaim: pvc-calibre-synology
