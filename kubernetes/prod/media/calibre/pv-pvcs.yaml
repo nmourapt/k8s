@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-calibre-web-synology
+  name: pv-calibre-synology
 spec:
   capacity:
     storage: 10Ti  # Adjust as needed
@@ -13,12 +13,12 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   claimRef:
      namespace: media
-     name: pvc-calibre-web-synology
+     name: pvc-calibre-synology
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-calibre-web-synology
+  name: pvc-calibre-synology
   namespace: media
 spec:
   accessModes:
@@ -26,5 +26,5 @@ spec:
   resources:
     requests:
       storage: 10Ti
-  volumeName: pv-calibre-web-synology
+  volumeName: pv-calibre-synology
   storageClassName: ""
