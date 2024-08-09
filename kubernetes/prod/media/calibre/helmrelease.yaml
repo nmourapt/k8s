@@ -18,6 +18,27 @@ spec:
       repository: linuxserver/calibre
       tag: latest
       pullPolicy: IfNotPresent
+    service:
+      webserver:
+        enabled: true
+
+    ingress:
+      # -- Enable and configure ingress settings for the chart under this key.
+      # @default -- See values.yaml
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: calibre.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - calibre.nmoura.pt
 
     persistence:
       config:

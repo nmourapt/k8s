@@ -24,7 +24,7 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: calibre.nmoura.pt
+          - host: calibre-web.nmoura.pt
             paths:
               - path: /
       annotations:
@@ -33,7 +33,7 @@ spec:
       tls: 
         secretName: nmoura-pt-tls
         hosts:
-          - calibre.nmoura.pt
+          - calibre-web.nmoura.pt
 
     persistence:
       config:
