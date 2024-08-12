@@ -1,0 +1,57 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: deluge
+  namespace: media
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: deluge
+      version: 5.4.x
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    image:
+      repository: linuxserver/deluge
+      tag: latest
+      # -- image pull policy
+      pullPolicy: IfNotPresent
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: ratio.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - ratio.nmoura.pt
+    
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /config
+        nameOverride: config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
+      downloads:
+        enabled: true
+        type: pvc
+        mountPath: /downloads
+        nameOverride: downloads
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 500Gi
+        retain: true
