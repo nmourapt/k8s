@@ -49,9 +49,10 @@ spec:
       downloads:
         enabled: true
         type: pvc
+        StorageClass: longhorn-noreplicas
         mountPath: /downloads
         nameOverride: downloads
         readOnly: false
         accessMode: ReadWriteOnce
-        size: 500Gi
+        size: 200Gi
         retain: true
