@@ -16,9 +16,6 @@ spec:
   values:
     service:
       labels:
-        io.kubernetes.service.lb.ippool: my-lb-pool
-      annotations:
-        io.kubernetes.service.lb.ippool: my-lb-pool
       spec:
         loadBalancerIP: "192.168.202.159" 
     ingressRoute:
