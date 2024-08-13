@@ -83,7 +83,7 @@ spec:
     metrics:
       # -- Enable and configure prometheus-qbittorrent-exporter sidecar and     Prometheus podMonitor.
       # @default -- See values.yaml
-      enabled: true
+      enabled: false
       serviceMonitor:
         interval: 15s
         scrapeTimeout: 5s
