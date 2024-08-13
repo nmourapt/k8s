@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: deluge-app
+  name: qbittorrent-app
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/prod/media/deluge"
+  path: "./kubernetes/prod/media/qbittorrent"
   prune: true
   sourceRef:
     kind: GitRepository
