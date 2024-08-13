@@ -36,6 +36,17 @@ spec:
         hosts:
           - ratio.nmoura.pt
     
+    service:
+      bittorrent:
+        enabled: true
+        type: ClusterIP
+        ports:
+          bittorrent:
+            enabled: true
+            port: 57759
+            protocol: TCP
+            targetPort: 57759
+
     persistence:
       config:
         enabled: true
