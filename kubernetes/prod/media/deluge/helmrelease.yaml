@@ -41,7 +41,7 @@ spec:
         enabled: true
         type: LoadBalancer
         spec:
-          loadBalancerIP: "192.168.202.159" 
+          loadBalancerIP: "192.168.202.158" 
         ports:
           bittorrent-tcp:
             enabled: true
