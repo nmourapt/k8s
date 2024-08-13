@@ -38,10 +38,6 @@ spec:
     
     service:
       bittorrent-tcp:
-        labels:
-          io.kubernetes.service.lb.ippool: my-lb-pool
-        annotations:
-          io.kubernetes.service.lb.ippool: my-lb-pool
         enabled: true
         type: LoadBalancer
         ports:
@@ -51,10 +47,6 @@ spec:
             protocol: TCP
             targetPort: 57759
       bittorrent-udp:
-        labels:
-          io.kubernetes.service.lb.ippool: my-lb-pool
-        annotations:
-          io.kubernetes.service.lb.ippool: my-lb-pool
         enabled: true
         type: LoadBalancer
         ports:
