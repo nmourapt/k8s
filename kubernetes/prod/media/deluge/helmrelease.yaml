@@ -37,7 +37,7 @@ spec:
           - ratio.nmoura.pt
     
     service:
-      bittorrent-tcp:
+      bittorrent:
         enabled: true
         type: LoadBalancer
         ports:
@@ -46,16 +46,12 @@ spec:
             port: 57759
             protocol: TCP
             targetPort: 57759
-      bittorrent-udp:
-        enabled: true
-        type: LoadBalancer
-        ports:
           bittorrent-udp:
             enabled: true
             port: 57759
             protocol: UDP
             targetPort: 57759
-
+            
     persistence:
       config:
         enabled: true
