@@ -47,5 +47,5 @@ spec:
         retain: true
       media:
         enabled: true
-        mountPath: /media
+        mountPath: /synology
         existingClaim: pvc-sonarr-synology
