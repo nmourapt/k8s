@@ -9,7 +9,7 @@ spec:
   - ReadWriteMany
   nfs:
     server: "192.168.202.1"  # Replace with your NFS server
-    path: "/volume1/data"  # Replace with the path on your NFS server
+    path: "/volume1/data/torrents"  # Replace with the path on your NFS server
   persistentVolumeReclaimPolicy: Retain
   claimRef:
      namespace: media
