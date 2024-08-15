@@ -1,0 +1,16 @@
+# kubernetes/prod/cloudflared/cloudflared/helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: node-feature-discovery
+  namespace: nfd
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: node-feature-discovery
+      version: 0.2.x
+      sourceRef:
+        kind: HelmRepository
+        name: nfd
+        namespace: flux-system
