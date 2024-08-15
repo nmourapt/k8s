@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/prod/device-plugin-operator/device-plugin-operator"
+  path: "./kubernetes/prod/intel-device-plugin/device-plugin-operator"
   prune: true
   sourceRef:
     kind: GitRepository
