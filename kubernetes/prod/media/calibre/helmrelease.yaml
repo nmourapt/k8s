@@ -43,5 +43,14 @@ spec:
     persistence:
       config:
         enabled: true
+        type: pvc
         mountPath: /config
+        nameOverride: config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
+      books:
+        enabled: true
+        mountPath: /books
         existingClaim: pvc-calibre-synology
