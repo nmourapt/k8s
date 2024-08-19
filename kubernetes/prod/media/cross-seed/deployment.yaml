@@ -21,7 +21,7 @@ spec:
       containers:
       - image: ghcr.io/cross-seed/cross-seed
         name: cross-seed
-        command: ["sleep infinity"]
+        command: ["cat"]
         ports:
         - containerPort: 2468
           protocol: TCP
