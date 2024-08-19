@@ -1,11 +1,11 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: cross-seed
   name: cross-seed
   namespace: media
+  labels:
+    app: cross-seed
 spec:
   replicas: 1
   strategy:
