@@ -36,8 +36,11 @@ spec:
     
     persistence:
       config:
-        enabled: true
-        type: pvc
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        retain: true
+        enabled: false
+        #type: pvc
+        #mountPath: /config
+        #nameOverride: config
+        #readOnly: false
+        #accessMode: ReadWriteOnce
+        #size: 5Gi
+        #retain: true
