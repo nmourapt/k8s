@@ -200,7 +200,7 @@ data:
          * "2w"
          * "3 days"
          */
-        rssCadence: "10min"",
+        rssCadence: "10min",
         /**
          * Run searches on a schedule. Format: https://github.com/vercel/ms
          * Set to undefined or null to disable. Minimum of 1 day.
