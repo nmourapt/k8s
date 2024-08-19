@@ -79,7 +79,7 @@ data:
          * Don't change this for Docker.
          * Instead set the volume mapping on your docker container.
          */
-        torrentDir: "/synology/torrents/torrentfiles)",
+        torrentDir: "/torrents",
         /**
          * Where to put the torrent files that cross-seed finds for you.
          * Don't change this for Docker.
