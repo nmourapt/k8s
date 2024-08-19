@@ -21,7 +21,11 @@ spec:
       containers:
       - image: ghcr.io/cross-seed/cross-seed
         name: cross-seed
-        command: ["/usr/local/bin/cross-seed search"]
+        command: ["daemon"]
+        #command:
+        #  - "/usr/local/bin/cross-seed"
+        #args:
+        #  - daemon
         ports:
         - containerPort: 2468
           protocol: TCP
