@@ -169,7 +169,7 @@ data:
          * Example: if you have a label/category called "Movies",
          * this will automatically inject cross-seeds to "Movies.cross-seed"
          */
-        duplicateCategories: false,
+        duplicateCategories: true,
         /**
          * cross-seed will send POST requests to this url
          * with a JSON payload of { title, body }.
