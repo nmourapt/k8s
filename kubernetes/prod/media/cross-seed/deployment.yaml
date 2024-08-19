@@ -30,6 +30,9 @@ spec:
           name: cross-seed-config
         - mountPath: /synology
           name: cross-seed-synology
+        - mountPath: /config/config.js
+          subPath: config.js
+          name: config-js
       restartPolicy: Always
       volumes:
       - name: cross-seed-config
@@ -38,3 +41,6 @@ spec:
       - name: cross-seed-synology
         persistentVolumeClaim:
           claimName: pvc-cross-seed-synology
+      - name: config-js
+        configMap:
+          name: cross-seed-config
