@@ -14,7 +14,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   claimRef:
      namespace: media
-     name: pvc-cross-seed-synology
+     name: pvc-cross-seed-synology-torrents
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
