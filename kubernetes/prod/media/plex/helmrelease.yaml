@@ -82,4 +82,4 @@ spec:
       media:
         enabled: true
         mountPath: /synology
-        existingClaim: pvc-bazarr-synology
+        existingClaim: pvc-plex-synology
