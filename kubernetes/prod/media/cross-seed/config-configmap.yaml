@@ -11,7 +11,7 @@ data:
     Object.defineProperty(exports, "__esModule", { value: true });
     module.exports = {
         delay: 10,
-        torznab: ["http://prowlarr:9696/10/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/5/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/6/api?apikey=74d92c7a8d424c89b470bf869c0d740f"],
+        torznab: ["http://prowlarr:9696/10/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/11/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/6/api?apikey=74d92c7a8d424c89b470bf869c0d740f"],
         dataDirs: undefined,
         matchMode: "safe",
         dataCategory: undefined,
