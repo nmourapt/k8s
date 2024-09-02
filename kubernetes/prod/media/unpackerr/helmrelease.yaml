@@ -18,17 +18,39 @@ spec:
       repository: ghcr.io/hotio/unpackerr
       tag: latest
       pullPolicy: IfNotPresent
-          
+
+    env:
+      - name: UN_SONARR_0_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: unpackerr-secrets
+            key: UN_SONARR_0_API_KEY
+      - name: UN_RADARR_0_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: unpackerr-secrets
+            key: UN_RADARR_0_API_KEY
+      - name: UN_READARR_0_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: unpackerr-secrets
+            key: UN_READARR_0_API_KEY
+      - name: UN_WEBSERVER_METRICS
+        value: false
+      - name: UN_SONARR_0_URL
+        value: http://sonarr:8989
+      - name: UN_SONARR_0_PATHS_0
+        value: /synology/torrents/series
+      - name: UN_RADARR_0_URL
+        value: http://radarr:7878
+      - name: UN_RADARR_0_PATHS_0
+        value: /synology/torrents/movies
+      - name: UN_READARR_0_URL
+        value: http://readarr:8787
+      - name: UN_READARR_0_PATHS_0
+        value: /synology/torrents/books
+            
     persistence:
-      config:
-        enabled: true
-        type: pvc
-        mountPath: /config
-        nameOverride: config
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        retain: true
       downloads:
         enabled: true
         mountPath: /synology
