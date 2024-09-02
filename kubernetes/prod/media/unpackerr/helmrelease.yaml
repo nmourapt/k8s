@@ -27,13 +27,6 @@ spec:
           - host: unpack.nmoura.pt
             paths:
               - path: /
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
-        secretName: nmoura-pt-tls
-        hosts:
-          - unpack.nmoura.pt
           
     persistence:
       config:
@@ -45,7 +38,7 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         retain: true
-      media:
+      downloads:
         enabled: true
         mountPath: /synology
         existingClaim: pvc-unpackerr-synology
