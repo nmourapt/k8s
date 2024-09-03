@@ -1,0 +1,47 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gotify
+  namespace: gotify
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: gotify
+      version: 1.2.x
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    image:
+      repository: gotify/server
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    persistence:
+      data:
+        enabled: true
+        type: pvc
+        mountPath: /app/data
+        nameOverride: app-data
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: notify.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - notify.nmoura.pt
