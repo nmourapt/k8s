@@ -33,7 +33,7 @@ data:
         transmissionRpcUrl: undefined,
         delugeRpcUrl: undefined,
         duplicateCategories: true,
-        notificationWebhookUrl: "https://cross-seed.gotify.nmoura.pt",
+        notificationWebhookUrl: "https://cross-seed.notify.nmoura.pt",
         port: 2468,
         host: undefined,
         apiAuth: false,
