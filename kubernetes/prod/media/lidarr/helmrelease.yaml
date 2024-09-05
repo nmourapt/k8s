@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: lidarr
+  namespace: media
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: lidarr
+      version: 14.2.x
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/hotio/lidarr
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: music.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - music.nmoura.pt
+    
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /config
+        nameOverride: config
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
+      media:
+        enabled: true
+        mountPath: /synology
+        existingClaim: pvc-lidarr-synology
