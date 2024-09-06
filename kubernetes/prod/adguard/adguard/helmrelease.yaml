@@ -271,19 +271,3 @@ spec:
         user: ""
         rlimit_nofile: 0
       schema_version: 28
-
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: adguard.nmoura.pt
-            paths:
-              - path: /
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
-        secretName: nmoura-pt-tls
-        hosts:
-          - adguard.nmoura.pt

@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: adguard-adguard-home
+    app.kubernetes.io/name: adguard-adguard-home
+  name: adguard-adguard-home-3000
+  namespace: adguard
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: adguard.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: adguard-adguard-home
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
