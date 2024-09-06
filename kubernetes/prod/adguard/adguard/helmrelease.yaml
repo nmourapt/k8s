@@ -38,7 +38,7 @@ spec:
         - name: adguard-home-config
           mountPath: /tmp/AdGuardHome.yaml
           subPath: AdGuardHome.yaml
-        - name: config
+        - name: opt-adguardhome-conf
           mountPath: /opt/adguardhome/conf
         securityContext:
           runAsUser: 0
