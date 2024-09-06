@@ -19,6 +19,10 @@ spec:
       tag: latest
       pullPolicy: IfNotPresent
 
+    env:
+      - name: DOCKER_MODS
+        value: linuxserver/mods:lidarr-flac2mp3
+
     ingress:
       main:
         enabled: true
