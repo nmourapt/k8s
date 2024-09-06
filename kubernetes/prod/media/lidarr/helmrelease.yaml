@@ -15,7 +15,7 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/lidarr
+      repository: lscr.io/linuxserver/lidarr
       tag: latest
       pullPolicy: IfNotPresent
 
