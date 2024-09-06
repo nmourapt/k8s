@@ -85,11 +85,17 @@ spec:
     persistence:
       config:
         enabled: true
+        type: pvc
         mountPath: /opt/adguardhome/conf
+        nameOverride: opt-adguardhome-conf
+        readOnly: false
+        accessMode: ReadWriteMany
+        size: 5Gi
+        retain: true
       data:
         enabled: false
-        mountPath: /opt/adguardhome/work
-    
+        #mountPath: /opt/adguardhome/work
+
     config: |
       bind_host: 0.0.0.0
       bind_port: 3000
