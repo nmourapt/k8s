@@ -5,6 +5,8 @@ metadata:
   name: oauthmail-1994
   namespace: tools
 spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.202.154
   ports:
     - port: 1994
       targetPort: 1994
@@ -18,6 +20,8 @@ metadata:
   name: oauthmail-2465
   namespace: tools
 spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.202.154
   ports:
     - port: 2465
       targetPort: 2465
