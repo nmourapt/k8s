@@ -7,6 +7,18 @@ metadata:
   namespace: homeassistant
 data:
   configuration.yaml: |-
+    homeassistant:
+      name: Home
+      latitude: 38.838032
+      longitude: -9.154820
+      elevation: 0
+      unit_system: metric
+      currency: EUR
+      country: PT
+      time_zone: "Europe/Lisbon"
+      external_url: "https://homeassistant.nmoura.pt"
+      internal_url: "http://192.168.202.156:8123"
+      
     default_config:
     
     #add support for my integrations
