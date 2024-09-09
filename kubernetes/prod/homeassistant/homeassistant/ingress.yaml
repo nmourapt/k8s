@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: homeassistant
+    app.kubernetes.io/name: homeassistant
+  name: homeassistant-8123
+  namespace: homeassistant
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: homeassistant.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: homeassistant-8123
+            port:
+              number: 8123
+        path: /
+        pathType: Prefix
+    tls: 
+      secretName: nmoura-pt-tls
+      hosts:
+        - homeassistant.nmoura.pt
+status:
+  loadBalancer: {}

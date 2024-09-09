@@ -1,0 +1,53 @@
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: homeassistant-configmap
+  namespace: homeassistant
+data:
+  configuration.yaml: |-
+    default_config:
+    
+    #add support for my integrations
+    my:
+    
+    # Text to speech
+    tts:
+      - platform: google_translate
+    
+    automation: !include automations.yaml
+    script: !include scripts.yaml
+    scene: !include scenes.yaml
+    
+    http:
+      use_x_forwarded_for: true
+      trusted_proxies:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+
+    # Added config
+    cover:
+      - platform: group
+        name: 'Living Room Blinds'
+        unique_id: 'group_living_room_blinds'
+        entities:
+          - cover.left_living_room_blinds
+          - cover.right_living_room_blinds
+
+    sensor:
+      - platform: time_date
+        display_options:
+          - 'time'
+          - 'date'
+          - 'date_time'
+          - 'date_time_utc'
+          - 'date_time_iso'
+          - 'time_date'
+          - 'time_utc'
+      
+    #google_assistant:
+    #  project_id: home-24536
+    #  service_account: !include home-24536-d32baeb6f0a1.json
+    #  report_state: true
