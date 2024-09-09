@@ -13,4 +13,19 @@ spec:
     protocol: TCP
   selector:
     app: homeassistant
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: homeassistant
+  name: homeassistant-coiot
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.202.157
+  ports:
+  - port: 5683
+    targetPort: 5683
+    protocol: UDP
+  selector:
+    app: homeassistant
 
