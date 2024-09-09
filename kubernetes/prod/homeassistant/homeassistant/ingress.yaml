@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: homeassistant
     app.kubernetes.io/name: homeassistant
-  name: homeassistant-8123
+  name: homeassistant
   namespace: homeassistant
 spec:
   ingressClassName: traefik
@@ -15,7 +15,7 @@ spec:
       paths:
       - backend:
           service:
-            name: homeassistant-8123
+            name: homeassistant
             port:
               number: 8123
         path: /
