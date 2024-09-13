@@ -69,7 +69,7 @@ spec:
       downloads:
         enabled: true
         type: pvc
-        StorageClass: longhorn-noreplicas
+        storageclass: longhorn-noreplicas
         mountPath: /downloads
         nameOverride: downloads
         readOnly: false
