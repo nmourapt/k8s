@@ -1,7 +1,7 @@
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumL2AnnouncementPolicy
-metadata:
-  name: my-lb-pool-announcement-policy
-spec:
-  externalIPs: true
-  loadBalancerIPs: true
+#apiVersion: "cilium.io/v2alpha1"
+#kind: CiliumL2AnnouncementPolicy
+#metadata:
+#  name: my-lb-pool-announcement-policy
+#spec:
+#  externalIPs: true
+#  loadBalancerIPs: true
