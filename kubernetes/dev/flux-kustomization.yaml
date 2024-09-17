@@ -1,19 +1,17 @@
-# kubernetes/dev/flux-kustomization.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: dev
+  name: prod
   namespace: flux-system
 spec:
-  interval: 1h  # Check every 1 hour
+  interval: 1m  # Check every 1 minute
   path: "./kubernetes/dev"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  validation: client
-  resources:
-    - cloudflared/flux-kustomization.yaml
-  dependsOn:
-    - name: helmrepositories
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
