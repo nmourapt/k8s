@@ -1,0 +1,75 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: cilium
+      version: 1.16.0
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: flux-system
+  values:
+    ipam:
+      mode: "kubernetes"
+
+    kubeProxyReplacement: "true"
+
+    securityContext:
+      capabilities:
+        ciliumAgent:
+          - CHOWN
+          - KILL
+          - NET_ADMIN
+          - NET_RAW
+          - IPC_LOCK
+          - SYS_ADMIN
+          - SYS_RESOURCE
+          - DAC_OVERRIDE
+          - FOWNER
+          - SETGID
+          - SETUID
+        cleanCiliumState:
+          - NET_ADMIN
+          - SYS_ADMIN
+          - SYS_RESOURCE
+
+    cgroup:
+      autoMount:
+        enabled: false
+      hostRoot: /sys/fs/cgroup
+
+    k8sServiceHost: "localhost"
+    k8sServicePort: "7445"
+
+    l2announcements:
+      enabled: true
+    
+    k8sClientRateLimit:
+      qps: 100
+      burst: 150
+
+    externalIPs:
+      enabled: true
+
+    hubble:
+      relay:
+        enabled: true
+      ui:
+        enabled: false
+        ingress:
+          enabled: false
+          className: traefik
+          hosts:
+            - hubble.nmoura.pt
+          annotations:
+            kubernetes.io/ingress.class: traefik
+            cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          tls: 
+            - secretName: nmoura-pt-tls
+              hosts:
+                - hubble.nmoura.pt
