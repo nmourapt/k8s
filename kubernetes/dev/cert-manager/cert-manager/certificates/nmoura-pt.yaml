@@ -1,14 +1,14 @@
-#apiVersion: cert-manager.io/v1
-#kind: Certificate
-#metadata:
-#  name: nmoura-pt
-#  namespace: traefik
-#spec:
-#  secretName: nmoura-pt-tls
-#  issuerRef:
-#    name: letsencrypt-prod
-#    kind: ClusterIssuer
-#  dnsNames:
-#  - '*.dev.nmoura.pt'
-#  - '*.nmoura.pt'
-#  - nmoura.pt
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nmoura-pt
+  namespace: traefik
+spec:
+  secretName: nmoura-pt-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - '*.dev.nmoura.pt'
+  - '*.nmoura.pt'
+  - nmoura.pt
