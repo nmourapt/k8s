@@ -1,0 +1,18 @@
+# kubernetes/prod/cloudflared/flux-kustomization.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: longhorn-system-ns
+  namespace: flux-system
+spec:
+  interval: 1m  # Check every 1 minute
+  path: "./kubernetes/dev/longhorn-system"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
