@@ -1,0 +1,80 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: traefik
+      version: 30.0.x
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  values:
+    service:
+      spec:
+        loadBalancerIP: "192.168.251.159" 
+    ingressRoute:
+      dashboard:
+        enabled: true
+        annotations: 
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        matchRule: Host(`traefik.dev.nmoura.pt`) && PathPrefix(`/dashboard`) || Host(`traefik.dev.nmoura.pt`) && PathPrefix(`/api`)
+        services:
+          - name: api@internal
+            kind: TraefikService
+        entryPoints: ["websecure"]
+        # -- Additional ingressRoute middlewares (e.g. for authentication)
+        middlewares: []
+        # -- TLS options (e.g. secret containing certificate)
+        tls: 
+          secretName: nmoura-pt-tls
+      healthcheck:
+        # -- Create an IngressRoute for the healthcheck probe
+        enabled: true
+        matchRule: Host(`traefik.dev.nmoura.pt`) && PathPrefix(`/ping`)
+        services:
+          - name: ping@internal
+            kind: TraefikService
+        entryPoints: ["traefik"]
+    additionalArguments:
+      - --entryPoints.web.http.redirections.entryPoint.to: websecure
+      - --entryPoints.web.http.redirections.entryPoint.scheme: https
+    metrics:
+      prometheus:
+        service:
+          enabled: true
+        disableAPICheck: false
+        serviceMonitor:
+          enabled: true
+          metricRelabelings:
+            - sourceLabels: [__name__]
+              separator: ;
+              regex: ^fluentd_output_status_buffer_(oldest|newest)_.+
+              replacement: $1
+              action: drop
+          relabelings:
+            - sourceLabels: [__meta_kubernetes_pod_node_name]
+              separator: ;
+              regex: ^(.*)$
+              targetLabel: nodename
+              replacement: $1
+              action: replace
+          jobLabel: traefik
+          interval: 30s
+          honorLabels: true
+        prometheusRule:
+          enabled: true
+          rules:
+            - alert: TraefikDown
+              expr: up{job="traefik"} == 0
+              for: 5m
+              labels:
+                context: traefik
+                severity: warning
+              annotations:
+                summary: "Traefik Down"
+                description: "{{ $labels.pod }} on {{ $labels.nodename }} is down"
