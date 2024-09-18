@@ -46,10 +46,10 @@ spec:
     metrics:
       prometheus:
         service:
-          enabled: false
+          enabled: true
         disableAPICheck: false
         serviceMonitor:
-          enabled: false
+          enabled: true
           metricRelabelings:
             - sourceLabels: [__name__]
               separator: ;
@@ -67,7 +67,7 @@ spec:
           interval: 30s
           honorLabels: true
         prometheusRule:
-          enabled: false
+          enabled: true
           rules:
             - alert: TraefikDown
               expr: up{job="traefik"} == 0
