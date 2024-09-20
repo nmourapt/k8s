@@ -1,0 +1,231 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: immich
+      version: 0.7.x
+      sourceRef:
+        kind: HelmRepository
+        name: immich
+        namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: immich-secrets
+    valuesKey: values.yaml
+  values:
+    env:
+      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+      DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
+      DB_USERNAME: "{{ .Values.postgresql.global.postgresql.auth.username }}"
+      DB_DATABASE_NAME: "{{ .Values.postgresql.global.postgresql.auth.database }}"
+      # -- You should provide your own secret outside of this helm-chart and use     `postgresql.global.postgresql.auth.existingSecret` to provide credentials to the     postgresql instance
+      DB_PASSWORD: "{{ .Values.postgresql.global.postgresql.auth.password }}"
+      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.    Name }}'
+
+    image:
+      tag: v1.106.1
+
+    immich:
+      metrics:
+        # Enabling this will create the service monitors needed to monitor immich with the     prometheus operator
+        enabled: true
+      persistence:
+        # Main data store for all photos shared between different components.
+        library:
+          # Automatically creating the library volume is not supported by this chart
+          # You have to specify an existing PVC to use
+          existingClaim: pvc-immich-synology
+      # configuration is immich-config.json converted to yaml
+      # ref: https://immich.app/docs/install/config-file/
+      #
+      configuration:
+        ffmpeg:
+          accel: disabled
+          acceptedAudioCodecs:
+            - aac
+            - mp3
+            - libopus
+          acceptedVideoCodecs:
+            - h264
+          bframes: -1
+          cqMode: auto
+          crf: 23
+          gopSize: 0
+          maxBitrate: '0'
+          npl: 0
+          preferredHwDevice: auto
+          preset: ultrafast
+          refs: 0
+          targetAudioCodec: aac
+          targetResolution: '720'
+          targetVideoCodec: h264
+          temporalAQ: false
+          threads: 0
+          tonemap: hable
+          transcode: required
+          twoPass: false
+        image:
+          colorspace: p3
+          extractEmbedded: false
+          previewFormat: jpeg
+          previewSize: 1440
+          quality: 80
+          thumbnailFormat: webp
+          thumbnailSize: 250
+        job:
+          backgroundTask:
+            concurrency: 5
+          faceDetection:
+            concurrency: 2
+          library:
+            concurrency: 5
+          metadataExtraction:
+            concurrency: 5
+          migration:
+            concurrency: 5
+          search:
+            concurrency: 5
+          sidecar:
+            concurrency: 5
+          smartSearch:
+            concurrency: 2
+          thumbnailGeneration:
+            concurrency: 5
+          videoConversion:
+            concurrency: 1
+        library:
+          scan:
+            cronExpression: 0 0 * * *
+            enabled: true
+          watch:
+            enabled: false
+            interval: 10000
+            usePolling: false
+        logging:
+          enabled: true
+          level: log
+        machineLearning:
+          clip:
+            enabled: true
+            modelName: ViT-B-32__openai
+          duplicateDetection:
+            enabled: false
+            maxDistance: 0.03
+          enabled: true
+          facialRecognition:
+            enabled: true
+            maxDistance: 0.6
+            minFaces: 3
+            minScore: 0.7
+            modelName: buffalo_l
+          url: http://immich-machine-learning:3003
+        map:
+          darkStyle: ''
+          enabled: true
+          lightStyle: ''
+        newVersionCheck:
+          enabled: true
+        oauth:
+          autoLaunch: false
+          autoRegister: true
+          buttonText: Login with OAuth
+          clientId: ''
+          clientSecret: ''
+          defaultStorageQuota: 0
+          enabled: false
+          issuerUrl: ''
+          mobileOverrideEnabled: false
+          mobileRedirectUri: ''
+          scope: openid email profile
+          signingAlgorithm: RS256
+          storageLabelClaim: preferred_username
+          storageQuotaClaim: immich_quota
+        passwordLogin:
+          enabled: true
+        reverseGeocoding:
+          enabled: true
+        server:
+          externalDomain: ''
+          loginPageMessage: ''
+        storageTemplate:
+          enabled: false
+          hashVerificationEnabled: true
+          template: '{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}'
+        theme:
+          customCss: ''
+        trash:
+          days: 30
+          enabled: true
+        user:
+          deleteDelay: 7
+
+    # Dependencies
+    postgresql:
+      enabled: true
+      image:
+        repository: tensorchord/pgvecto-rs
+        tag: pg14-v0.2.0
+      global:
+        postgresql:
+          auth:
+            username: immich
+            database: immich
+            password: immich
+      primary:
+        initdb:
+          scripts:
+            create-extensions.sql: |
+              CREATE EXTENSION cube;
+              CREATE EXTENSION earthdistance;
+              CREATE EXTENSION vectors;
+    
+    redis:
+      enabled: true
+      architecture: standalone
+      auth:
+        enabled: false
+    
+    # Immich components
+    server:
+      enabled: true
+      image:
+        repository: ghcr.io/immich-app/immich-server
+        pullPolicy: IfNotPresent
+      ingress:
+        main:
+          enabled: true
+          ingressClassName: traefik
+          hosts:
+            - host: photos.nmoura.pt
+              paths:
+                - path: /
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        tls: 
+          secretName: nmoura-pt-tls
+          hosts:
+            - photos.nmoura.pt
+    
+    machine-learning:
+      enabled: true
+      image:
+        repository: ghcr.io/immich-app/immich-machine-learning
+        pullPolicy: IfNotPresent
+      env:
+        TRANSFORMERS_CACHE: /cache
+      persistence:
+        cache:
+          enabled: true
+          size: 10Gi
+          # Optional: Set this to pvc to avoid downloading the ML models every start.
+          type: pvc
+          readOnly: false
+          accessMode: ReadWriteMany
+          storageClass: longhorn-noreplicas
+          retain: false
