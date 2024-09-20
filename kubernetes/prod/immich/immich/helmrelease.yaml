@@ -13,11 +13,13 @@ spec:
         kind: HelmRepository
         name: immich
         namespace: flux-system
-  valuesFrom:
-  - kind: Secret
-    name: immich-secrets
-    valuesKey: values.yaml
   values:
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+      limits:
+        gpu.intel.com/i915: 1
+
     env:
       REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
       DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
