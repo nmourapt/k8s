@@ -35,10 +35,10 @@ spec:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       host:
-        - host: draw.nmoura.pt
+        - host: "draw.nmoura.pt"
           paths:
             - path: /
       tls: 
         secretName: nmoura-pt-tls
         hosts:
-          - draw.nmoura.pt
+          - "draw.nmoura.pt"
