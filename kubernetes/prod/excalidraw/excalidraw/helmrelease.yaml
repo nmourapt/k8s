@@ -30,7 +30,7 @@ spec:
 
     ingress:
       enabled: true
-      className: traefik
+      ingressClassName: traefik
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
