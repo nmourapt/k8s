@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h  # Check every 1 hour
-  url: https://pmoscode-helm.github.io/
+  url: https://pmoscode-helm.github.io/excalidraw
