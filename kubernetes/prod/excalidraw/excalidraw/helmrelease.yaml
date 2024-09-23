@@ -39,5 +39,6 @@ spec:
           paths:
             - path: /
       tls: 
-        - hosts: "draw.nmoura.pt"
-          secretName: nmoura-pt-tls
+        secretName: nmoura-pt-tls
+        hosts:
+          - draw.nmoura.pt
