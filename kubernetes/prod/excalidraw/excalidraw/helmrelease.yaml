@@ -38,6 +38,7 @@ spec:
         - host: draw.nmoura.pt
           paths:
             - path: /
+              pathType: ImplementationSpecific
       tls: 
         secretName: nmoura-pt-tls
         hosts:
