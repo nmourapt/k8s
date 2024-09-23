@@ -1,0 +1,44 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: excalidraw
+  namespace: excalidraw
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: my-excalidraw/excalidraw
+      version: 0.1.x
+      sourceRef:
+        kind: HelmRepository
+        name: pmoscode
+        namespace: flux-system
+  values:
+    image:
+      repository: excalidraw/excalidraw
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    serviceAccount:
+      # Specifies whether a service account should be created
+      create: true
+      # Annotations to add to the service account
+      annotations: {}
+      # The name of the service account to use.
+      # If not set and create is true, a name is generated using the fullname template
+      name: ""
+
+    ingress:
+      enabled: true
+      className: traefik
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: draw.nmoura.pt
+          paths:
+            - path: /
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - draw.nmoura.pt
