@@ -31,14 +31,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      hosts:
-        - host: draw.nmoura.pt
-          paths:
-            - path: /
-      tls: 
-        secretName: nmoura-pt-tls
-        hosts:
-          - draw.nmoura.pt
+      host: draw.nmoura.pt
+      tls: true
+      secureBackends: false
+      tlsSecret: nmoura-pt-tls
+      path: /
