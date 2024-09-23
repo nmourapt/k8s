@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: andrenarchy
+  name: pmoscode
   namespace: flux-system
 spec:
   interval: 1h  # Check every 1 hour
-  url: https://andrenarchy.github.io/helm-charts/
+  url: https://pmoscode-helm.github.io/
