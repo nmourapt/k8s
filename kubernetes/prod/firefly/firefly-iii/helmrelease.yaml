@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: firefly-iii
+  namespace: firefly
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: firefly-iii-stack
+      version: 0.7.x
+      sourceRef:
+        kind: HelmRepository
+        name: firefly-iii
+        namespace: flux-system
+  values:
+    firefly-db:
+      enabled: true
+      image:
+        repository: postgres
+        tag: 10-alpine
+        pullPolicy: IfNotPresent
+    
+      storage:
+        class: longhorn
+        accessModes: ReadWriteOnce
+        dataSize: 5Gi
+    
+      configs:
+        RESTORE_URL: ""
+        BACKUP_URL: ""
+        PGPASSWORD: "YOURDBPASSWORD"
+        DBHOST: firefly-firefly-db
+        DBPORT: "5432"
+        DBNAME: firefly
+        DBUSER: firefly
+        TZ: Europe/Lisbon
+    
+      backupSchedule: "0 3 * * *"
+    
+    firefly-iii:
+      enabled: true
+    
+    importer:
+      enabled: true
