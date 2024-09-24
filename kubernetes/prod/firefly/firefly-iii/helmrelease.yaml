@@ -29,7 +29,7 @@ spec:
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
-        PGPASSWORD: "YOURDBPASSWORD"
+        PGPASSWORD: "firefly"
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
