@@ -28,7 +28,7 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: nmoura-pt-tls
+        - secretName: kube-system/nmoura-pt-tls
           hosts:
           - prometheus.nmoura.pt
     grafana:
@@ -42,7 +42,7 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: nmoura-pt-tls
+        - secretName: kube-system/nmoura-pt-tls
           hosts:
           - grafana.nmoura.pt
     alertmanager:
@@ -54,6 +54,6 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: nmoura-pt-tls
+        - secretName: kube-system/nmoura-pt-tls
           hosts:
           - alertmanager.nmoura.pt

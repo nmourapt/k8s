@@ -39,6 +39,6 @@ spec:
           paths:
             - path: /
       tls: 
-        - secretName: nmoura-pt-tls
+        - secretName: kube-system/nmoura-pt-tls
           hosts:
             - draw.nmoura.pt

@@ -42,5 +42,5 @@ spec:
       host: longhorn.nmoura.pt
       tls: true
       secureBackends: false
-      tlsSecret: nmoura-pt-tls
+      tlsSecret: kube-system/nmoura-pt-tls
       path: /
