@@ -42,5 +42,12 @@ spec:
       host: longhorn.nmoura.pt
       tls: true
       secureBackends: false
-      tlsSecret: kube-system/nmoura-pt-tls
+      tlsSecret: cert-tls
       path: /
+
+    extraSecrets:
+      cert-tls:
+        # The namespace where the secret exists
+        namespace: kube-system
+        # The name of the existing secret
+        name: nmoura-pt-tls
