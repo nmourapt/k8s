@@ -28,7 +28,7 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: cert-tls
+        - secretName: nmoura-pt-tls
           hosts:
           - prometheus.nmoura.pt
     grafana:
@@ -42,7 +42,7 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: cert-tls
+        - secretName: nmoura-pt-tls
           hosts:
           - grafana.nmoura.pt
     alertmanager:
@@ -54,13 +54,6 @@ spec:
         paths:
           - /
         tls: 
-        - secretName: cert-tls
+        - secretName: nmoura-pt-tls
           hosts:
           - alertmanager.nmoura.pt
-
-    extraSecrets:
-      cert-tls:
-        # The namespace where the secret exists
-        namespace: kube-system
-        # The name of the existing secret
-        name: nmoura-pt-tls
