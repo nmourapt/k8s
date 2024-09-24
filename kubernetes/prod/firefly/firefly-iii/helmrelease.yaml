@@ -123,9 +123,9 @@ spec:
             paths:
               - path: /
         tls: 
-          secretName: kube-system/nmoura-pt-tls
-          hosts:
-            - budget.nmoura.pt
+          - secretName: kube-system/nmoura-pt-tls
+            hosts:
+              - budget.nmoura.pt
     
     importer:
       enabled: true
@@ -181,7 +181,7 @@ spec:
             paths:
               - path: /
         tls: 
-          secretName: kube-system/nmoura-pt-tls
-          hosts:
-            - budget-importer.nmoura.pt
+          - secretName: kube-system/nmoura-pt-tls
+            hosts:
+              - budget-importer.nmoura.pt
       
