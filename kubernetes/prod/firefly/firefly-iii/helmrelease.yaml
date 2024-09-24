@@ -30,7 +30,7 @@ spec:
         RESTORE_URL: ""
         BACKUP_URL: ""
         PGPASSWORD: "YOURDBPASSWORD"
-        DBHOST: firefly-firefly-db
+        DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
         DBUSER: firefly
@@ -40,6 +40,148 @@ spec:
     
     firefly-iii:
       enabled: true
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        accessModes: ReadWriteOnce
+        storage: 5Gi
+      
+      # -- Environment variables for Firefly III. See docs at: https://github.com/firefly-iii/firefly-iii/blob/      main/.env.example
+      config:
+        # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret       will override values in config.env
+        existingSecret: ""
+      
+        # -- Set environment variables from configMaps or Secrets
+        envValueFrom: {}
+      
+        # -- Directly defined environment variables. Use this for non-secret configuration values.
+        env:
+          DB_HOST: "firefly-iii-firefly-db"
+          # DB_CONNECTION: pgsql
+          # DB_PORT: "5432"
+          # DB_DATABASE: firefly
+          # DB_USERNAME: firefly
+          DEFAULT_LANGUAGE: "en_US"
+          DEFAULT_LOCALE: "equal"
+          TZ: "Europe/Lisbon"
+          TRUSTED_PROXIES: "**"
+      
+      # -- Create a new Secret from values file to store sensitive environment variables. Make sure to keep your       secrets encrypted in the repository! For example, you can use the 'helm secrets' plugin (https://github.com/      jkroepke/helm-secrets) to encrypt and manage secrets. If the 'config.existingSecret' value is set, a new       Secret will not be created.
+      secrets:
+        env:
+          APP_PASSWORD: firefly
+          DB_PASSWORD: firefly
+      
+      # -- A cronjob for [recurring Firefly III tasks](https://docs.firefly-iii.org/firefly-iii/      advanced-installation/cron/).
+      cronjob:
+        # -- Set to true to enable the CronJob. Note that you need to specify either cronjob.auth.existingSecret or       cronjob.auth.token for it to actually be deployed.
+        enabled: false
+      
+        # -- Authorization for the CronJob. See https://docs.firefly-iii.org/firefly-iii/advanced-installation/cron/      #request-a-page-over-the-web
+        auth:
+          # -- The name of a secret containing a data.token field with the cronjob token
+          existingSecret: ""
+      
+          # -- The name of the key in the existing secret to get the cronjob token from
+          secretKey: "token"
+      
+          # -- The token in plain text
+          token: ""
+      
+        # -- Annotations for the CronJob
+        annotations: {}
+      
+        # -- When to run the CronJob. Defaults to 03:00 as this is when Firefly III executes regular tasks.
+        schedule: "0 3 * * *"
+      
+        # -- How many pods to keep around for successful jobs
+        successfulJobsHistoryLimit: 1
+      
+        # -- How many pods to keep around for failed jobs
+        failedJobsHistoryLimit: 1
+      
+        # -- How to treat failed jobs
+        restartPolicy: OnFailure
+      
+        image:
+          repository: curlimages/curl
+          pullPolicy: IfNotPresent
+          tag: 7.81.0
+      
+      service:
+        type: ClusterIP
+        port: 80
+      
+      ingress:
+        enabled: true
+        className: ""
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        hosts:
+          - host: budget.nmoura.pt
+            paths:
+              - path: /
+        tls: 
+          secretName: kube-system/nmoura-pt-tls
+          hosts:
+            - budget.nmoura.pt
     
     importer:
       enabled: true
+      fireflyiii:
+        # -- The URL at which Firefly III is available. If you change this value, click the "Reauthenticate" button       on the importer after opening it!
+        url: "http://firefly-iii:80"
+      
+        # -- The URL at which you access Firefly III. Check https://docs.firefly-iii.org/data-importer/install/      configure/#configure-fidi to find out if you should set this.
+        vanityUrl: "https://budget.nmoura.pt"
+      
+        auth:
+          # -- If you specify an existingSecret, it has to have the accessToken in a .spec.data.accessToken
+          existingSecret: ""
+          # -- The access token in plain text
+          accessToken: ""
+
+      config:
+        # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret       will override values in config.env
+        existingSecret: ""
+      
+        # -- Set environment variables from configMaps or Secrets
+        envValueFrom: {}
+      
+        # -- Directly defined environment variables. Use this for non-secret configuration values.
+        env:
+          IGNORE_DUPLICATE_ERRORS: "false"
+          TZ: "Europe/Lisbon"
+      
+        # -- A list of files with a mountPath, a file name and the file's content. Files are stored as a secret.
+        files: []
+          #- mountPath: /var/www/html/storage/configurations
+          #  name: test.txt
+          #  content: |
+          #    This is a test file with some content
+      
+      image:
+        repository: fireflyiii/data-importer
+        pullPolicy: IfNotPresent
+        tag: "version-0.8.0"
+      
+      service:
+        type: ClusterIP
+        port: 80
+      
+      ingress:
+        enabled: true
+        className: ""
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        hosts:
+          - host: budget-importer.nmoura.pt
+            paths:
+              - path: /
+        tls: 
+          secretName: kube-system/nmoura-pt-tls
+          hosts:
+            - budget-importer.nmoura.pt
+      
