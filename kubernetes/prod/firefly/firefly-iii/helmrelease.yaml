@@ -31,9 +31,6 @@ spec:
       backupSchedule: "0 3 * * *"
       
       configs:
-        RESTORE_URL: ""
-        BACKUP_URL: ""
-        PGPASSWORD: firefly
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
@@ -41,9 +38,10 @@ spec:
         TZ: Europe/Lisbon
         POSTGRES_HOST_AUTH_METHOD: trust
         POSTGRES_USER: firefly
+        PGPASSWORD: firefly
         POSTGRES_PASSWORD: firefly
           # -- Set this to the name of a secret to load environment variables from. If defined, values in the       secret will override values in configs
-        existingSecret: db-secret
+        #existingSecret: db-secret
       
     firefly-iii:
       enabled: true
@@ -56,7 +54,7 @@ spec:
       # -- Environment variables for Firefly III. See docs at: https://github.com/firefly-iii/firefly-iii/blob/      main/.env.example
       config:
         # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret       will override values in config.env
-        existingSecret: app-secret
+        #existingSecret: app-secret
         # -- Directly defined environment variables. Use this for non-secret configuration values.
         env:
           DB_HOST: "firefly-iii-firefly-db"
@@ -64,10 +62,7 @@ spec:
           DB_PORT: "5432"
           DB_DATABASE: firefly
           DB_USERNAME: firefly
-          DEFAULT_LANGUAGE: "en_US"
-          DEFAULT_LOCALE: "equal"
           TZ: "Europe/Lisbon"
-          TRUSTED_PROXIES: "**"
       
       # -- Create a new Secret from values file to store sensitive environment variables. Make sure to keep your       secrets encrypted in the repository! For example, you can use the 'helm secrets' plugin (https://github.com/      jkroepke/helm-secrets) to encrypt and manage secrets. If the 'config.existingSecret' value is set, a new       Secret will not be created.
       secrets:
