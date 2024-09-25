@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: firefly-iii-mysql
+  name: firefly-mysql
   namespace: firefly
 spec:
   accessModes:

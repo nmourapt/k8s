@@ -2,40 +2,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: firefly-iii-mysql
+  name: firefly-mysql
   namespace: firefly
   labels:
-    app: firefly-iii-mysql
+    app: firefly-mysql
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: firefly-iii-mysql
+      app: firefly-mysql
   template:
     metadata:
       labels:
-        app: firefly-iii-mysql
+        app: firefly-mysql
     spec:
       restartPolicy: Always
       containers:
       - image: yobasystems/alpine-mariadb:latest
-        name: firefly-iii-mysql
+        name: firefly-mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: firefly-iii-mysql-secret
+              name: firefly-mysql-secret
               key: db_password
         ports:
         - containerPort: 3306
           protocol: TCP
-          name: firefly-iii-mysql
+          name: firefly-mysql
         volumeMounts:
         - mountPath: "/var/lib/mysql"
-          name: firefly-iii-mysql 
+          name: firefly-mysql 
       volumes:
-        - name: firefly-iii-mysql
+        - name: firefly-mysql
           persistentVolumeClaim:
-            claimName: firefly-iii-mysql
+            claimName: firefly-mysql

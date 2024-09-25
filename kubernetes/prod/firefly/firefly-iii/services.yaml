@@ -4,12 +4,11 @@ kind: Service
 metadata:
   name: firefly-iii
   namespace: firefly
-  labels:
-    app: firefly-iii
 spec:
   type: ClusterIP
   ports:
     - port: 8080
+      name: firefly-iii
   selector:
     app: firefly-iii
 
