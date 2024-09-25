@@ -26,7 +26,7 @@ spec:
         - name: TZ
           value: Europe/Lisbon
         - name: FIREFLY_URL
-          value: https://firefly.domain.com
+          value: "https://firefly.nmoura.pt"
         - name: DB_CONNECTION
           value: pgsql
         - name: DB_HOST
