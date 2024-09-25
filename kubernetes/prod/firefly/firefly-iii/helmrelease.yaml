@@ -19,7 +19,7 @@ spec:
 
       image:
         repository: postgres
-        tag: 10-alpine
+        tag: 14-alpine
         pullPolicy: IfNotPresent
       
       storage:
