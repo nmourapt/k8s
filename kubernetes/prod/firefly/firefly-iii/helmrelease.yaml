@@ -34,6 +34,7 @@ spec:
         RESTORE_URL: ""
         BACKUP_URL: ""
         DBHOST: firefly-iii-firefly-db
+        DBNAME: "firefly"
         DBPORT: "5432"
         TZ: Europe/Lisbon
         POSTGRES_HOST_AUTH_METHOD: trust
@@ -55,6 +56,7 @@ spec:
         env:
           DB_HOST: "firefly-iii-firefly-db"
           DB_CONNECTION: pgsql
+          DB_DATABASE: "firefly"
           DB_PORT: "5432"
           DEFAULT_LANGUAGE: "en_US"
           DEFAULT_LOCALE: "equal"
