@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: firefly-iii-stack
-      version: 0.7.x
+      version: 0.7.3
       sourceRef:
         kind: HelmRepository
         name: firefly-iii
@@ -16,28 +16,35 @@ spec:
   values:
     firefly-db:
       enabled: true
-      image:
-        repository: postgres
-        tag: 10-alpine
-        pullPolicy: IfNotPresent
-    
+      
       storage:
         class: longhorn
         accessModes: ReadWriteOnce
         dataSize: 5Gi
-    
+        
+      backup:
+        destination: pvc
+        pvc:
+          class: longhorn
+          accessModes: ReadWriteOnce
+          dataSize: 5Gi
+      backupSchedule: "0 3 * * *"
+      
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
-        PGPASSWORD: "firefly"
+        PGPASSWORD: ""
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
         DBUSER: firefly
-        TZ: Europe/Lisbon
-    
-      backupSchedule: "0 3 * * *"
-    
+        TZ: Europe/Amsterdam
+        POSTGRES_HOST_AUTH_METHOD: trust
+        POSTGRES_USER: firefly
+        POSTGRES_PASSWORD: ""
+          # -- Set this to the name of a secret to load environment variables from. If defined, values in the       secret will override values in configs
+        existingSecret: ""
+      
     firefly-iii:
       enabled: true
       persistence:
@@ -50,10 +57,6 @@ spec:
       config:
         # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret       will override values in config.env
         existingSecret: ""
-      
-        # -- Set environment variables from configMaps or Secrets
-        envValueFrom: {}
-      
         # -- Directly defined environment variables. Use this for non-secret configuration values.
         env:
           DB_HOST: "firefly-iii-firefly-db"
@@ -69,40 +72,32 @@ spec:
       # -- Create a new Secret from values file to store sensitive environment variables. Make sure to keep your       secrets encrypted in the repository! For example, you can use the 'helm secrets' plugin (https://github.com/      jkroepke/helm-secrets) to encrypt and manage secrets. If the 'config.existingSecret' value is set, a new       Secret will not be created.
       secrets:
         env:
-          APP_PASSWORD: firefly
-          DB_PASSWORD: firefly
+          APP_PASSWORD: "firefly"
+          DB_PASSWORD: "firefly"
+        # -- Statically set the APP_KEY in case this is desired over the autogeneration. Should be a random       32-character string.
+        # -- Can be generated using: `cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
+        # appKey: "CHANGE_ME"
       
       # -- A cronjob for [recurring Firefly III tasks](https://docs.firefly-iii.org/firefly-iii/      advanced-installation/cron/).
       cronjob:
         # -- Set to true to enable the CronJob. Note that you need to specify either cronjob.auth.existingSecret or       cronjob.auth.token for it to actually be deployed.
         enabled: false
-      
         # -- Authorization for the CronJob. See https://docs.firefly-iii.org/firefly-iii/advanced-installation/cron/      #request-a-page-over-the-web
         auth:
           # -- The name of a secret containing a data.token field with the cronjob token
           existingSecret: ""
-      
           # -- The name of the key in the existing secret to get the cronjob token from
           secretKey: "token"
-      
           # -- The token in plain text
           token: ""
-      
-        # -- Annotations for the CronJob
-        annotations: {}
-      
         # -- When to run the CronJob. Defaults to 03:00 as this is when Firefly III executes regular tasks.
         schedule: "0 3 * * *"
-      
         # -- How many pods to keep around for successful jobs
-        successfulJobsHistoryLimit: 1
-      
+        successfulJobsHistoryLimit: 3
         # -- How many pods to keep around for failed jobs
         failedJobsHistoryLimit: 1
-      
         # -- How to treat failed jobs
         restartPolicy: OnFailure
-      
         image:
           repository: curlimages/curl
           pullPolicy: IfNotPresent
@@ -114,74 +109,15 @@ spec:
       
       ingress:
         enabled: true
-        className: ""
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        ingressClassName: traefik
         hosts:
-          - host: budget.nmoura.pt
-            paths:
-              - path: /
+          - budget.nmoura.pt
+        paths:
+          - /
         tls: 
-          - secretName: nmoura-pt-tls
-            hosts:
-              - budget.nmoura.pt
-    
+        - secretName: nmoura-pt-tls
+          hosts:
+          - budget.nmoura.pt
+      
     importer:
-      enabled: true
-      fireflyiii:
-        # -- The URL at which Firefly III is available. If you change this value, click the "Reauthenticate" button       on the importer after opening it!
-        url: "http://firefly-iii:80"
-      
-        # -- The URL at which you access Firefly III. Check https://docs.firefly-iii.org/data-importer/install/      configure/#configure-fidi to find out if you should set this.
-        vanityUrl: "https://budget.nmoura.pt"
-      
-        auth:
-          # -- If you specify an existingSecret, it has to have the accessToken in a .spec.data.accessToken
-          existingSecret: ""
-          # -- The access token in plain text
-          accessToken: ""
-
-      config:
-        # -- Set this to the name of a secret to load environment variables from. If defined, values in the secret       will override values in config.env
-        existingSecret: ""
-      
-        # -- Set environment variables from configMaps or Secrets
-        envValueFrom: {}
-      
-        # -- Directly defined environment variables. Use this for non-secret configuration values.
-        env:
-          IGNORE_DUPLICATE_ERRORS: "false"
-          TZ: "Europe/Lisbon"
-      
-        # -- A list of files with a mountPath, a file name and the file's content. Files are stored as a secret.
-        files: []
-          #- mountPath: /var/www/html/storage/configurations
-          #  name: test.txt
-          #  content: |
-          #    This is a test file with some content
-      
-      image:
-        repository: fireflyiii/data-importer
-        pullPolicy: IfNotPresent
-        tag: "version-0.8.0"
-      
-      service:
-        type: ClusterIP
-        port: 80
-      
-      ingress:
-        enabled: true
-        className: ""
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        hosts:
-          - host: budget-importer.nmoura.pt
-            paths:
-              - path: /
-        tls: 
-          - secretName: kube-system/nmoura-pt-tls
-            hosts:
-              - budget-importer.nmoura.pt
-      
+      enabled: false
