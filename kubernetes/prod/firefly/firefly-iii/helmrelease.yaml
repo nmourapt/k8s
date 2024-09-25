@@ -69,6 +69,7 @@ spec:
         env:
           APP_PASSWORD: firefly
           DB_PASSWORD: firefly
+          APP_KEY: WK0yo9chi2tqVrVZVtMaJZ9qNzs8K0ux
       
       # -- A cronjob for [recurring Firefly III tasks](https://docs.firefly-iii.org/firefly-iii/      advanced-installation/cron/).
       cronjob:
