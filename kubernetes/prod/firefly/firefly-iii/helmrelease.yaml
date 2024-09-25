@@ -33,7 +33,7 @@ spec:
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
-        PGPASSWORD: ""
+        PGPASSWORD: "firefly"
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
@@ -41,7 +41,7 @@ spec:
         TZ: Europe/Amsterdam
         POSTGRES_HOST_AUTH_METHOD: trust
         POSTGRES_USER: firefly
-        POSTGRES_PASSWORD: ""
+        POSTGRES_PASSWORD: "firefly"
           # -- Set this to the name of a secret to load environment variables from. If defined, values in the       secret will override values in configs
         existingSecret: ""
       
