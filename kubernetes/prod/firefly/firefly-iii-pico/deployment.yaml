@@ -52,7 +52,7 @@ spec:
           name: firefly-pico
 
       - image: postgres:latest
-        name: firefly-pico-postgresql
+        name: firefly-pico-pgsql
         env:
         - name: POSTGRES_DB
           value: firefly-pico
@@ -69,7 +69,7 @@ spec:
         ports:
         - containerPort: 5432
           protocol: TCP
-          name: firefly-pico-postgresql
+          name: firefly-pico-pgsql
         volumeMounts:
         - mountPath: "/var/lib/postgresql/data"
           name: firefly-pico-pgsql
