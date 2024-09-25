@@ -65,7 +65,7 @@ spec:
         existingSecret: app-secret
         
         env:
-          DB_HOST: "firefly-iii-firefly-db"
+          DB_HOST: firefly-iii-firefly-db
           DB_CONNECTION: pgsql
           DB_PORT: "5432"
           DB_DATABASE: firefly
