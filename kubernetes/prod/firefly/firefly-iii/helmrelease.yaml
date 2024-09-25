@@ -39,7 +39,7 @@ spec:
         POSTGRES_HOST_AUTH_METHOD: trust
         POSTGRES_USER: firefly
         PGPASSWORD: firefly
-        POSTGRES_PASSWORD: firefly
+        POSTGRES_PASSWORD: "firefly"
           # -- Set this to the name of a secret to load environment variables from. If defined, values in the       secret will override values in configs
         #existingSecret: db-secret
       
