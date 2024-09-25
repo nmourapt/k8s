@@ -32,7 +32,7 @@ spec:
         BACKUP_URL: ""
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
-        DBNAME: firefly
+        DBNAME: "firefly"
         TZ: Europe/Lisbon
         existingSecret: db-secret
       
@@ -58,7 +58,7 @@ spec:
           DB_HOST: firefly-iii-firefly-db
           DB_CONNECTION: pgsql
           DB_PORT: "5432"
-          DB_DATABASE: firefly
+          DB_DATABASE: "firefly"
           DEFAULT_LANGUAGE: "en_US"
           DEFAULT_LOCALE: "equal"
           TZ: "Europe/Lisbon"
