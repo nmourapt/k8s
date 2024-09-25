@@ -19,7 +19,7 @@ spec:
 
       image:
         repository: postgres
-        tag: 14-alpine
+        tag: latest
         pullPolicy: IfNotPresent
       
       storage:
@@ -27,14 +27,6 @@ spec:
         accessModes: ReadWriteOnce
         dataSize: 5Gi
         
-      backup:
-        destination: pvc
-        pvc:
-          class: longhorn
-          accessModes: ReadWriteOnce
-          dataSize: 5Gi
-      backupSchedule: "0 3 * * *"
-      
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
@@ -50,7 +42,7 @@ spec:
       image:
         repository: "fireflyiii/core"
         pullPolicy: IfNotPresent
-        tag: version-6.1.1
+        tag: latest
 
       persistence:
         enabled: true
