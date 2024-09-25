@@ -38,12 +38,10 @@ spec:
       configs:
         RESTORE_URL: ""
         BACKUP_URL: ""
-        PGPASSWORD: ""
         DBHOST: firefly-iii-firefly-db
         DBPORT: "5432"
         DBNAME: firefly
         TZ: Europe/Lisbon
-        POSTGRES_HOST_AUTH_METHOD: trust
         existingSecret: db-secret
       
     firefly-iii:
