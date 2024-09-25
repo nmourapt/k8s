@@ -40,7 +40,6 @@ spec:
             secretKeyRef:
               name: firefly-pico-secret
               key: db_username
-          value: firefly-pico
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
