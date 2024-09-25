@@ -70,6 +70,11 @@ spec:
             secretKeyRef:
               name: firefly-iii-secret
               key: mail_password
+        - name: STATIC_CRON_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: firefly-iii-secret
+              key: static_cron_token
         ports:
         - containerPort: 8080
           protocol: TCP
