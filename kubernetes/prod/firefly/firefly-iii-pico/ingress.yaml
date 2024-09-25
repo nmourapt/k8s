@@ -3,24 +3,24 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app.kubernetes.io/instance: firefly-iii
-    app.kubernetes.io/name: firefly-iii
-  name: firefly-iii
+    app.kubernetes.io/instance: firefly-pico
+    app.kubernetes.io/name: firefly-pico
+  name: firefly-pico
   namespace: firefly
 spec:
   ingressClassName: traefik
   rules:
-  - host: firefly.nmoura.pt
+  - host: budget.nmoura.pt
     http:
       paths:
       - backend:
           service:
-            name: firefly-iii
+            name: firefly-pico
             port:
-              number: 8080
+              number: 80
         path: /
         pathType: Prefix
   tls:
   - hosts:
-    - firefly.nmoura.pt
+    - budget.nmoura.pt
     secretName: nmoura-pt-tls
