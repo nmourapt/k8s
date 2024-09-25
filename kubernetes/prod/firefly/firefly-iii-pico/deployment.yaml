@@ -47,7 +47,7 @@ spec:
               name: firefly-pico-secret
               key: db_password
         ports:
-        - containerPort: "80"
+        - containerPort: 80
           protocol: TCP
           name: firefly-pico
 
@@ -67,7 +67,7 @@ spec:
               name: firefly-pico-secret
               key: db_password
         ports:
-        - containerPort: "5432"
+        - containerPort: 5432
           protocol: TCP
           name: firefly-pico-postgresql
         volumeMounts:
