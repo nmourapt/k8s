@@ -29,12 +29,16 @@ spec:
           value: "**"
         - name: DB_HOST
           value: firefly-mysql
+        - name: DB_PORT
+          value: "3306"
         - name: DB_CONNECTION
           value: mysql
         - name: DB_DATABASE
           value: "fireflyiii"
         - name: DB_USERNAME
           value: "root"
+        - name: MAIL_MAILER
+          value: log
         - name: MAIL_HOST
           value: oauthmail-2465.tools.svc.cluster.local
         - name: MAIL_PORT
