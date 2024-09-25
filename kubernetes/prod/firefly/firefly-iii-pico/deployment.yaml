@@ -32,7 +32,7 @@ spec:
         - name: DB_HOST
           value: firefly-pico-postgresql
         - name: DB_PORT
-          value: 5432
+          value: "5432"
         - name: DB_DATABASE
           value: firefly-pico
         - name: DB_USERNAME
