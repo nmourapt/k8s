@@ -8,44 +8,81 @@ spec:
   chart:
     spec:
       chart: vaultwarden
-      version: 6.x
+      version: 0.29.x
       sourceRef:
         kind: HelmRepository
-        name: andrenarchy
+        name: guerzon-vaultwarden
         namespace: flux-system
   values:
-    env:
-      - name: ADMIN_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: vaultwarden-secrets
-            key: ADMIN_TOKEN
-      - name: DOMAIN
-        value: https://warden.nmoura.pt
+    image:
+      registry: docker.io
+      repository: vaultwarden/server
+      tag: "1.32.0-alpine"
+      pullPolicy: IfNotPresent
+
+    serviceAccount:
+      create: true
+      name: "vaultwarden-svc"
+
+    data:
+      name: "vaultwarden-data"
+      size: "15Gi"
+      class: longhorn
+      path: "/data"
+      keepPvc: true
+      accessMode: "ReadWriteOnce"
+
+    pushNotifications:
+      enabled: true
+      existingSecret: "vaultwarden-secrets"
+      installationId:
+        existingSecretKey: "INSTALLATION_ID"
+      installationKey:
+        existingSecretKey: "INSTALLATION_KEY"
+      relayUri: "https://api.bitwarden.eu"
+      identityUri: "https://identity.bitwarden.eu"
+
+    domain: "https://warden.nmoura.pt"
+
+    signupsAllowed: false
+
+    ipHeader: "Cf-Connecting-Ip"
+
+    adminToken:
+      existingSecret: "vaultwarden-secrets"
+      existingSecretKey: "ADMIN_TOKEN"
+
+    timeZone: "Europe/Lisbon"
+
+    yubico:
+      clientId: "103892"
+      existingSecret: "vaultwarden-secrets"
+      secretKey:
+        existingSecretKey: "YUBICO_SECRET_KEY"
+
+    smtp:
+      existingSecret: "vaultwarden-secrets"
+      host: "oauthmail-2465.tools.svc.cluster.local"
+      security: "off"
+      port: 2465
+      from: "nuno@babybites.pt"
+      fromName: "VaultWarden"
+      username:
+        existingSecretKey: "SMTP_USERNAME"
+      password:
+        existingSecretKey: "SMTP_PASSWORD"
+      authMechanism: "Plain"
+      acceptInvalidHostnames: "true"
+      acceptInvalidCerts: "true"
+      debug: false
 
     ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: warden.nmoura.pt
-            paths:
-              - path: /
-      annotations:
+      enabled: true
+      class: "traefik"
+      nginxIngressAnnotations: false
+      additionalAnnotations: 
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
-        secretName: nmoura-pt-tls
-        hosts:
-          - warden.nmoura.pt
-
-    persistence:
-      config:
-        enabled: true
-        type: pvc
-        mountPath: /config
-        nameOverride: config
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        retain: true
+      tls: true
+      hostname: "warden.nmoura.pt"
+      tlsSecret: "nmoura-pt-tls"
