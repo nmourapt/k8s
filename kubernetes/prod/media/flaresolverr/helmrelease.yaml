@@ -15,9 +15,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/flaresolverr/flaresolverr
+      repository: alexfozor/flaresolverr
       pullPolicy: IfNotPresent
-      tag: latest
+      tag: pr-1300-experimental
     
     env:
       TZ: Europe/Lisbon
