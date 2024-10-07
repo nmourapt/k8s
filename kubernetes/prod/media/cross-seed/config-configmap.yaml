@@ -11,7 +11,32 @@ data:
     Object.defineProperty(exports, "__esModule", { value: true });
     module.exports = {
         delay: 10,
-        torznab: ["http://prowlarr:9696/10/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/11/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", "http://prowlarr:9696/12/api?apikey=74d92c7a8d424c89b470bf869c0d740f"],
+        // 1 - TorrentLeech
+        // 2 - Milkie
+        // 5 - upload.cx
+        // 6 - Portugas (API)
+        // 7 - SportsCult
+        // 8 - MyAnonamouse
+        // 9 - DigitalCore
+        // 13 - RuTracker.org
+        // 14 - CinemaZ
+        // 15 - AvistaZ
+        // 16 - FearNoPeer
+        // 17 - seedpool (API)
+        torznab: [
+            "http://prowlarr:9696/1/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // TorrentLeech
+            "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Milkie
+            "http://prowlarr:9696/5/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // upload.cx
+            "http://prowlarr:9696/6/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Portugas (API)
+            "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // SportsCult
+            "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // MyAnonamouse
+            "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // DigitalCore
+            "http://prowlarr:9696/13/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // RuTracker.org
+            "http://prowlarr:9696/14/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // CinemaZ
+            "http://prowlarr:9696/15/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // AvistaZ
+            "http://prowlarr:9696/16/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
+            "http://prowlarr:9696/17/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // seedpool (API)
+        ],
         dataDirs: undefined,
         matchMode: "safe",
         dataCategory: undefined,
