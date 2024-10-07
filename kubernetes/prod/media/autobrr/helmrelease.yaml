@@ -15,11 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      # -- image repository
-      repository: nmourapt/custom-autobrr-qbitrace
-      # @default -- chart.appVersion
+      repository:  ghcr.io/nmourapt/autobrr-qbitrace
       tag: latest
-      # -- image pull policy
       pullPolicy: Always
 
     persistence:
