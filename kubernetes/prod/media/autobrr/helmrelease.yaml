@@ -54,6 +54,15 @@ spec:
         size: 5Gi
         # -- Set to true to retain the PVC upon `helm uninstall`
         retain: true
+      # for qbitrace
+      usrlocalbin:
+        enabled: true
+        type: pvc
+        mountPath: /usr/local/bin
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
 
     ingress:
       main:
