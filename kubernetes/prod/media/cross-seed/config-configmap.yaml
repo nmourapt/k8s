@@ -36,6 +36,7 @@ data:
             "http://prowlarr:9696/15/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // AvistaZ
             "http://prowlarr:9696/16/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
             "http://prowlarr:9696/17/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // seedpool (API)
+            "http://prowlarr:9696/18/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // ReelFLiX (API)
         ],
         dataDirs: undefined,
         matchMode: "safe",
