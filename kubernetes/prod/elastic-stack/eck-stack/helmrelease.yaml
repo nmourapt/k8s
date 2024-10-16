@@ -37,6 +37,10 @@ spec:
       spec:
         elasticsearchRef:
           name: elasticsearch
+        config:
+          server:
+            publicBaseUrl: "https://kibana.nmoura.pt"
+
       ingress:
         enabled: true
         annotations:
