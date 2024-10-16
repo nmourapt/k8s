@@ -95,10 +95,12 @@ spec:
     eck-agent:
       enabled: true
       spec:
-        policyID: eck-agent
+        version: 8.15.0
+        policyID: fleet-server-policy
         kibanaRef:
           name: kibana
-        elasticsearchRefs: []
+        elasticsearchRefs: 
+        - name: elasticsearch 
         fleetServerRef:
           name: fleet-server
         mode: fleet
@@ -116,11 +118,18 @@ spec:
       enabled: true
       fullnameOverride: "fleet-server"
       spec:
-        policyID: eck-fleet-server
+        version: 8.15.0
+        policyID: fleet-server-policy
         kibanaRef:
           name: kibana
         elasticsearchRefs:
         - name: elasticsearch
+        deployment:
+          replicas: 1
+        http:
+          service:
+            spec:
+              type: ClusterIP
         
     eck-beats:
       enabled: false
