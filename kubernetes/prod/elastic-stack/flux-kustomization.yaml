@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/dev/elastic-stack"
+  path: "./kubernetes/prod/elastic-stack"
   prune: true
   sourceRef:
     kind: GitRepository
