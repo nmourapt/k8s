@@ -1,0 +1,43 @@
+# kubernetes/prod/cloudflared/cloudflared/helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: eck-operator
+  namespace: elastic-stack
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: eck-operator
+      version: 2.14.x
+      sourceRef:
+        kind: HelmRepository
+        name: elastic
+        namespace: flux-system
+  values:
+    # installCRDs determines whether Custom Resource Definitions (CRD) are installed by the     chart.
+    # Note that CRDs are global resources and require cluster admin privileges to install.
+    # If you are sharing a cluster with other users who may want to install ECK on their     own namespaces, setting this to true can have unintended consequences.
+    # 1. Upgrades will overwrite the global CRDs and could disrupt the other users of ECK     who may be running a different version.
+    # 2. Uninstalling the chart will delete the CRDs and potentially cause Elastic     resources deployed by other users to be removed as well.
+    installCRDs: true
+    
+    # replicaCount is the number of operator pods to run.
+    replicaCount: 1
+  
+    image:
+      # repository is the container image prefixed by the registry name.
+      repository: docker.elastic.co/eck/eck-operator
+      # pullPolicy is the container image pull policy.
+      pullPolicy: IfNotPresent
+      # tag is the container image tag. If not defined, defaults to chart appVersion.
+      tag: null
+
+    # resources define the container resource limits for the operator.
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 150Mi
