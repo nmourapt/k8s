@@ -53,31 +53,29 @@ spec:
           - name: kubernetes
             version: latest
           xpack.fleet.agentPolicies:
-          - name: Fleet Server on ECK policy
-            id: eck-fleet-server
+          - name: Fleet Server policy
+            id: fleet-server-policy
             namespace: default
             monitoring_enabled:
             - logs
             - metrics
             package_policies:
             - name: fleet_server-1
-              id: fleet_server-1
               package:
                 name: fleet_server
-          - name: Elastic Agent on ECK policy
-            id: eck-agent
+          - name: Elastic Agent policy
+            id: elastic-agent-policy
             namespace: default
             monitoring_enabled:
             - logs
             - metrics
-            unenroll_timeout: 900
             package_policies:
-            - package:
+            - name: system-1
+              package:
                 name: system
-              name: system-1
-            - package:
+            - name: kubernetes-1
+              package:
                 name: kubernetes
-              name: kubernetes-1
 
       ingress:
         enabled: true
