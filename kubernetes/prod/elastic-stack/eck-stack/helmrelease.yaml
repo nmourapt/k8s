@@ -95,7 +95,6 @@ spec:
     eck-agent:
       enabled: true
       spec:
-        version: 8.15.0
         policyID: fleet-server-policy
         kibanaRef:
           name: kibana
@@ -118,7 +117,6 @@ spec:
       enabled: true
       fullnameOverride: "fleet-server"
       spec:
-        version: 8.15.0
         policyID: fleet-server-policy
         kibanaRef:
           name: kibana
