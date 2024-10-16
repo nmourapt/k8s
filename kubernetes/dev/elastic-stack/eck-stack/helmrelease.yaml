@@ -29,6 +29,7 @@ spec:
         - host: "elastic.dev.nmoura.pt"
           path: "/"
         tls: true
+          secretName: nmoura-pt-tls
     
     eck-kibana:
       enabled: true
@@ -44,6 +45,7 @@ spec:
         - host: "kibana.dev.nmoura.pt"
           path: "/"
         tls: true
+          secretName: nmoura-pt-tls
     
     eck-agent:
       enabled: false
