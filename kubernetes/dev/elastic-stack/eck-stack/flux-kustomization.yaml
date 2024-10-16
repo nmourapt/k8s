@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: eck-stack-app
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./kubernetes/dev/elastic-stack/eck-stack"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
