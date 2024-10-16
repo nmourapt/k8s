@@ -19,22 +19,29 @@ spec:
     eck-elasticsearch:
       enabled: true
       fullnameOverride: elasticsearch
+
+      #nodeSets:
+      #- name: default
+      #  count: 1
+      #  config:
+      #    node.store.allow_mmap: false
       
       ingress:
-        enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          traefik.ingress.kubernetes.io/service.serverstransport: "insecure-transport"
-        pathType: Prefix
-        hosts:
-        - host: "elastic.nmoura.pt"
-          path: "/"
-        tls:
-          enabled: true
-          secretName: nmoura-pt-tls
+        enabled: false
+        #annotations:
+        #  cert-manager.io/cluster-issuer: letsencrypt-prod
+        #  traefik.ingress.kubernetes.io/service.serverstransport: "insecure-transport"
+        #pathType: Prefix
+        #hosts:
+        #- host: "elastic.nmoura.pt"
+        #  path: "/"
+        #tls:
+        #  enabled: true
+        #  secretName: nmoura-pt-tls
     
     eck-kibana:
       enabled: true
+      fullnameOverride: kibana
       spec:
         elasticsearchRef:
           name: elasticsearch
@@ -53,51 +60,52 @@ spec:
           - name: kubernetes
             version: latest
           xpack.fleet.agentPolicies:
-          - name: Fleet Server policy
-            id: fleet-server-policy
+          - name: Fleet Server on ECK policy
+            id: eck-fleet-server
             namespace: default
             monitoring_enabled:
             - logs
             - metrics
             package_policies:
             - name: fleet_server-1
+              id: fleet_server-1
               package:
                 name: fleet_server
-          - name: Elastic Agent policy
-            id: elastic-agent-policy
+          - name: Elastic Agent on ECK policy
+            id: eck-agent
             namespace: default
             monitoring_enabled:
             - logs
             - metrics
+            unenroll_timeout: 900
             package_policies:
-            - name: system-1
-              package:
+            - package:
                 name: system
-            - name: kubernetes-1
-              package:
+              name: system-1
+            - package:
                 name: kubernetes
+              name: kubernetes-1
 
       ingress:
-        enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          traefik.ingress.kubernetes.io/service.serverstransport: "insecure-transport"
-        pathType: Prefix
-        hosts:
-        - host: "kibana.nmoura.pt"
-          path: "/"
-        tls: 
-          enabled: true
-          secretName: nmoura-pt-tls
+        enabled: false
+        #annotations:
+        #  cert-manager.io/cluster-issuer: letsencrypt-prod
+        #  traefik.ingress.kubernetes.io/service.serverstransport: "insecure-transport"
+        #pathType: Prefix
+        #hosts:
+        #- host: "kibana.nmoura.pt"
+        #  path: "/"
+        #tls: 
+        #  enabled: true
+        #  secretName: nmoura-pt-tls
     
     eck-agent:
       enabled: true
       spec:
-        policyID: fleet-server-policy
+        policyID: eck-agent
         kibanaRef:
           name: kibana
-        elasticsearchRefs: 
-        - name: elasticsearch 
+        elasticsearchRefs: [] 
         fleetServerRef:
           name: fleet-server
         mode: fleet
@@ -115,17 +123,11 @@ spec:
       enabled: true
       fullnameOverride: "fleet-server"
       spec:
-        policyID: fleet-server-policy
+        policyID: eck-fleet-server
         kibanaRef:
           name: kibana
         elasticsearchRefs:
         - name: elasticsearch
-        deployment:
-          replicas: 1
-        http:
-          service:
-            spec:
-              type: ClusterIP
         
     eck-beats:
       enabled: false
