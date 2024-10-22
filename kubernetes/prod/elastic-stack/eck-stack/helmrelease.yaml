@@ -20,6 +20,13 @@ spec:
       enabled: true
       fullnameOverride: elasticsearch
 
+
+      volumeClaimTemplate:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+
       #nodeSets:
       #- name: default
       #  count: 1
