@@ -1,11 +1,10 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app.kubernetes.io/instance: adguard-adguard-home
-    app.kubernetes.io/name: adguard-adguard-home
-  name: adguard-adguard-home-3000
+    app.kubernetes.io/instance: adguard
+    app.kubernetes.io/name: adguard
+  name: adguard
   namespace: adguard
 spec:
   ingressClassName: traefik
@@ -15,10 +14,12 @@ spec:
       paths:
       - backend:
           service:
-            name: adguard-adguard-home
+            name: adguard
             port:
               number: 3000
         path: /
         pathType: Prefix
-status:
-  loadBalancer: {}
+  tls:
+  - hosts:
+    - adguard.nmoura.pt
+    secretName: nmoura-pt-tls
