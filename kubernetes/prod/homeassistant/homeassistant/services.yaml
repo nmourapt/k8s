@@ -5,8 +5,9 @@ metadata:
   namespace: homeassistant
   name: homeassistant
 spec:
-  type: LoadBalancer
-  loadBalancerIP: 192.168.202.156
+  type: ClusterIP
+  externalIPs:
+    - 192.168.202.156
   ports:
   - port: 8123
     targetPort: 8123
@@ -20,8 +21,9 @@ metadata:
   namespace: homeassistant
   name: homeassistant-coiot
 spec:
-  type: LoadBalancer
-  loadBalancerIP: 192.168.202.157
+  type: ClusterIP
+  externalIPs:
+    - 192.168.202.157
   ports:
   - port: 5683
     targetPort: 5683
