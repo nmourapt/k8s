@@ -11,11 +11,8 @@ spec:
   rules:
   - from:
     - source:
-        # Validate client certificates
-        validationContext:
-          trustedCa:
-            name: longhorn-ca-cert
-            namespace: istio-ingress
+        # This will allow requests that are mTLS authenticated
+        principals: ["*"]
     to:
     - operation:
         hosts:
