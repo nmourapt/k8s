@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: uptime-kuma-gateway
+  namespace: istio-ingress
+spec:
+  selector:
+    istio: ingressgateway  # Use Istio's default ingress gateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "istio.dev.nmoura.pt"
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "istio.dev.nmoura.pt"
