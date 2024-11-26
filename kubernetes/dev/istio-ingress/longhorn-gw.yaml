@@ -20,5 +20,5 @@ spec:
     hosts:
     - "longhorn-istio.dev.nmoura.pt"
     tls:
-      mode: SIMPLE
-      credentialName: dev-nmoura-tls  # Name of the Kubernetes TLS secret
+      mode: MUTUAL
+      credentialName: mtls-secret  # Name of the Kubernetes TLS secret

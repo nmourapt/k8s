@@ -6,8 +6,7 @@ metadata:
 spec:
   mtls:
     mode: STRICT  # Requires mTLS for all traffic
-  # Optional: Specify validation context
-  # This part is optional and depends on your specific CA setup
+    caCertificates: /etc/certs/longhorn-ca-cert/ca.crt
   selector:
     matchLabels:
       istio: gateway

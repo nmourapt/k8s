@@ -19,3 +19,16 @@ spec:
         - "longhorn-istio.dev.nmoura.pt"
         ports:
         - "443"
+---
+apiVersion: telemetry.istio.io/v1alpha1
+kind: Telemetry
+metadata:
+  name: authorization-logging
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: gateway
+  accessLogging:
+    - providers:
+      - name: "stdout"
