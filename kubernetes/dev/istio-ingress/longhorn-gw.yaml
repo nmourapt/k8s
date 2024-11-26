@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
-  name: uptime-kuma-gateway
+  name: longhorn-gateway
   namespace: istio-ingress
 spec:
   selector:
@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "istio.dev.nmoura.pt"
+    - "longhorn-istio.dev.nmoura.pt"
   #- port:
   #    number: 443
   #    name: https
