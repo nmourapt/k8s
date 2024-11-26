@@ -13,9 +13,12 @@ spec:
       protocol: HTTP
     hosts:
     - "istio.dev.nmoura.pt"
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    hosts:
-    - "istio.dev.nmoura.pt"
+  #- port:
+  #    number: 443
+  #    name: https
+  #    protocol: HTTPS
+  #  hosts:
+  #  - "istio.dev.nmoura.pt"
+  #  tls:
+  #    mode: SIMPLE
+  #    credentialName: tls-secret  # Name of the Kubernetes TLS secret
