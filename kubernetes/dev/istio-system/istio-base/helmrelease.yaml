@@ -5,9 +5,10 @@ metadata:
   namespace: istio-system
 spec:
   interval: 1m
+  releaseName: istio-base
   chart:
     spec:
-      chart: base/base
+      chart: base
       version: 1.0.x
       sourceRef:
         kind: HelmRepository
