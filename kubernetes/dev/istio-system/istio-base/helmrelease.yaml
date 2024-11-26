@@ -7,9 +7,9 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: base
+      chart: base/base
       version: 1.0.x
       sourceRef:
         kind: HelmRepository
-        name: istio/base
+        name: istio
         namespace: flux-system
