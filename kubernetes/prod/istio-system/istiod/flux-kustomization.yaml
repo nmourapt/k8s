@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
-  path: "./kubernetes/dev/istio-system/istiod"
+  path: "./kubernetes/prod/istio-system/istiod"
   prune: true
   sourceRef:
     kind: GitRepository
