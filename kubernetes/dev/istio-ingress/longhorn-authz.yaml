@@ -1,7 +1,7 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: longhorn-authz
+  name: longhorn-mtls-authz
   namespace: istio-ingress
 spec:
   selector:
@@ -11,7 +11,11 @@ spec:
   rules:
   - from:
     - source:
-        principals: ["*"]  # Allow all authenticated principals
+        # Validate client certificates
+        validationContext:
+          trustedCa:
+            name: longhorn-ca-cert
+            namespace: istio-ingress
     to:
     - operation:
         hosts:

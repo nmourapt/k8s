@@ -11,8 +11,3 @@ spec:
   selector:
     matchLabels:
       istio: gateway
-  # Refer to the CA secret
-  certificateValidationContext:
-    trustedCa:
-      name: longhorn-ca-cert  # Name of the secret
-      namespace: istio-ingress
