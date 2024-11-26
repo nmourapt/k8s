@@ -9,6 +9,13 @@ spec:
   gateways:
   - longhorn-gateway
   http:
+  # Optional: Add a redirect from HTTP to HTTPS
+  - match:
+    - uri:
+        prefix: /
+    redirect:
+      scheme: https
+      authority: longhorn-istio.dev.nmoura.pt
   - route:
     - destination:
         host: longhorn-frontend.longhorn-system.svc.cluster.local

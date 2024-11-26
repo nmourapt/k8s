@@ -13,12 +13,14 @@ spec:
       protocol: HTTP
     hosts:
     - "longhorn-istio.dev.nmoura.pt"
-  #- port:
-  #    number: 443
-  #    name: https
-  #    protocol: HTTPS
-  #  hosts:
-  #  - "istio.dev.nmoura.pt"
-  #  tls:
-  #    mode: SIMPLE
-  #    credentialName: tls-secret  # Name of the Kubernetes TLS secret
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+    - "longhorn-istio.dev.nmoura.pt"
+    tls:
+      mode: SIMPLE
+      credentialName: dev-nmoura-tls  # Name of the Kubernetes TLS secret
