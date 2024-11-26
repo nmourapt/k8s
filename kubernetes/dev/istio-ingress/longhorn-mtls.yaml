@@ -1,0 +1,18 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: longhorn-mtls
+  namespace: istio-ingress
+spec:
+  mtls:
+    mode: STRICT  # Requires mTLS for all traffic
+  # Optional: Specify validation context
+  # This part is optional and depends on your specific CA setup
+  selector:
+    matchLabels:
+      istio: gateway
+  # Refer to the CA secret
+  certificateValidationContext:
+    trustedCa:
+      name: longhorn-ca-cert  # Name of the secret
+      namespace: istio-ingress
