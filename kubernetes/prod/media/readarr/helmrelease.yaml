@@ -17,7 +17,7 @@ spec:
     image:
       repository: ghcr.io/hotio/readarr
       tag: latest
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
     ingress:
       main:
