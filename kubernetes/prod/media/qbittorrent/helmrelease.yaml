@@ -64,7 +64,7 @@ spec:
         mountPath: /config
         nameOverride: config
         readOnly: false
-        accessMode: ReadWriteOnce
+        accessMode: ReadWriteMany
         size: 5Gi
         retain: true
       downloads:
