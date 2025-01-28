@@ -24,9 +24,11 @@ spec:
         # -- Specify the number of GPU to 1
         number: 1
        
-      # -- List of models to pull at container     startup
+      # -- List of models to pull at container startup
       models:
         pull:
+          - deepseek-r1:1.5b
+        run:
           - deepseek-r1:1.5b
 
     ingress:
@@ -43,3 +45,12 @@ spec:
         - secretName: nmoura-pt-tls
           hosts:
             - ollama.nmoura.pt
+
+    # Configure resource requests and limits
+    resources:
+      requests:
+        memory: 4096Mi
+        cpu: 1000m
+      limits:
+        memory: 8192Mi
+        cpu: 2000m
