@@ -27,7 +27,7 @@ spec:
       # -- List of models to pull at container     startup
       models:
         pull:
-          - deepseek-r1:7b
+          - deepseek-r1:1.5b
 
     ingress:
       enabled: true
