@@ -1,0 +1,45 @@
+# kubernetes/prod/cloudflared/cloudflared/helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ollama
+  namespace: ai
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: ollama
+      version: 1.4.x
+      sourceRef:
+        kind: HelmRepository
+        name: ollama-helm
+        namespace: flux-system
+  values:
+    ollama:
+      gpu:
+        # -- Enable GPU integration
+        enabled: true
+        # -- GPU type: 'nvidia' or 'amd'
+        type: 'nvidia'
+        # -- Specify the number of GPU to 1
+        number: 1
+       
+      # -- List of models to pull at container     startup
+      models:
+        pull:
+          - deepseek-r1:671b
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+      - host: "ollama.nmoura.pt"
+        paths:
+          - path: /
+            pathType: Prefix
+      tls: 
+        - secretName: nmoura-pt-tls
+          hosts:
+            - ollama.nmoura.pt
