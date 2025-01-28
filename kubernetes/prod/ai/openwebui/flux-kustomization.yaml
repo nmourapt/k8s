@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ollama-app
+  name: openwebui-app
   namespace: flux-system
 spec:
   interval: 1m
-  path: "./kubernetes/prod/ai/ollama"
+  path: "./kubernetes/prod/ai/openwebui"
   prune: true
   sourceRef:
     kind: GitRepository
