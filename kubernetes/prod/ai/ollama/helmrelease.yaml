@@ -18,7 +18,7 @@ spec:
     ollama:
       gpu:
         # -- Enable GPU integration
-        enabled: true
+        enabled: false
         # -- GPU type: 'nvidia' or 'amd'
         type: 'nvidia'
         # -- Specify the number of GPU to 1
