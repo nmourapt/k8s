@@ -27,6 +27,6 @@ spec:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       host: "ai.nmoura.pt"
       tls: true
-    #extraEnvVars:
-    #  - name: WEBUI_AUTH_TRUSTED_EMAIL_HEADER
-    #    value: "Cf-Access-Authenticated-User-Email"
+    extraEnvVars:
+      - name: WEBUI_AUTH_TRUSTED_EMAIL_HEADER
+        value: "Cf-Access-Authenticated-User-Email"
