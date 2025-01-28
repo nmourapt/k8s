@@ -31,4 +31,4 @@ spec:
       - name: WEBUI_AUTH_TRUSTED_EMAIL_HEADER
         value: "Cf-Access-Authenticated-User-Email"
       - name: USER_PERMISSIONS_WORKSPACE_MODELS_ACCESS
-        value: true
+        value: "true"
