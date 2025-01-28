@@ -18,7 +18,7 @@ spec:
     ollama:
       enabled: false
     ollamaUrls:
-      - "ollama"
+      - "http://ollama:11434"
     ingress:
       enabled: true
       class: "traefik"
