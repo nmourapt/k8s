@@ -1,9 +1,15 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ipexllm-deployment
+  name: ipexllm
+  namespace: ai
+  labels:
+    app: ipexllm
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: ipexllm
@@ -31,6 +37,3 @@ spec:
               value: "0.0.0.0"
             - name: USE_XPU
               value: "1"
-      nodeSelector:
-        kubernetes.io/arch: amd64
-        kubernetes.io/os: linux
