@@ -37,11 +37,11 @@ spec:
           env:
             - name: DEVICE
               value: "iGPU"
-      #    volumeMounts:
-      #      - mountPath: /dev/dri
-      #        name: dri
-      #volumes:
-      #  - name: dri
-      #    hostPath:
-      #      path: /dev/dri
-      #      type: Directory
+          volumeMounts:
+            - mountPath: /dev/dri
+              name: dri
+      volumes:
+        - name: dri
+          hostPath:
+            path: /dev/dri
+            type: Directory
