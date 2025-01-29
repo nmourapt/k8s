@@ -28,7 +28,7 @@ spec:
             - name: bench_model
               value: "mistral-7b-v0.1.Q4_0.gguf"
             - name: DEVICE
-              value: "Arc"
+              value: "iGPU"
           resources:
             requests:
               memory: 4096Mi
