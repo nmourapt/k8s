@@ -21,8 +21,6 @@ spec:
       containers:
         - name: ipexllm
           image: intelanalytics/ipex-llm-inference-cpp-xpu:latest
-          securityContext:
-            privileged: true
           ports:
             - containerPort: 8080
           resources:
