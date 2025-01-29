@@ -19,14 +19,12 @@ spec:
     spec:
       containers:
         - name: ipexllm
-          image: intelanalytics/ipex-llm-cpu:latest
+          image: intelanalytics/ipex-llm-inference-cpp-xpu:latest
           ports:
             - containerPort: 8080
           env:
             - name: no_proxy
               value: "localhost,127.0.0.1"
-            - name: bench_model
-              value: "mistral-7b-v0.1.Q4_0.gguf"
             - name: DEVICE
               value: "iGPU"
           resources:
