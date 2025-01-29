@@ -38,3 +38,10 @@ spec:
               memory: 8192Mi
               cpu: 2000m
               gpu.intel.com/i915: 1
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models
+      volumes:
+        - name: model-storage
+          persistentVolumeClaim:
+            claimName: ipexllm-models
