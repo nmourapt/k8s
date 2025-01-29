@@ -26,8 +26,6 @@ spec:
        
       # -- List of models to pull at container startup
       models:
-        pull:
-          - deepseek-r1:1.5b
         run:
           - deepseek-r1:1.5b
 
