@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: ipexllm
-          image: intelanalytics/ipex-llm-xpu:latest
+          image: intelanalytics/ipex-llm-inference-cpp-xpu:latest
           ports:
             - containerPort: 8080
           resources:
