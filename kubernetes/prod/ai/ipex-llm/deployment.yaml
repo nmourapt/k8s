@@ -34,14 +34,3 @@ spec:
               memory: 8192Mi
               cpu: 2000m
               gpu.intel.com/i915: 1
-          env:
-            - name: DEVICE
-              value: "iGPU"
-          volumeMounts:
-            - mountPath: /dev/dri
-              name: dri
-      volumes:
-        - name: dri
-          hostPath:
-            path: /dev/dri
-            type: Directory
