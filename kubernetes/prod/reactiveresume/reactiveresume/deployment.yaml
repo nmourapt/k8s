@@ -200,7 +200,7 @@ spec:
         #- name: GOOGLE_CALLBACK_URL
           #value: "https://rxresume.nmoura.pt/api/auth/google/callback"
         - name: VITE_OPENID_NAME
-          value: "OpenID"
+          value: "Cloudflare SSO"
         - name: OPENID_CALLBACK_URL
           value: "https://rxresume.nmoura.pt/api/auth/openid/callback"
         envFrom:
