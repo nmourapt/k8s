@@ -29,7 +29,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: reactiveresume
     app.kubernetes.io/name: reactiveresume
-  name: reactiveresume
+  name: rxresume-storage
   namespace: reactiveresume
 spec:
   ingressClassName: traefik
