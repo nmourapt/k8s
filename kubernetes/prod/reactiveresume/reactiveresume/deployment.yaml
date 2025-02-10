@@ -199,8 +199,10 @@ spec:
           value: "https://rxresume.nmoura.pt/api/auth/github/callback"
         - name: GOOGLE_CALLBACK_URL
           value: "https://rxresume.nmoura.pt/api/auth/google/callback"
-        #- name: OPENID_CALLBACK_URL
-          #value: "https://rxresume.nmoura.pt/api/auth/openid/callback"
+        - name: VITE_OPENID_NAME
+          value: "Cloudflare SSO"
+        - name: OPENID_CALLBACK_URL
+          value: "https://rxresume.nmoura.pt/api/auth/openid/callback"
         envFrom:
         - secretRef:
             name: app-secret
