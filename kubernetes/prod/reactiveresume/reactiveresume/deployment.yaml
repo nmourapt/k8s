@@ -150,7 +150,10 @@ spec:
         - name: CHROME_URL
           value: "ws://chrome:3000"
         - name: DATABASE_URL
-          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres:5432/$(POSTGRES_DB)"
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: DATABASE_URL
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
