@@ -1,0 +1,177 @@
+---
+# PostgreSQL Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: reactiveresume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16-alpine
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - secretRef:
+            name: postgres-secret
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        livenessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -U
+            - postgres
+            - -d
+            - postgres
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 5
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres
+---
+# MinIO Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  namespace: reactiveresume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:latest
+        args:
+        - server
+        - /data
+        ports:
+        - containerPort: 9000
+        envFrom:
+        - secretRef:
+            name: minio-secret
+        volumeMounts:
+        - name: minio-storage
+          mountPath: /data
+      volumes:
+      - name: minio-storage
+        persistentVolumeClaim:
+          claimName: minio
+---
+# Chrome Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chrome
+  namespace: reactiveresume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chrome
+  template:
+    metadata:
+      labels:
+        app: chrome
+    spec:
+      containers:
+      - name: chrome
+        image: ghcr.io/browserless/chromium:v2.18.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: TIMEOUT
+          value: "10000"
+        - name: CONCURRENT
+          value: "10"
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: CHROME_TOKEN
+        - name: EXIT_ON_HEALTH_FAILURE
+          value: "true"
+        - name: PRE_REQUEST_HEALTH_CHECK
+          value: "true"
+---
+# Main App Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactiveresume
+  namespace: reactiveresume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactiveresume
+  template:
+    metadata:
+      labels:
+        app: reactiveresume
+    spec:
+      containers:
+      - name: app
+        image: amruthpillai/reactive-resume:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: NODE_ENV
+          value: "production"
+        - name: PUBLIC_URL
+          value: "https://rxresume.nmoura.pt"
+        - name: STORAGE_URL
+          value: "https://rxresume-storage.nmoura.pt/default"
+        - name: CHROME_URL
+          value: "ws://chrome:3000"
+        - name: DATABASE_URL
+          value: "postgresql://postgres:postgres@postgres:5432/postgres"
+        - name: MAIL_FROM
+          value: "noreply@localhost"
+        - name: STORAGE_ENDPOINT
+          value: "minio"
+        - name: STORAGE_PORT
+          value: "9000"
+        - name: STORAGE_REGION
+          value: "us-east-1"
+        - name: STORAGE_BUCKET
+          value: "default"
+        - name: STORAGE_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-secret
+              key: MINIO_ROOT_USER
+        - name: STORAGE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minio-secret
+              key: MINIO_ROOT_PASSWORD
+        - name: STORAGE_USE_SSL
+          value: "false"
+        - name: STORAGE_SKIP_BUCKET_CHECK
+          value: "false"
+        envFrom:
+        - secretRef:
+            name: app-secret

@@ -1,0 +1,61 @@
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: reactiveresume
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+  selector:
+    app: postgres
+---
+# Chrome Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: chrome
+  namespace: reactiveresume
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: chrome
+---
+# Minio Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio
+  namespace: reactiveresume
+spec:
+  type: ClusterIP
+  ports:
+  - port: 9000
+    targetPort: 9000
+    protocol: TCP
+  selector:
+    app: minio
+---
+# RxResume Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: reactiveresume
+  namespace: reactiveresume
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: reactiveresume
+

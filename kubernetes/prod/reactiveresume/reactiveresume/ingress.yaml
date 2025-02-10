@@ -1,0 +1,48 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: reactiveresume
+    app.kubernetes.io/name: reactiveresume
+  name: reactiveresume
+  namespace: reactiveresume
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: rxresume.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: reactiveresume
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: reactiveresume
+    app.kubernetes.io/name: reactiveresume
+  name: reactiveresume
+  namespace: reactiveresume
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: rxresume-storage.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: minio
+            port:
+              number: 9000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
