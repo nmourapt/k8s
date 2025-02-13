@@ -144,7 +144,7 @@ spec:
         - name: NODE_ENV
           value: "production"
         - name: PUBLIC_URL
-          value: "https://rxresume.nmoura.pt"
+          value: "http://rxresume.nmoura.pt"
         - name: STORAGE_URL
           value: "https://rxresume-storage.nmoura.pt/default"
         - name: CHROME_URL
