@@ -67,7 +67,6 @@ data:
           - c2998bd0d90ed5621d8df281e839436e # DD
           assign_scores_to:
           - name: UHD Bluray + WEB
-          - name: HD Bluray + WEB
     
         # Movie Versions
         - trash_ids:
