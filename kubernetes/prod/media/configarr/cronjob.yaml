@@ -18,7 +18,7 @@ spec:
               tty: true # for color support
               envFrom:
                 - configMapRef:
-                    name: common-deployment-environment
+                    name: configarr
               volumeMounts:
                 - mountPath: /app/repos # Cache repositories
                   name: app-data
