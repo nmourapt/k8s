@@ -34,14 +34,19 @@ data:
           - name: WEB-1080p
     
     radarr:
-      uhd-bluray-web:
+      radarr_merged:
         base_url: http://radarr:7878
         api_key: !secret RADARR_API_KEY
+
+        quality_definition:
+          type: movie
     
         include:
         - template: radarr-quality-definition-movie
         - template: radarr-quality-profile-uhd-bluray-web
         - template: radarr-custom-formats-uhd-bluray-web
+        - template: radarr-quality-profile-hd-bluray-web
+        - template: radarr-custom-formats-hd-bluray-web
     
         custom_formats:
         # Audio
@@ -62,6 +67,7 @@ data:
           - c2998bd0d90ed5621d8df281e839436e # DD
           assign_scores_to:
           - name: UHD Bluray + WEB
+          - name: HD Bluray + WEB
     
         # Movie Versions
         - trash_ids:
@@ -75,6 +81,7 @@ data:
           - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
           assign_scores_to:
           - name: UHD Bluray + WEB
+          - name: HD Bluray + WEB
     
         # Optional
         - trash_ids:
@@ -87,6 +94,7 @@ data:
           - f537cf427b64c38c8e36298f657e4828 # Scene
           assign_scores_to:
           - name: UHD Bluray + WEB
+          - name: HD Bluray + WEB
     
         - trash_ids:
           - 923b6abef9b17f937fab56cfcf89e1f1 # DV (WEBDL)
