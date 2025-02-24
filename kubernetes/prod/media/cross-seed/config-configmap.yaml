@@ -8,20 +8,20 @@ data:
     module.exports = {
     	apiKey: undefined,
     	torznab: [
-        "http://prowlarr:9696/1/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // TorrentLeech
-        "http://prowlarr:9696/2/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Milkie
-        "http://prowlarr:9696/5/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // upload.cx
-        "http://prowlarr:9696/6/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Portugas (API)
-        "http://prowlarr:9696/7/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // SportsCult
-        "http://prowlarr:9696/8/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // MyAnonamouse
-        "http://prowlarr:9696/9/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // DigitalCore
-        "http://prowlarr:9696/13/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // RuTracker.org
-        "http://prowlarr:9696/14/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // CinemaZ
-        "http://prowlarr:9696/15/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // AvistaZ
-        "http://prowlarr:9696/16/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // FearNoPeer
-        "http://prowlarr:9696/17/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // seedpool (API)
-        "http://prowlarr:9696/18/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // ReelFLiX (API)
-        "http://prowlarr:9696/19/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Aither (API)
+        "http://prowlarr:9696/1/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // TorrentLeech
+        "http://prowlarr:9696/2/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // Milkie
+        "http://prowlarr:9696/5/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // upload.cx
+        "http://prowlarr:9696/6/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // Portugas (API)
+        "http://prowlarr:9696/7/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // SportsCult
+        "http://prowlarr:9696/8/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // MyAnonamouse
+        "http://prowlarr:9696/9/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // DigitalCore
+        "http://prowlarr:9696/13/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // RuTracker.org
+        "http://prowlarr:9696/14/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // CinemaZ
+        "http://prowlarr:9696/15/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // AvistaZ
+        "http://prowlarr:9696/16/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
+        "http://prowlarr:9696/17/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // seedpool (API)
+        "http://prowlarr:9696/18/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // ReelFLiX (API)
+        "http://prowlarr:9696/19/api?#apikey=74d92c7a8d424c89b470bf869c0d740f", // Aither (API)
       ],
     	sonarr: ["http://sonarr:8989/?apikey=859cd0dabfce4e068e0aed324c3b2207"],
     	radarr: ["http://radarr:7878/?apikey=05e6d71348a54f85be15c91985e1fd14"],
