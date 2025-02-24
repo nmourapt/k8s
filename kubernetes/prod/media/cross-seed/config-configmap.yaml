@@ -43,7 +43,7 @@ data:
     	skipRecheck: true,
     	autoResumeMaxDownload: 52428800,
     	maxDataDepth: 2,
-    	torrentDir: "/synology/torrents/torrentfiles",
+    	//torrentDir: "/synology/torrents/torrentfiles",
     	outputDir: "/synology/torrents/xseed-torrents",
     	includeSingleEpisodes: false,
     	includeNonVideos: false,
