@@ -5,63 +5,64 @@ metadata:
   namespace: media
 data:
   config.js: |
-    "use strict";
-    // If you find yourself always using the same command-line flag, you can set
-    // it here as a default.
-    Object.defineProperty(exports, "__esModule", { value: true });
     module.exports = {
-        delay: 10,
-        torznab: [
-            "http://prowlarr:9696/1/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // TorrentLeech
-            "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Milkie
-            "http://prowlarr:9696/5/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // upload.cx
-            "http://prowlarr:9696/6/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Portugas (API)
-            "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // SportsCult
-            "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // MyAnonamouse
-            "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // DigitalCore
-            "http://prowlarr:9696/13/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // RuTracker.org
-            "http://prowlarr:9696/14/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // CinemaZ
-            "http://prowlarr:9696/15/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // AvistaZ
-            "http://prowlarr:9696/16/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
-            "http://prowlarr:9696/17/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // seedpool (API)
-            "http://prowlarr:9696/18/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // ReelFLiX (API)
-            "http://prowlarr:9696/19/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Aither (API)
-        ],
-        dataDirs: undefined,
-        matchMode: "safe",
-        dataCategory: undefined,
-        linkDir: undefined,
-        linkType: "symlink",
-        skipRecheck: false,
-        maxDataDepth: 2,
-        torrentDir: "/torrents",
-        outputDir: "/cross-seeds",
-        blockList: [
-        	"category:racing-aither",
-        	"category:racing-dcore",
-        	"category:racing-portugas",
-        	"category:racing-tl",
-        ],
-        includeEpisodes: true,
-        includeSingleEpisodes: true,
-        includeNonVideos: true,
-        fuzzySizeThreshold: 0.02,
-        excludeOlder: undefined,
-        excludeRecentSearch: undefined,
-        action: "inject",
-        rtorrentRpcUrl: undefined,
-        qbittorrentUrl: "http://admin:dummy@qbittorrent:8080",
-        transmissionRpcUrl: undefined,
-        delugeRpcUrl: undefined,
-        duplicateCategories: true,
-        notificationWebhookUrl: "https://cross-seed.notify.nmoura.pt",
-        port: 2468,
-        host: undefined,
-        apiAuth: false,
-        rssCadence: "30min",
-        searchCadence: "1w",
-        snatchTimeout: "5min",
-        searchTimeout: "1min",
-        searchLimit: undefined,
+    	apiKey: undefined,
+    	torznab: [
+        "http://prowlarr:9696/1/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // TorrentLeech
+        "http://prowlarr:9696/2/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Milkie
+        "http://prowlarr:9696/5/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // upload.cx
+        "http://prowlarr:9696/6/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Portugas (API)
+        "http://prowlarr:9696/7/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // SportsCult
+        "http://prowlarr:9696/8/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // MyAnonamouse
+        "http://prowlarr:9696/9/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // DigitalCore
+        "http://prowlarr:9696/13/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // RuTracker.org
+        "http://prowlarr:9696/14/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // CinemaZ
+        "http://prowlarr:9696/15/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // AvistaZ
+        "http://prowlarr:9696/16/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // FearNoPeer
+        "http://prowlarr:9696/17/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // seedpool (API)
+        "http://prowlarr:9696/18/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // ReelFLiX (API)
+        "http://prowlarr:9696/19/api?#apikey=74d92c7a8d424c89b470bf869c0d#740f", // Aither (API)
+      ],
+    	sonarr: ["http://sonarr:8989/?apikey=859cd0dabfce4e068e0aed324c3b2207"],
+    	radarr: ["http://radarr:7878/?apikey=05e6d71348a54f85be15c91985e1fd14"],
+    	host: "0.0.0.0",
+    	port: 2468,
+    	notificationWebhookUrls: ["https://notify.nmoura.pt/message?token=A3pVGRWINS9-lbD"],
+    	rtorrentRpcUrl: undefined,
+    	qbittorrentUrl: "http://dummyuser:dummypass@qbittorrent:8080",
+    	transmissionRpcUrl: undefined,
+    	delugeRpcUrl: undefined,
+    	useClientTorrents: true,
+    	delay: 30,
+    	dataDirs: ["/synology/media/movies","/synology/media/series"],
+    	linkCategory: "xseed-link",
+    	linkDirs: ["/synology/torrents/xseed-link"],
+    	linkType: "hardlink",
+    	flatLinking: false,
+    	matchMode: "partial",
+    	skipRecheck: true,
+    	autoResumeMaxDownload: 52428800,
+    	maxDataDepth: 2,
+    	torrentDir: "/synology/torrents/torrentfiles",
+    	outputDir: "/synology/torrents/xseed-torrents",
+    	includeSingleEpisodes: false,
+    	includeNonVideos: false,
+    	seasonFromEpisodes: 0.75,
+    	fuzzySizeThreshold: 0.02,
+    	excludeOlder: "2 weeks",
+    	excludeRecentSearch: "3 days",
+    	action: "inject",
+    	duplicateCategories: true,
+    	rssCadence: "30 minutes",
+    	searchCadence: "1 day",
+    	snatchTimeout: "30 seconds",
+    	searchTimeout: "2 minutes",
+    	searchLimit: 400,
+    	blockList: [
+      	"category:racing-aither",
+      	"category:racing-dcore",
+      	"category:racing-portugas",
+      	"category:racing-tl",
+      ],
     };
-    //# sourceMappingURL=config.template.docker.cjs.map
+

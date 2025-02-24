@@ -26,8 +26,6 @@ spec:
         - containerPort: 2468
           protocol: TCP
         volumeMounts:
-        - mountPath: /torrents
-          name: cross-seed-synology-torrents
         - mountPath: /config
           name: cross-seed-config
         - mountPath: /synology
@@ -43,9 +41,6 @@ spec:
       - name: cross-seed-synology
         persistentVolumeClaim:
           claimName: pvc-cross-seed-synology
-      - name: cross-seed-synology-torrents
-        persistentVolumeClaim:
-          claimName: pvc-cross-seed-synology-torrents
       - name: config-js
         configMap:
           name: cross-seed-config
