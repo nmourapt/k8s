@@ -15,7 +15,7 @@ data:
         "http://prowlarr:9696/7/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // SportsCult
         "http://prowlarr:9696/8/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // MyAnonamouse
         "http://prowlarr:9696/9/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // DigitalCore
-        "http://prowlarr:9696/13/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // RuTracker.org
+        // "http://prowlarr:9696/13/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // RuTracker.org
         "http://prowlarr:9696/14/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // CinemaZ
         "http://prowlarr:9696/15/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // AvistaZ
         "http://prowlarr:9696/16/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
