@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: threadfin
+  namespace: media
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: oci://tccr.io/truecharts/threadfin
+      version: 1.1.x
+  values:
+    env:
+      # -- Set the container timezone
+      TZ: Europe/Lisbon
+
+    image:
+      repository: fyb3roptik/threadfin
+      tag: latest
+      pullPolicy: IfNotPresent
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: threadfin.nmoura.pt
+            paths:
+              - path: /
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls: 
+        secretName: nmoura-pt-tls
+        hosts:
+          - threadfin.nmoura.pt
+    
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: "/home/threadfin/conf"
+        readOnly: false
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        retain: true
