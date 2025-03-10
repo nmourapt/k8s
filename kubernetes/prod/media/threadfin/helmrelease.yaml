@@ -40,7 +40,13 @@ spec:
           - secretName: nmoura-pt-tls
             hosts:
             - threadfin.nmoura.pt
-    
+      
+      integrations:
+        traefik:
+          enabled: true
+          fixedMiddlewares: []
+
+
     persistence:
       config:
         enabled: true
