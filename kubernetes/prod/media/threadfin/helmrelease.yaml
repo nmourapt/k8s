@@ -32,6 +32,7 @@ spec:
             paths:
               - path: /
       annotations:
+        enabled: true  # This was missing
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls: 
