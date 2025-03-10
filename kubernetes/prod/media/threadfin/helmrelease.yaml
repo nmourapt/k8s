@@ -12,6 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: truecharts
+        namespace: flux-system
   values:
     env:
       # -- Set the container timezone
