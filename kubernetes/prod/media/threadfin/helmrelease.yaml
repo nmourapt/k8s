@@ -26,19 +26,20 @@ spec:
     ingress:
       main:
         enabled: true
+        primary: true
         ingressClassName: traefik
         hosts:
           - host: threadfin.nmoura.pt
             paths:
               - path: /
                 pathType: Prefix
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
-        - secretName: nmoura-pt-tls
-          hosts:
-          - threadfin.nmoura.pt
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer:   "letsencrypt-prod"
+        tls: 
+          - secretName: nmoura-pt-tls
+            hosts:
+            - threadfin.nmoura.pt
     
     persistence:
       config:
