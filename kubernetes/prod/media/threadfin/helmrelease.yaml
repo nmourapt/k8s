@@ -23,30 +23,6 @@ spec:
       tag: latest
       pullPolicy: IfNotPresent
 
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer:   "letsencrypt-prod"
-        ingressClassName: traefik
-        hosts:
-        - host: threadfin.nmoura.pt
-          paths:
-          - path: /
-            pathType: Prefix
-        tls: 
-        - secretName: nmoura-pt-tls
-          hosts:
-          - threadfin.nmoura.pt
-      
-      integrations:
-        enabled: true  # Add this line
-        traefik:
-          enabled: true
-          fixedMiddlewares: []
-
-
     persistence:
       config:
         enabled: true

@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: threadfin
+    app.kubernetes.io/name: threadfin
+  name: threadfin
+  namespace: media
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: threadfin.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: threadfin
+            port:
+              number: 34400
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer: {}
