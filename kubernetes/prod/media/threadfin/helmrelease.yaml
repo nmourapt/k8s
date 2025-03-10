@@ -9,6 +9,9 @@ spec:
     spec:
       chart: oci://tccr.io/truecharts/threadfin
       version: 1.1.x
+      sourceRef:
+        kind: Generic
+        name: oci-registry
   values:
     env:
       # -- Set the container timezone
