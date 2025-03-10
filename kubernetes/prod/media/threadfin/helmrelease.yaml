@@ -42,6 +42,7 @@ spec:
             - threadfin.nmoura.pt
       
       integrations:
+        enabled: true  # Add this line
         traefik:
           enabled: true
           fixedMiddlewares: []
