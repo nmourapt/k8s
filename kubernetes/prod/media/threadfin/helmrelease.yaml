@@ -7,11 +7,11 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: oci://tccr.io/truecharts/threadfin
+      chart: threadfin
       version: 1.1.x
       sourceRef:
-        kind: Generic
-        name: oci-registry
+        kind: HelmRepository
+        name: truecharts
   values:
     env:
       # -- Set the container timezone
