@@ -31,15 +31,14 @@ spec:
           - host: threadfin.nmoura.pt
             paths:
               - path: /
+                pathType: Prefix
       annotations:
-        enabled: true  # This was missing
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls: 
-      - hosts:
+        - secretName: nmoura-pt-tls
+          hosts:
           - threadfin.nmoura.pt
-        secretName: nmoura-pt-tls
-        enabled: true  # This was missing
     
     persistence:
       config:
