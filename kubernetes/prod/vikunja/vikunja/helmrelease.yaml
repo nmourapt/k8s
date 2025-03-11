@@ -92,9 +92,9 @@ spec:
                 enabled: true
                 host: "oauthmail-2465.tools.svc.cluster.local"
                 port: 2465
-                authtype: plain
+                authtype: login
                 skiptlsverify: true
-                fromemail: "vikunja@babybites.pt"
+                fromemail: "nuno@babybites.pt"
               auth:
                 local:
                   enabled: true
