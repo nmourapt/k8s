@@ -97,16 +97,7 @@ spec:
                 fromemail: "vikunja@babybites.pt"
               auth:
                 local:
-                  enabled: false
-                openid:
                   enabled: true
-                  providers:
-                    cloudflare:
-                      name: "Cloudflare SSO"
-                      authurl: "https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d/authorization"
-                      clientid: "e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d"
-                      clientsecret: "d348fc20cf3b6e55bc9c253321dad30ea1095a71f1679d894380a42e5e57eb80"
-                      
 
 
     postgresql:
