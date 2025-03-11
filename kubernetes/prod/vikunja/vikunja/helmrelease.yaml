@@ -50,6 +50,7 @@ spec:
       # You could also use MySQL or SQLite, but we recommend PostgreSQL.
       # https://vikunja.io/docs/config-options/#type
       VIKUNJA_DATABASE_TYPE: "postgres"
+      VIKUNJA_DATABASE_HOST: "vikunja-postgresql"
       VIKUNJA_DATABASE_USER: "vikunja"
       VIKUNJA_DATABASE_PASSWORD: "vikunja"
       VIKUNJA_DATABASE_NAME: "vikunja"
