@@ -87,7 +87,7 @@ spec:
                 user: dudekneecorral
               typesense:
                 enabled: true
-                url: "http://  vikunja-typesense:8108"
+                url: "http://vikunja-typesense:8108"
               mailer:
                 enabled: true
                 host: "oauthmail-2465.tools.svc.cluster.local"
