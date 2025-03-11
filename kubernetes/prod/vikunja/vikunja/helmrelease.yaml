@@ -76,7 +76,7 @@ spec:
           data:
             config.yml: |
               service:
-                enableregistration: false
+                enableregistration: true
                 publicurl: "https://tasks.nmoura.pt"
                 timezone: "Europe/Lisbon"
                 customlogourl: "https://public.nmoura.pt/Babybites%20Instagram%20Post%20(1).png"
