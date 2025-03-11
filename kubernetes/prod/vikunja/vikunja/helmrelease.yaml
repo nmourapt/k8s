@@ -55,6 +55,15 @@ spec:
       VIKUNJA_DATABASE_PASSWORD: "vikunja"
       VIKUNJA_DATABASE_NAME: "vikunja"
 
+    postgresql:
+      enabled: true
+      primary:
+        networkPolicy:
+          enabled: true 
+      auth:
+        username: vikunja
+        database: vikunja
+        password: vikunja
 
     typesense:
       enabled: true
@@ -67,6 +76,7 @@ spec:
           enabled: true
           type: pvc
           readOnly: false
+          mountPath: /data
           accessMode: ReadWriteOnce
           size: 1Gi
           retain: true
