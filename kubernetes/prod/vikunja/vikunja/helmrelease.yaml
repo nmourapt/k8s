@@ -14,49 +14,67 @@ spec:
         name: vikunja
         namespace: flux-system
   values:
-    image:
-      repository: vikunja/vikunja
-      tag: latest
-      pullPolicy: IfNotPresent
+    vikunja: 
+      image:
+        repository: vikunja/vikunja
+        tag: latest
+        pullPolicy: IfNotPresent
+  
+      persistence:
+        data:
+          enabled: true
+          type: pvc
+          mountPath: /app/vikunja/files
+          readOnly: false
+          accessMode: ReadWriteOnce
+          size: 5Gi
+          retain: true
+  
+      ingress:
+        main:
+          enabled: true
+          ingressClassName: traefik
+          hosts:
+            - host: tasks.nmoura.pt
+              paths:
+                - path: /
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer:   "letsencrypt-prod"
+        tls: 
+          secretName: nmoura-pt-tls
+          hosts:
+            - tasks.nmoura.pt
 
-    persistence:
-      data:
-        enabled: true
-        type: pvc
-        mountPath: /app/vikunja/files
-        readOnly: false
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        retain: true
+      env:
+        VIKUNJA_DATABASE_TYPE: "postgres"
+        VIKUNJA_DATABASE_HOST:   "vikunja-postgresql"
+        VIKUNJA_DATABASE_USER: 
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: VIKUNJA_DATABASE_USER
+        VIKUNJA_DATABASE_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: VIKUNJA_DATABASE_PASSWORD "vikunja"
+        VIKUNJA_DATABASE_NAME: "vikunja"
+        VIKUNJA_TYPESENSE_ENABLED: "true"
+        VIKUNJA_TYPESENSE_URL: "http://  vikunja-typesense:8108"
+        VIKUNJA_TYPESENSE_APIKEY:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: TYPESENSE_API_KEY
 
-    ingress:
-      main:
-        enabled: false
-      #  ingressClassName: traefik
-      #  hosts:
-      #    - host: tasks.nmoura.pt
-      #      paths:
-      #        - path: /
-      #annotations:
-      #  kubernetes.io/ingress.class: traefik
-      #  cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      #tls: 
-      #  secretName: kube-system/nmoura-pt-tls
-      #  hosts:
-      #    - tasks.nmoura.pt
-
-    env:
-      # To utilize a secret in the environment variables, you can do something like the following: https://  github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.  yaml#L141-L145
-      # You could also use MySQL or SQLite, but we recommend PostgreSQL.
-      # https://vikunja.io/docs/config-options/#type
-      VIKUNJA_DATABASE_TYPE: "postgres"
-      VIKUNJA_DATABASE_HOST: "vikunja-postgresql"
-      VIKUNJA_DATABASE_USER: "vikunja"
-      VIKUNJA_DATABASE_PASSWORD: "vikunja"
-      VIKUNJA_DATABASE_NAME: "vikunja"
-      VIKUNJA_TYPESENSE_ENABLED: "true"
-      VIKUNJA_TYPESENSE_URL: "http://vikunja-typesense:8108"
-      VIKUNJA_TYPESENSE_APIKEY: "typesense"
+      configMaps:
+        api-config:
+          enabled: true
+          data:
+            config.yml:
+              service:
+                enableregistration: false
 
     postgresql:
       enabled: true
@@ -64,18 +82,23 @@ spec:
         networkPolicy:
           enabled: true 
       auth:
-        username: vikunja
         database: vikunja
-        password: vikunja
+        existingSecret: vikunja-secret
+        secretKeys:
+          userPasswordKey: VIKUNJA_DATABASE_USER
+          adminPasswordKey: VIKUNJA_DATABASE_PASSWORD
 
     typesense:
       enabled: true
       env:
         TYPESENSE_DATA_DIR: /data
-        TYPESENSE_API_KEY: typesense
+        TYPESENSE_API_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: TYPESENSE_API_KEY
       persistence:
         data:
-          # Enabling typesense persistence is recommended to avoid slow reindexing
           enabled: true
           type: pvc
           readOnly: false
