@@ -47,8 +47,6 @@ spec:
             - tasks.nmoura.pt
 
       env:
-        VIKUNJA_DATABASE_TYPE: "postgres"
-        VIKUNJA_DATABASE_HOST:   "vikunja-postgresql"
         VIKUNJA_DATABASE_USER: 
           valueFrom:
             secretKeyRef:
@@ -59,22 +57,69 @@ spec:
             secretKeyRef:
               name: vikunja-secret
               key: VIKUNJA_DATABASE_PASSWORD "vikunja"
-        VIKUNJA_DATABASE_NAME: "vikunja"
-        VIKUNJA_TYPESENSE_ENABLED: "true"
-        VIKUNJA_TYPESENSE_URL: "http://  vikunja-typesense:8108"
+              
         VIKUNJA_TYPESENSE_APIKEY:
           valueFrom:
             secretKeyRef:
               name: vikunja-secret
               key: TYPESENSE_API_KEY
 
+        VIKUNJA_MAILER_USERNAME:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: SMTP_USERNAME
+        VIKUNJA_MAILER_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: SMTP_PASSWORD
+
+        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_CLIENTID:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: OID_CLIENT_ID
+        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_CLIENTSECRET:
+          valueFrom:
+            secretKeyRef:
+              name: vikunja-secret
+              key: OID_CLIENT_SECRET
+
       configMaps:
         api-config:
           enabled: true
           data:
-            config.yml:
+            config.yml: |
               service:
                 enableregistration: false
+                publicurl: "https://tasks.nmoura.pt"
+                timezone: "Europe/Lisbon"
+                customlogourl: "https://public.nmoura.pt/Babybites%20Instagram%20Post%20(1).png"
+              database:
+                type: postgres
+                host: vikunja-postgresql
+                database: vikunja
+              typesense:
+                enabled: true
+                url: "http://  vikunja-typesense:8108"
+              mailer:
+                enabled: true
+                host: "oauthmail-2465.tools.svc.cluster.local"
+                port: 2465
+                authtype: plain
+                skiptlsverify: true
+                fromemail: "vikunja@babybites.pt"
+              auth:
+                local:
+                  enabled: false
+                openid:
+                  enabled: true
+                  providers:
+                    cloudflare:
+                      name: "Cloudflare SSO"
+                      authurl: "https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d/authorization"
+
 
     postgresql:
       enabled: true
