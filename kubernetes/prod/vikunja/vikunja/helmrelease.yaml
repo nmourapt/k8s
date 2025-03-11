@@ -44,3 +44,19 @@ spec:
         secretName: kube-system/nmoura-pt-tls
         hosts:
           - tasks.nmoura.pt
+
+    typesense:
+      enabled: true
+      env:
+        TYPESENSE_DATA_DIR: /data
+        TYPESENSE_API_KEY: typesense
+      persistence:
+        data:
+          # Enabling typesense persistence is recommended to avoid slow reindexing
+          enabled: true
+          type: pvc
+          readOnly: false
+          accessMode: ReadWriteOnce
+          size: 1Gi
+          retain: true
+          storageClass: longhorn
