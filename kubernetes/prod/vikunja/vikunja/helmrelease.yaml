@@ -94,7 +94,7 @@ spec:
                 port: 2465
                 authtype: plain
                 skiptlsverify: true
-                forcessl: false
+                forcessl: true
                 fromemail: "nuno@babybites.pt"
               auth:
                 local:
