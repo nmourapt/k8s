@@ -56,7 +56,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: vikunja-secret
-              key: VIKUNJA_DATABASE_PASSWORD "vikunja"
+              key: VIKUNJA_DATABASE_PASSWORD
               
         VIKUNJA_TYPESENSE_APIKEY:
           valueFrom:
