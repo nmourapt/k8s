@@ -17,7 +17,7 @@ spec:
     vikunja: 
       image:
         repository: vikunja/vikunja
-        tag: latest
+        tag: unstable
         pullPolicy: IfNotPresent
   
       persistence:
