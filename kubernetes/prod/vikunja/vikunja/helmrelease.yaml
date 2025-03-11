@@ -47,11 +47,6 @@ spec:
             - tasks.nmoura.pt
 
       env:
-        VIKUNJA_DATABASE_USER: 
-          valueFrom:
-            secretKeyRef:
-              name: vikunja-secret
-              key: VIKUNJA_DATABASE_USER
         VIKUNJA_DATABASE_PASSWORD:
           valueFrom:
             secretKeyRef:
@@ -100,6 +95,7 @@ spec:
                 type: postgres
                 host: vikunja-postgresql
                 database: vikunja
+                user: dudekneecorral
               typesense:
                 enabled: true
                 url: "http://  vikunja-typesense:8108"
@@ -129,9 +125,9 @@ spec:
       auth:
         database: vikunja
         existingSecret: vikunja-secret
+        username: dudekneecorral
         secretKeys:
-          userPasswordKey: VIKUNJA_DATABASE_USER
-          adminPasswordKey: VIKUNJA_DATABASE_PASSWORD
+          userPasswordKey: VIKUNJA_DATABASE_PASSWORD
 
     typesense:
       enabled: true
