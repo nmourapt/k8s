@@ -127,6 +127,7 @@ spec:
         existingSecret: vikunja-secret
         username: dudekneecorral
         secretKeys:
+          adminPasswordKey: VIKUNJA_DATABASE_PASSWORD
           userPasswordKey: VIKUNJA_DATABASE_PASSWORD
 
     typesense:
