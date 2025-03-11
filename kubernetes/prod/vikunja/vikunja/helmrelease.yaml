@@ -31,19 +31,19 @@ spec:
 
     ingress:
       main:
-        enabled: true
-        ingressClassName: traefik
-        hosts:
-          - host: tasks.nmoura.pt
-            paths:
-              - path: /
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
-        secretName: kube-system/nmoura-pt-tls
-        hosts:
-          - tasks.nmoura.pt
+        enabled: false
+      #  ingressClassName: traefik
+      #  hosts:
+      #    - host: tasks.nmoura.pt
+      #      paths:
+      #        - path: /
+      #annotations:
+      #  kubernetes.io/ingress.class: traefik
+      #  cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      #tls: 
+      #  secretName: kube-system/nmoura-pt-tls
+      #  hosts:
+      #    - tasks.nmoura.pt
 
     env:
       # To utilize a secret in the environment variables, you can do something like the following: https://  github.com/bjw-s/helm-charts/blob/a081de53024d8328d1ae9ff7e4f6bc500b0f3a29/charts/library/common/values.  yaml#L141-L145
