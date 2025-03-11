@@ -34,7 +34,7 @@ data:
     	delugeRpcUrl: undefined,
     	useClientTorrents: true,
     	delay: 30,
-    	dataDirs: ["/synology/media/movies","/synology/media/series"],
+    	dataDirs: ["/synology/media/movies","/synology/media/series","/synology/media/cartoons"],
     	linkCategory: "xseed-link",
     	linkDirs: ["/synology/torrents/xseed-link"],
     	linkType: "hardlink",
