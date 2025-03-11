@@ -70,22 +70,6 @@ spec:
               name: vikunja-secret
               key: SMTP_PASSWORD
 
-        VIKUNJA_AUTH_OPENID_ENABLED: true
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_NAME: Cloudflare
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_ISSUERURL: "https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d"
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_AUTHURL: "https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d/authorization"
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_SCOPE: "openid profile email"
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_CLIENTID:
-          valueFrom:
-            secretKeyRef:
-              name: vikunja-secret
-              key: OID_CLIENT_ID
-        VIKUNJA_AUTH_OPENID_PROVIDERS_CLOUDFLARE_CLIENTSECRET:
-          valueFrom:
-            secretKeyRef:
-              name: vikunja-secret
-              key: OID_CLIENT_SECRET
-
       configMaps:
         api-config:
           enabled: true
@@ -116,6 +100,13 @@ spec:
                   enabled: false
                 openid:
                   enabled: true
+                  providers:
+                    cloudflare:
+                      name: "Cloudflare SSO"
+                      authurl: "https://babybites.cloudflareaccess.com/cdn-cgi/access/sso/oidc/e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d/authorization"
+                      clientid: "e91e5a14cfdd222ec71ee168678caa9678e7e9029dcd5e10034c9e6f191d719d"
+                      clientsecret: "d348fc20cf3b6e55bc9c253321dad30ea1095a71f1679d894380a42e5e57eb80"
+                      
 
 
     postgresql:
