@@ -55,7 +55,7 @@ spec:
       VIKUNJA_DATABASE_PASSWORD: "vikunja"
       VIKUNJA_DATABASE_NAME: "vikunja"
       VIKUNJA_TYPESENSE_ENABLED: "true"
-      VIKUNJA_TYPESENSE_URL: "vikunja-typesense:8108"
+      VIKUNJA_TYPESENSE_URL: "http://vikunja-typesense:8108"
       VIKUNJA_TYPESENSE_APIKEY: "typesense"
 
     postgresql:
