@@ -1,0 +1,27 @@
+# Create provider with webhook.site URL
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Provider
+metadata:
+  name: gotify
+  namespace: flux-system
+spec:
+  type: webhook
+  address: "https://webhook.site/a20cf4fd-64f0-4ae0-8d24-496a09e1f530"
+---
+# Create alert for image events
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Alert
+metadata:
+  name: image-alert
+  namespace: flux-system
+spec:
+  providerRef:
+    name: gotify
+  eventSeverity: info
+  eventSources:
+  - kind: ImageRepository
+    name: '*'
+  - kind: ImagePolicy
+    name: '*'
+  - kind: ImageUpdateAutomation
+    name: '*'
