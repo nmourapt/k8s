@@ -5,7 +5,7 @@ metadata:
   name: gotify
   namespace: flux-system
 spec:
-  type: webhook
+  type: generic
   address: "https://webhook.site/a20cf4fd-64f0-4ae0-8d24-496a09e1f530"
 ---
 # Create alert for image events
