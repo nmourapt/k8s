@@ -46,7 +46,7 @@ data:
         unique_id: 'group_living_room_blinds'
         entities:
           - cover.left_living_room_blinds
-          - cover.right_living_room_blinds
+          - cover.shelly2pmg3_e4b3232b5a0c_cover_0
 
     sensor:
       - platform: time_date
