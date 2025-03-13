@@ -19,6 +19,9 @@ spec:
       - name: manager
         image: fluxcd/image-reflector-controller:v0.31.0
         imagePullPolicy: IfNotPresent
+        args:
+        - --database-path=/data/badger
+        - --storage-path=/data/cache
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -28,6 +31,9 @@ spec:
         ports:
         - containerPort: 8080
           name: http
+        volumeMounts:
+        - name: data
+          mountPath: /data
         resources:
           limits:
             cpu: 1000m
@@ -37,6 +43,9 @@ spec:
             memory: 64Mi
       serviceAccountName: image-reflector-controller
       terminationGracePeriodSeconds: 10
+      volumes:
+      - name: data
+        emptyDir: {}
 ---
 # Image Reflector Controller Service
 apiVersion: v1
