@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: linuxserver/qbittorrent
-      tag: "5"
+      tag: "5.0.4"
       # -- image pull policy
       pullPolicy: IfNotPresent
 
