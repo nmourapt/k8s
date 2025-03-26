@@ -2,45 +2,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cross-seed
+  name: qbitmanage
   namespace: media
   labels:
-    app: cross-seed
+    app: qbitmanage
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: cross-seed
+      app: qbit_manage
   template:
     metadata:
       labels:
-        app: cross-seed
+        app: qbit_manage
     spec:
       containers:
-      - image: ghcr.io/cross-seed/cross-seed
-        name: cross-seed
-        args: ["daemon"]
-        ports:
-        - containerPort: 2468
-          protocol: TCP
+      - image: ghcr.io/stuffanthings/qbit_manage:latest
+        name: qbitmanage
         volumeMounts:
-        - mountPath: /config
-          name: cross-seed-config
         - mountPath: /synology
-          name: cross-seed-synology
-        - mountPath: /config/config.js
-          subPath: config.js
-          name: config-js
+          name: qbitmanage-synology
+        - mountPath: /downloads
+          name: qbitmanage-downloads
+        - mountPath: /config
+          name: qbitmanage-config
+        - mountPath: /config/config.yml
+          subPath: config.yml
+          name: config-yml
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata 
       restartPolicy: Always
       volumes:
-      - name: cross-seed-config
+      - name: qbitmanage-synology
         persistentVolumeClaim:
-          claimName: pvc-cross-seed-config
-      - name: cross-seed-synology
+          claimName: pvc-qbitmanage-synology
+      - name: qbitmanage-downloads
         persistentVolumeClaim:
-          claimName: pvc-cross-seed-synology
-      - name: config-js
+          claimName: qbittorrent-downloads
+      - name: qbitmanage-config
+        persistentVolumeClaim:
+          claimName: pvc-pvc-qbitmanage-config
+      - name: config-yml
         configMap:
-          name: cross-seed-config
+          name: qbitmanage-config
