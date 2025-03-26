@@ -5,6 +5,9 @@ metadata:
   namespace: media
 data:
   config.yml: |
+    commands:
+      tag_nohardlinks: True
+
     qbt:
       # qBittorrent parameters
       # Pass environment variables to the config via !ENV tag
