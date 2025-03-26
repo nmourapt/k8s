@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qbitmanage-config
+  namespace: media
+data:
+  config.yml: |
+    qbt:
+      # qBittorrent parameters
+      # Pass environment variables to the config via !ENV tag
+      host: "http://qbittorrent:8080"
+      user: randomuser
+      pass: randompass
+    
+    settings:
+      tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
+      nohardlinks_tag: noHL # Will set the tag of any torrents with no hardlinks.
+      share_limits_tag: ~share_limit # Will add this tag when applying share limits
+      share_limits_min_seeding_time_tag: "" # Tag to be added to torrents that have not yet reached the minimum seeding time
+      share_limits_min_num_seeds_tag: "" # Tag to be added to torrents that have not yet reached the minimum number of seeds
+      share_limits_last_active_tag: "" # Tag to be added to torrents that have not yet reached the last active limit
+      cat_filter_completed: True # Filters for completed torrents only when running cat_update command
+      share_limits_filter_completed: True # Filters for completed torrents only when running share_limits command
+      tag_nohardlinks_filter_completed: True # Filters for completed torrents only when running tag_nohardlinks command
+      cat_update_all: True # Checks and updates all torrent categories if set to True when running cat_update command, otherwise only update torrents that are uncategorized
+      disable_qbt_default_share_limits: True # Allows QBM to handle share limits by disabling qBittorrents default Share limits. Only active when the share_limits command is set to True
+      tag_stalled_torrents: True # Tags any downloading torrents that are stalled with the `stalledDL` tag when running the tag_update command
+    
+    directory:
+      root_dir: "/downloads/"
+    
+    cat:
+      Uncategorized: "/downloads"
+      junk: "/synology/torrents/junk"
+      lidarr: "/synology/torrents/music"
+      radarr: "/synology/torrents/movies"
+      readarr: "/synology/torrents/books"
+      sonarr: "/synology/torrents/series"
+    
+    cat_change:
+      CatA.cross-seed: CatA
+    
+    tracker:
+      aither:
+        tag: Aither
+      avistaz:
+        tag: AvistaZ
+      digitalcore:
+        tag: DigitalCore
+      fearnopeer:
+        tag: FearNoPeer
+      milkie:
+        tag: Milkie
+      myanonamouse:
+        tag: MaM
+      portugas:
+        tag: Portugas
+      reelflix:
+        tag: Reelflix
+      seedpool:
+        tag: SeedPool
+      torrentleech|tleechreload:
+        tag: TorrentLeech
+      t-ru:
+        tag: RuTracker
+      upload:
+        tag: UploadCX
+      other:
+        tag: other
+    
+    nohardlinks:
+      lidarr:
+      radarr:
+      readarr:
+      sonarr:
+    
+    share_limits:
+      noHL:
+        priority: 1
+        include_any_tags:
+          - noHL
+        max_seeding_time: 10d
+        cleanup: true
+        resume_torrent_after_change: true
+        add_group_to_tag: true
+      racingAither:
+        priority: 2
+        include_any_tags:
+          - aither.cc
+        max_seeding_time: 10d
+        cleanup: true
+        resume_torrent_after_change: true
+        add_group_to_tag: true
+      default:
+        priority: 999
+        max_ratio: -1
+        max_seeding_time: -1
+        cleanup: false
+    
+    recyclebin:
+      enabled: false
+    
+    orphaned:
+      empty_after_x_days: 30
+      exclude_patterns:
+        - "**/.DS_Store"
+        - "**/Thumbs.db"
+        - "**/@eaDir"
+        - "/data/torrents/temp/**"
+        - "**/*.!qB"
+        - "**/*_unpackerred"
+      max_orphaned_files_to_delete: -1
+    
+    webhooks:
+      # Webhook notifications:
+      # Possible values:
+      # Set value to notifiarr if using notifiarr integration
+      # Set value to apprise if using apprise integration
+      # Set value to a valid webhook URL
+      # Set value to nothing (leave Empty/Blank) to disable
+      error: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+      run_start: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+      run_end: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+      function:
+        recheck: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        cat_update: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        tag_update: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        rem_unregistered: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        tag_tracker_error: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        rem_orphaned: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        tag_nohardlinks: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        share_limits: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+        cleanup_dirs: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"

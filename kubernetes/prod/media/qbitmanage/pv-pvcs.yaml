@@ -1,0 +1,44 @@
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-qbitmanage-synology
+spec:
+  capacity:
+    storage: 10Ti  # Adjust as needed
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: "192.168.202.1"  # Replace with your NFS server
+    path: "/volume1/data"  # Replace with the path on your NFS server
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     namespace: media
+     name: pvc-qbitmanage-synology
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-qbitmanage-synology
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Ti
+  volumeName: pv-qbitmanage-synology
+  storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-qbitmanage-config
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
