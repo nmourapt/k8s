@@ -39,9 +39,6 @@ spec:
           name: qbitmanage-downloads
         - mountPath: /config
           name: qbitmanage-config
-        - mountPath: /config/config.yml
-          subPath: config.yml
-          name: config-yml
         env:
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata 
