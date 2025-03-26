@@ -18,6 +18,17 @@ spec:
       labels:
         app: qbit_manage
     spec:
+      initContainers:
+      - name: copy-config
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - cp /load/config.yml /config/config.yml;
+        volumeMounts:
+          - mountPath: /load
+            name: config-yml
+          - mountPath: /config
+            name: qbitmanage-config
       containers:
       - image: ghcr.io/stuffanthings/qbit_manage:latest
         name: qbitmanage
