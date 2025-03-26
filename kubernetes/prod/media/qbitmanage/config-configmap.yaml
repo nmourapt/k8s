@@ -128,8 +128,8 @@ data:
     webhooks:
       # Set value to nothing (leave Empty/Blank) to disable
       error: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
-      run_start: ""
-      run_end: ""
+      # run_start: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+      # run_end: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
       function:
         recheck: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
         cat_update: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
