@@ -10,6 +10,7 @@ data:
       tag_tracker_error: True
       rem_orphaned: True
       share_limits: True
+      tag_update: True
 
     qbt:
       # qBittorrent parameters
@@ -92,6 +93,14 @@ data:
         priority: 2
         include_any_tags:
           - aither.cc
+        max_seeding_time: 7d
+        cleanup: true
+        resume_torrent_after_change: true
+        add_group_to_tag: true
+      issues:
+        priority: 3
+        include_any_tags:
+          - issue
         max_seeding_time: 7d
         cleanup: true
         resume_torrent_after_change: true
