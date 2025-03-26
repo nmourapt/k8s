@@ -33,7 +33,7 @@ data:
       tag_stalled_torrents: True # Tags any downloading torrents that are stalled with the `stalledDL` tag when running the tag_update command
     
     directory:
-      root_dir: "/downloads/"
+      root_dir: "/synology/torrents/"
       orphaned_dir: "/synology/torrents/orphans"
     
     cat:
@@ -117,15 +117,10 @@ data:
       max_orphaned_files_to_delete: -1
     
     webhooks:
-      # Webhook notifications:
-      # Possible values:
-      # Set value to notifiarr if using notifiarr integration
-      # Set value to apprise if using apprise integration
-      # Set value to a valid webhook URL
       # Set value to nothing (leave Empty/Blank) to disable
       error: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
-      run_start: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
-      run_end: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
+      run_start: ""
+      run_end: ""
       function:
         recheck: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
         cat_update: "https://notify.nmoura.pt/message?token=AaSGNfMU_nJGbhw"
