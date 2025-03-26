@@ -44,7 +44,7 @@ spec:
           claimName: qbittorrent-downloads
       - name: qbitmanage-config
         persistentVolumeClaim:
-          claimName: pvc-pvc-qbitmanage-config
+          claimName: pvc-qbitmanage-config
       - name: config-yml
         configMap:
           name: qbitmanage-config
