@@ -44,6 +44,10 @@ data:
       radarr: "/synology/torrents/movies"
       readarr: "/synology/torrents/books"
       sonarr: "/synology/torrents/series"
+      music: "/synology/media/music"
+      movies: "/synology/media/movies"
+      books: "/synology/media/books"
+      series: "/synology/media/series"
     
     cat_change:
       CatA.cross-seed: CatA

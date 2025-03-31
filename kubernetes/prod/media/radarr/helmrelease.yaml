@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/radarr
-      tag: latest
+      tag: release-5.21.1.9799
       pullPolicy: IfNotPresent
 
     ingress:
