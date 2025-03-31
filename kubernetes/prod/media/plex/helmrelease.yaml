@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/plex
-      tag: latest
+      repository: ghcr.io/hotio/plex # {"$imagepolicy": "flux-system:plex:name"}
+      tag: latest # {"$imagepolicy": "flux-system:plex:tag"}
       pullPolicy: IfNotPresent
             
     env:
