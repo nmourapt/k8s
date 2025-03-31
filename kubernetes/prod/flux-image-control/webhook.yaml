@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   type: generic
-  address: "https://webhook.site/dbb921e4-4d7f-4481-b8a3-831c183ab19c"
+  address: "https://notify.nmoura.pt/message?token=A9SePpvV_K0j9wl"
 ---
 # Create alert for image events
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
