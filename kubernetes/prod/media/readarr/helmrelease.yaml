@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/readarr
-      tag: latest
+      tag: testing-0.4.13.2760
       pullPolicy: Always
 
     ingress:
