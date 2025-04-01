@@ -19,9 +19,9 @@ spec:
     name: gotify
   eventSeverity: info
   eventSources:
-  - kind: ImageRepository
-    name: '*'
-  - kind: ImagePolicy
-    name: '*'
+  #- kind: ImageRepository
+  #  name: '*'
+  #- kind: ImagePolicy
+  #  name: '*'
   - kind: ImageUpdateAutomation
     name: '*'
