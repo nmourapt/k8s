@@ -16,7 +16,7 @@ spec:
   imageRepositoryRef:
     name: prowlarr
   filterTags:
-    pattern: '^release-(?P<semver>[0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+-[a-f0-9]+$'
+    pattern: '^release-(?P<semver>[0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+$'
     extract: '$semver'
   policy:
     semver:
