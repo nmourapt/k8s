@@ -16,9 +16,8 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
-      tag: latest # {"$imagepolicy": "flux-system:prowlarr:tag"}
+      tag: release-1.32.2.4987 # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
-
     persistence:
       config:
         enabled: true
@@ -29,7 +28,6 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         retain: true
-
     ingress:
       main:
         enabled: true
@@ -41,7 +39,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - indexer.nmoura.pt
