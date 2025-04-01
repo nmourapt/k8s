@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/prowlarr
-      tag: latest
+      repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
+      tag: latest # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
 
     persistence:
