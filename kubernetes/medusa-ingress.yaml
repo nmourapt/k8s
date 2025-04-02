@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: medusa-ingress
+  namespace: babybites-medusajs
+spec:
+  rules:
+  - host: medusa.your-domain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: medusa-backend
+            port:
+              number: 9000 

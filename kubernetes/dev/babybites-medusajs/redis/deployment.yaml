@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medusa-redis
+  namespace: babybites-medusajs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: medusa-redis
+  template:
+    metadata:
+      labels:
+        app: medusa-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7
+        ports:
+        - containerPort: 6379
