@@ -19,6 +19,8 @@ spec:
         env:
         - name: POSTGRES_DB
           value: medusa-db
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata 
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
@@ -33,7 +35,7 @@ spec:
         - containerPort: 5432
         volumeMounts:
         - name: postgres-data
-          mountPath: /var/lib/postgresql/data/pgdata
+          mountPath: /var/lib/postgresql/data
       volumes:
       - name: postgres-data
         persistentVolumeClaim:
