@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: medusa
-        image: ghcr.io/babybites/medusa-docker
+        image: ghcr.io/babybites/medusa-docker:1ce3a581f87bb3a4a9243be6253961c94c8ecfa8
         env:
         - name: DATABASE_TYPE
           value: "postgres"
