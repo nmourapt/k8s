@@ -1,37 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: medusa-backend
+  name: medusa-postgres
   namespace: store
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: medusa-backend
+      app: medusa-postgres
   template:
     metadata:
       labels:
-        app: medusa-backend
+        app: medusa-postgres
     spec:
       containers:
-      - name: medusa
-        image: medusajs/medusa-starter-default:latest
+      - name: postgres
+        image: postgres:15
         env:
-        - name: DATABASE_TYPE
-          value: "postgres"
-        - name: DATABASE_URL
-          value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@medusa-postgres:5432/medusa-db"
-        - name: REDIS_URL
-          value: "redis://medusa-redis:6379"
-        - name: JWT_SECRET
+        - name: POSTGRES_DB
+          value: medusa-db
+        - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
               name: medusa-secrets
-              key: jwt-secret
-        - name: COOKIE_SECRET
+              key: postgres-user
+        - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: medusa-secrets
-              key: cookie-secret
+              key: postgres-password
         ports:
-        - containerPort: 9000
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+
+
