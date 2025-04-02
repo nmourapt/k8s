@@ -1,15 +1,16 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: medusajs-backend-app
+  name: store-ns
   namespace: flux-system
 spec:
-  interval: 1m
-  path: "./kubernetes/dev/babybites-medusajs/medusajs"
+  interval: 1m  # Check every 1 minute
+  path: "./kubernetes/dev/store"
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+    namespace: flux-system
   decryption:
     provider: sops
     secretRef:

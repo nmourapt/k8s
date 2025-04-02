@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: medusajs-redis-app
+  name: medusajs-backend-app
   namespace: flux-system
 spec:
   interval: 1m
-  path: "./kubernetes/dev/babybites-medusajs/redis"
+  path: "./kubernetes/dev/store/medusajs"
   prune: true
   sourceRef:
     kind: GitRepository

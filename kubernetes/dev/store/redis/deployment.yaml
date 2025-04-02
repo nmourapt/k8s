@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: medusa-redis
-  namespace: babybites-medusajs
+  namespace: store
 spec:
   replicas: 1
   selector:
