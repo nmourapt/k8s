@@ -15,9 +15,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/nmourapt/sonarr-mkvtoolnix
+      repository: ghcr.io/hotio/sonarr
       tag: latest
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
 
     ingress:
       main:
