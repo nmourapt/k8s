@@ -40,7 +40,7 @@ data:
             score: 0
 
         - trash_ids:
-          - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
+          - d7c747094a7c65f4c2de083c24899e8b # Freeleech
           assign_scores_to:
           - name: WEB-1080p
             score: 1
