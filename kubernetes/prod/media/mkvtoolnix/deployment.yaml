@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mkvtoolnix
+  namespace: media
+  labels:
+    app: mkvtoolnix
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mkvtoolnix
+  template:
+    metadata:
+      labels:
+        app: mkvtoolnix
+    spec:
+      containers:
+      - image: jlesage/mkvtoolnix:latest
+        name: mkvtoolnix
+        volumeMounts:
+        - mountPath: /storage
+          name: mkvtoolnix-synology
+        - mountPath: /config
+          name: mkvtoolnix-config
+      restartPolicy: Always
+      volumes:
+      - name: mkvtoolnix-synology
+        persistentVolumeClaim:
+          claimName: pvc-mkvtoolnix-synology
+      - name: mkvtoolnix-config
+        persistentVolumeClaim:
+          claimName: pvc-mkvtoolnix-config

@@ -3,26 +3,26 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app.kubernetes.io/instance: mkvtoolnix
-    app.kubernetes.io/name: mkvtoolnix
-  name: mkvtoolnix
-  namespace: media
+    app.kubernetes.io/instance: homeassistant
+    app.kubernetes.io/name: homeassistant
+  name: homeassistant
+  namespace: homeassistant
 spec:
   ingressClassName: traefik
   rules:
-  - host: mkvtoolnix.nmoura.pt
+  - host: homeassistant.nmoura.pt
     http:
       paths:
       - backend:
           service:
-            name: mkvtoolnix
+            name: homeassistant
             port:
-              number: 5800
+              number: 8123
         path: /
         pathType: Prefix
     tls: 
       secretName: nmoura-pt-tls
       hosts:
-        - mkvtoolnix.nmoura.pt
+        - homeassistant.nmoura.pt
 status:
   loadBalancer: {}
