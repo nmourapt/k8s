@@ -19,8 +19,6 @@ spec:
         env:
         - name: DATABASE_TYPE
           value: "postgres"
-        - name: DATABASE_URL
-          value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@medusa-postgres:5432/medusa-db"
         - name: REDIS_URL
           value: "redis://medusa-redis:6379"
         - name: JWT_SECRET
@@ -33,5 +31,10 @@ spec:
             secretKeyRef:
               name: medusa-secrets
               key: cookie-secret
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: medusa-secrets
+              key: database-url-secret
         ports:
         - containerPort: 9000
