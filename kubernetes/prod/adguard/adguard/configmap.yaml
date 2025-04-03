@@ -27,6 +27,9 @@ data:
         refuse_any: true
         upstream_dns:
           - https://5owy17dm40.cloudflare-gateway.com/dns-query
+          - tls://5owy17dm40.cloudflare-gateway.com
+          - 172.64.36.1
+          - 172.64.36.2
         upstream_dns_file: ""
         bootstrap_dns:
           - 1.1.1.1
@@ -46,8 +49,6 @@ data:
           - 127.0.0.0/8
           - ::1/128
         cache_size: 4194304
-        cache_ttl_min: 0
-        cache_ttl_max: 0
         cache_optimistic: false
         bogus_nxdomain: []
         aaaa_disabled: false
