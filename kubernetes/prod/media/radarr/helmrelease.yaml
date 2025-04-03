@@ -15,7 +15,7 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/nmoura/radarr-mkvtoolnix
+      repository: ghcr.io/nmourapt/radarr-mkvtoolnix
       tag: latest
       pullPolicy: IfNotPresent
 
