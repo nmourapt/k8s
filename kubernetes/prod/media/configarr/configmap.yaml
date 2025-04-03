@@ -125,6 +125,7 @@ data:
           - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
           assign_scores_to:
           - name: UHD Bluray + WEB
+          - name: HD Bluray + WEB
             score: 1
     
     
