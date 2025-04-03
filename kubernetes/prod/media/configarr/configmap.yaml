@@ -32,6 +32,20 @@ data:
           - 1b3994c551cbb92a2c781af061f4ab44 # Scene
           assign_scores_to:
           - name: WEB-1080p
+
+        - trash_ids:
+          - dc98083864ea246d05a42df0d05f81cc # x265 (HD)
+          assign_scores_to:
+          - name: WEB-1080p
+            score: 0
+
+        - trash_ids:
+          - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
+          assign_scores_to:
+          - name: WEB-1080p
+            score: 1
+
+
     
     radarr:
       radarr_merged:
@@ -106,5 +120,11 @@ data:
           - 9c38ebb7384dada637be8899efa68e6f # SDR
           assign_scores_to:
           - name: UHD Bluray + WEB
+
+        - trash_ids:
+          - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
+          assign_scores_to:
+          - name: UHD Bluray + WEB
+            score: 1
     
     
