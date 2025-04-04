@@ -28,8 +28,6 @@ data:
         upstream_dns:
           - https://5owy17dm40.cloudflare-gateway.com/dns-query
           - tls://5owy17dm40.cloudflare-gateway.com
-          - 172.64.36.1
-          - 172.64.36.2
         upstream_dns_file: ""
         bootstrap_dns:
           - 1.1.1.1
