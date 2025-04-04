@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/bazarr
-      tag: latest
+      repository: ghcr.io/hotio/bazarr # {"$imagepolicy": "flux-system:bazarr:name"}
+      tag: latest # {"$imagepolicy": "flux-system:bazarr:tag"}
       pullPolicy: IfNotPresent
 
     ingress:
