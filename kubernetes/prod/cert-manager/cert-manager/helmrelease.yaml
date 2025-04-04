@@ -14,6 +14,12 @@ spec:
         name: jetstack
         namespace: flux-system
   values:
+
+    image:
+      repository: quay.io/jetstack/cert-manager-controller # {"$imagepolicy": "flux-system:certmanager:name"}
+      tag: vX.Y.Z # {"$imagepolicy": "flux-system:certmanager:tag"}
+      
+
     crds:
       enabled: true
       keep: true

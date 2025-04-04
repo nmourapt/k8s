@@ -19,4 +19,9 @@ spec:
     name: cloudflared-secrets
     valuesKey: values.yaml
   values:
+
+    image:
+      repository: cloudflare/cloudflared # {"$imagepolicy": "flux-system:cloudflared:name"}
+      tag: latest  # {"$imagepolicy": "flux-system:cloudflared:tag"}
+
     replicaCount: 2
