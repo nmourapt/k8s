@@ -16,9 +16,8 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/bazarr # {"$imagepolicy": "flux-system:bazarr:name"}
-      tag: latest # {"$imagepolicy": "flux-system:bazarr:tag"}
+      tag: release-1.5.1 # {"$imagepolicy": "flux-system:bazarr:tag"}
       pullPolicy: IfNotPresent
-
     ingress:
       main:
         enabled: true
@@ -30,11 +29,10 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - subs.nmoura.pt
-    
     persistence:
       config:
         enabled: true
