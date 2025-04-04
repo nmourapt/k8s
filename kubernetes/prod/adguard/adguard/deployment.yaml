@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: adguard
-          image: adguard/adguardhome:latest
+          image: adguard/adguardhome:latest # {"$imagepolicy": "flux-system:adguard"}
           args:
             - "--config"
             - "/opt/adguardhome/conf/AdGuardHome.yaml"
