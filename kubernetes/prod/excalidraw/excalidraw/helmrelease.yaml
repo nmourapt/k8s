@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: excalidraw/excalidraw
-      tag: latest
+      repository: excalidraw/excalidraw  # {"$imagepolicy": "flux-system:excalidraw:name"}
+      tag: latest  # {"$imagepolicy": "flux-system:excalidraw:tag"}
       pullPolicy: IfNotPresent
 
     serviceAccount:

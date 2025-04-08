@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: excalidraw
+  namespace: flux-system
+spec:
+  image: excalidraw/excalidraw
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: excalidraw
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: excalidraw
+  filterTags:
+    pattern: '^sha-[0-9a-f]+$'
+    extract: '$0'
+  policy:
+    alphabetical:
+      order: desc
