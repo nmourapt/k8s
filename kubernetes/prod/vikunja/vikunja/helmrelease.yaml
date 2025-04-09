@@ -14,12 +14,11 @@ spec:
         name: vikunja
         namespace: flux-system
   values:
-    vikunja: 
+    vikunja:
       image:
-        repository: vikunja/vikunja  # {"$imagepolicy": "flux-system:vikunja:name"}
-        tag: latest  # {"$imagepolicy": "flux-system:vikunja:tag"}
+        repository: vikunja/vikunja # {"$imagepolicy": "flux-system:vikunja:name"}
+        tag: 0.24.6 # {"$imagepolicy": "flux-system:vikunja:tag"}
         pullPolicy: IfNotPresent
-  
       persistence:
         data:
           enabled: true
@@ -29,7 +28,6 @@ spec:
           accessMode: ReadWriteOnce
           size: 5Gi
           retain: true
-  
       ingress:
         main:
           enabled: true
@@ -40,25 +38,22 @@ spec:
                 - path: /
         annotations:
           kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer:   "letsencrypt-prod"
-        tls: 
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        tls:
           secretName: nmoura-pt-tls
           hosts:
             - tasks.nmoura.pt
-
       env:
         VIKUNJA_DATABASE_PASSWORD:
           valueFrom:
             secretKeyRef:
               name: vikunja-secret
               key: VIKUNJA_DATABASE_PASSWORD
-              
         VIKUNJA_TYPESENSE_APIKEY:
           valueFrom:
             secretKeyRef:
               name: vikunja-secret
               key: TYPESENSE_API_KEY
-
         VIKUNJA_MAILER_USERNAME:
           valueFrom:
             secretKeyRef:
@@ -69,7 +64,6 @@ spec:
             secretKeyRef:
               name: vikunja-secret
               key: SMTP_PASSWORD
-
       configMaps:
         api-config:
           enabled: true
@@ -99,13 +93,11 @@ spec:
               auth:
                 local:
                   enabled: true
-
-
     postgresql:
       enabled: true
       primary:
         networkPolicy:
-          enabled: true 
+          enabled: true
       auth:
         database: vikunja
         existingSecret: vikunja-secret
@@ -113,7 +105,6 @@ spec:
         secretKeys:
           adminPasswordKey: VIKUNJA_DATABASE_PASSWORD
           userPasswordKey: VIKUNJA_DATABASE_PASSWORD
-
     typesense:
       enabled: true
       env:
