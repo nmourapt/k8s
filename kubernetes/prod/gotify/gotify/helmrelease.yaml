@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: gotify/server
-      tag: latest
+      repository: gotify/server # {"$imagepolicy": "flux-system:gotify:name"}
+      tag: latest # {"$imagepolicy": "flux-system:gotify:tag"}
       pullPolicy: IfNotPresent
 
     persistence:

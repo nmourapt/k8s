@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:16-alpine
+        image: postgres:16-alpine # {"$imagepolicy": "flux-system:postgres-rxresume"}
         ports:
         - containerPort: 5432
         envFrom:
@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
       - name: minio
-        image: minio/minio:latest
+        image: minio/minio:latest # {"$imagepolicy": "flux-system:minio-rxresume"}
         args:
         - server
         - /data
@@ -99,7 +99,7 @@ spec:
     spec:
       containers:
       - name: chrome
-        image: ghcr.io/browserless/chromium:v2.18.0
+        image: ghcr.io/browserless/chromium:v2.18.0 # {"$imagepolicy": "flux-system:chromium-rxresume"}
         ports:
         - containerPort: 3000
         env:
@@ -135,7 +135,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: amruthpillai/reactive-resume:latest
+        image: amruthpillai/reactive-resume:latest # {"$imagepolicy": "flux-system:rxresume"}
         ports:
         - containerPort: 3000
         env:
