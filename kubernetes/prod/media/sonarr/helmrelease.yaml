@@ -16,9 +16,8 @@ spec:
   values:
     image:
       repository: ghcr.io/nmourapt/sonarr-mkvtoolnix # {"$imagepolicy": "flux-system:sonarr:name"}
-      tag: latest # {"$imagepolicy": "flux-system:sonarr:tag"}
+      tag: 4.0.14.2939 # {"$imagepolicy": "flux-system:sonarr:tag"}
       pullPolicy: Always
-
     ingress:
       main:
         enabled: true
@@ -30,11 +29,10 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - tv.nmoura.pt
-    
     persistence:
       config:
         enabled: true
