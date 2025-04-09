@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,14 +22,14 @@ spec:
         image: busybox
         command: ["/bin/sh", "-c"]
         args:
-          - cp /load/config.yml /config/config.yml;
+        - cp /load/config.yml /config/config.yml;
         volumeMounts:
-          - mountPath: /load
-            name: config-yml
-          - mountPath: /config
-            name: qbitmanage-config
+        - mountPath: /load
+          name: config-yml
+        - mountPath: /config
+          name: qbitmanage-config
       containers:
-      - image: ghcr.io/stuffanthings/qbit_manage:latest  # {"$imagepolicy": "flux-system:qbitmanage"}
+      - image: ghcr.io/stuffanthings/qbit_manage:v4.2.1 # {"$imagepolicy": "flux-system:qbitmanage"}
         name: qbitmanage
         volumeMounts:
         - mountPath: /synology
@@ -41,7 +40,7 @@ spec:
           name: qbitmanage-config
         env:
         - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata 
+          value: /var/lib/postgresql/data/pgdata
       restartPolicy: Always
       volumes:
       - name: qbitmanage-synology
