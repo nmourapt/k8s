@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
-  name: qbit_manage
+  name: qbitmanage
   namespace: flux-system
 spec:
   image: ghcr.io/stuffanthings/qbit_manage
@@ -10,7 +10,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
-  name: qbit_manage
+  name: qbitmanage
   namespace: flux-system
 spec:
   imageRepositoryRef:
