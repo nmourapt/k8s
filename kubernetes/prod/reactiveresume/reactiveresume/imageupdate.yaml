@@ -20,7 +20,7 @@ spec:
     extract: '$alpinever'
   policy:
     semver:
-      range: '>=3.0.0 <4.0.0'
+      range: '>=3.0 <4.0'
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
