@@ -1,4 +1,3 @@
----
 # PostgreSQL Deployment
 apiVersion: apps/v1
 kind: Deployment
@@ -25,7 +24,7 @@ spec:
             name: postgres-secret
         env:
         - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata    # Add this subdirectory
+          value: /var/lib/postgresql/data/pgdata # Add this subdirectory
         volumeMounts:
         - name: postgres-storage
           mountPath: /var/lib/postgresql/data
@@ -99,7 +98,7 @@ spec:
     spec:
       containers:
       - name: chrome
-        image: ghcr.io/browserless/chromium:v2.18.0 # {"$imagepolicy": "flux-system:chromium-rxresume"}
+        image: ghcr.io/browserless/chromium:v2.27.0 # {"$imagepolicy": "flux-system:chromium-rxresume"}
         ports:
         - containerPort: 3000
         env:
