@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: lscr.io/linuxserver/lidarr
-      tag: 2.10.3.4602-ls35
+      repository: lscr.io/linuxserver/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
+      tag: 2.10.3.4602-ls35 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
 
     env:
