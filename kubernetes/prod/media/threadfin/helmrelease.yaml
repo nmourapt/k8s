@@ -17,12 +17,10 @@ spec:
     env:
       # -- Set the container timezone
       TZ: Europe/Lisbon
-
     image:
       repository: fyb3roptik/threadfin # {"$imagepolicy": "flux-system:threadfin:name"}
-      tag: latest # {"$imagepolicy": "flux-system:threadfin:tag"}
+      tag: 1.2.32 # {"$imagepolicy": "flux-system:threadfin:tag"}
       pullPolicy: IfNotPresent
-
     persistence:
       config:
         enabled: true
