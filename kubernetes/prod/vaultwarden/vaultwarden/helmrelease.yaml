@@ -16,14 +16,12 @@ spec:
   values:
     image:
       registry: docker.io
-      repository: vaultwarden/server  # {"$imagepolicy": "flux-system:vaultwarden:name"}
-      tag: "1.32.7-alpine"  # {"$imagepolicy": "flux-system:vaultwarden:tag"}
+      repository: vaultwarden/server # {"$imagepolicy": "flux-system:vaultwarden:name"}
+      tag: "1.33.2-alpine" # {"$imagepolicy": "flux-system:vaultwarden:tag"}
       pullPolicy: IfNotPresent
-
     serviceAccount:
       create: true
       name: "vaultwarden-svc"
-
     data:
       name: "vaultwarden-data"
       size: "15Gi"
@@ -31,7 +29,6 @@ spec:
       path: "/data"
       keepPvc: true
       accessMode: "ReadWriteOnce"
-
     pushNotifications:
       enabled: true
       existingSecret: "vaultwarden-secrets"
@@ -41,25 +38,18 @@ spec:
         existingSecretKey: "INSTALLATION_KEY"
       relayUri: "https://api.bitwarden.eu"
       identityUri: "https://identity.bitwarden.eu"
-
     domain: "https://warden.nmoura.pt"
-
     signupsAllowed: false
-
     ipHeader: "Cf-Connecting-Ip"
-
     adminToken:
       existingSecret: "vaultwarden-secrets"
       existingSecretKey: "ADMIN_TOKEN"
-
     timeZone: "Europe/Lisbon"
-
     yubico:
       clientId: "103892"
       existingSecret: "vaultwarden-secrets"
       secretKey:
         existingSecretKey: "YUBICO_SECRET_KEY"
-
     smtp:
       existingSecret: "vaultwarden-secrets"
       host: "oauthmail-2465.tools.svc.cluster.local"
@@ -75,12 +65,11 @@ spec:
       acceptInvalidHostnames: "true"
       acceptInvalidCerts: "true"
       debug: false
-
     ingress:
       enabled: true
       class: "traefik"
       nginxIngressAnnotations: false
-      additionalAnnotations: 
+      additionalAnnotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls: true
