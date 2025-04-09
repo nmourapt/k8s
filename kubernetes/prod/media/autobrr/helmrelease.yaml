@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository:  ghcr.io/nmourapt/autobrr-qbitrace
-      tag: latest
+      repository:  ghcr.io/nmourapt/autobrr-qbitrace # {"$imagepolicy": "flux-system:autobrr:name"}
+      tag: latest # {"$imagepolicy": "flux-system:autobrr:tag"}
       pullPolicy: Always
 
     persistence:

@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: linuxserver/calibre-web
-      tag: latest
+      repository: linuxserver/calibre-web # {"$imagepolicy": "flux-system:calibre-web:name"}
+      tag: latest # {"$imagepolicy": "flux-system:calibre-web:tag"}
       pullPolicy: IfNotPresent
 
     ingress:
