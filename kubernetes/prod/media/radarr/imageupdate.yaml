@@ -16,9 +16,8 @@ spec:
   imageRepositoryRef:
     name: radarr
   filterTags:
-    pattern: '^(\d+\.\d+\.\d+\.\d+)$'
-    extract: '$1'
+    pattern: '^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
   policy:
-    semver:
-      range: '>=5.0.0 <6.0.0'
+    numerical:
+      order: asc
 ---
