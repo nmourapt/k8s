@@ -16,9 +16,8 @@ spec:
   values:
     image:
       repository: linuxserver/calibre-web # {"$imagepolicy": "flux-system:calibre-web:name"}
-      tag: latest # {"$imagepolicy": "flux-system:calibre-web:tag"}
+      tag: 0.6.24 # {"$imagepolicy": "flux-system:calibre-web:tag"}
       pullPolicy: IfNotPresent
-
     ingress:
       main:
         enabled: true
@@ -30,11 +29,10 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - calibre-web.nmoura.pt
-
     persistence:
       config:
         enabled: true
