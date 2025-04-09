@@ -15,10 +15,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/nmourapt/radarr-mkvtoolnix  # {"$imagepolicy": "flux-system:radarr:name"}
-      tag: latest  # {"$imagepolicy": "flux-system:radarr:tag"}
+      repository: ghcr.io/nmourapt/radarr-mkvtoolnix # {"$imagepolicy": "flux-system:radarr:name"}
+      tag: 5.21.1.9799 # {"$imagepolicy": "flux-system:radarr:tag"}
       pullPolicy: IfNotPresent
-
     ingress:
       main:
         enabled: true
@@ -30,11 +29,10 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - movies.nmoura.pt
-    
     persistence:
       config:
         enabled: true
