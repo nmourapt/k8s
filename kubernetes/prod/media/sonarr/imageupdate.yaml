@@ -16,9 +16,9 @@ spec:
   imageRepositoryRef:
     name: sonarr
   filterTags:
-    pattern: '^(?P<semver>[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$'
-    extract: '$semver'
+    pattern: '^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
+    extract: '${major}.${minor}.${patch}.${build}'
   policy:
-    semver:
-      range: '>=4.0.0 <5.0.0'
+    alphabetical:
+      order: asc
 ---
