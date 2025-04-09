@@ -16,8 +16,8 @@ spec:
   values:
     image:
       registry: docker.io
-      repository: vaultwarden/server
-      tag: "1.32.7-alpine"
+      repository: vaultwarden/server  # {"$imagepolicy": "flux-system:vaultwarden:name"}
+      tag: "1.32.7-alpine"  # {"$imagepolicy": "flux-system:vaultwarden:tag"}
       pullPolicy: IfNotPresent
 
     serviceAccount:
