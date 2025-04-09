@@ -15,10 +15,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository:  ghcr.io/nmourapt/autobrr-qbitrace # {"$imagepolicy": "flux-system:autobrr:name"}
-      tag: latest # {"$imagepolicy": "flux-system:autobrr:tag"}
+      repository: ghcr.io/nmourapt/autobrr-qbitrace # {"$imagepolicy": "flux-system:autobrr:name"}
+      tag: v1.60.0 # {"$imagepolicy": "flux-system:autobrr:tag"}
       pullPolicy: Always
-
     persistence:
       config:
         enabled: true
@@ -29,7 +28,6 @@ spec:
         accessMode: ReadWriteOnce
         size: 5Gi
         retain: true
-
     ingress:
       main:
         enabled: true
@@ -41,7 +39,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - autobrr.nmoura.pt
