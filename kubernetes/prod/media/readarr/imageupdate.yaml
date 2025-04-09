@@ -16,9 +16,8 @@ spec:
   imageRepositoryRef:
     name: readarr
   filterTags:
-    pattern: '^testing-(?P<semver>\d+\.\d+\.\d+\.\d+)$'
-    extract: '$semver'
+    pattern: '^testing-(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
   policy:
-    semver:
-      range: '>=0.0.0 <1.0.0'
+    alphabetical:
+      order: asc
 ---
