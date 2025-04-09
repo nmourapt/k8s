@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
       - name: minio
-        image: minio/minio:latest # {"$imagepolicy": "flux-system:minio-rxresume"}
+        image: minio/minio:RELEASE.2025-04-08T15-41-24Z # {"$imagepolicy": "flux-system:minio-rxresume"}
         args:
         - server
         - /data
@@ -134,7 +134,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: amruthpillai/reactive-resume:latest # {"$imagepolicy": "flux-system:rxresume"}
+        image: amruthpillai/reactive-resume:v4.4.5 # {"$imagepolicy": "flux-system:rxresume"}
         ports:
         - containerPort: 3000
         env:
