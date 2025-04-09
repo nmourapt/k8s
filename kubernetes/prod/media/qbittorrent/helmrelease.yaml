@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: linuxserver/qbittorrent
-      tag: "5.0.4"
+      repository: linuxserver/qbittorrent # {"$imagepolicy": "flux-system:qbittorrent:name"}
+      tag: "5.0.4" # {"$imagepolicy": "flux-system:qbittorrent:tag"}
       # -- image pull policy
       pullPolicy: IfNotPresent
 

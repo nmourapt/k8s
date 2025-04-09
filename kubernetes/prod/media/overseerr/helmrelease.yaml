@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: sctx/overseerr
-      tag: latest
+      repository: sctx/overseerr # {"$imagepolicy": "flux-system:overseerr:name"}
+      tag: latest # {"$imagepolicy": "flux-system:overseerr:tag"}
       # -- image pull policy
       pullPolicy: IfNotPresent
 
