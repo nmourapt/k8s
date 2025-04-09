@@ -16,9 +16,8 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/unpackerr # {"$imagepolicy": "flux-system:unpackerr:name"}
-      tag: latest # {"$imagepolicy": "flux-system:unpackerr:tag"}
+      tag: release-0.14.5 # {"$imagepolicy": "flux-system:unpackerr:tag"}
       pullPolicy: IfNotPresent
-
     env:
       - name: UN_SONARR_0_API_KEY
         valueFrom:
@@ -49,12 +48,8 @@ spec:
         value: http://readarr:8787
       - name: UN_READARR_0_PATHS_0
         value: /synology/torrents/books
-            
     persistence:
       downloads:
         enabled: true
         mountPath: /synology
         existingClaim: pvc-unpackerr-synology
-    
-            
-      
