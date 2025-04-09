@@ -16,19 +16,16 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
-      tag: 2.10.3.4602-ls35 # {"$imagepolicy": "flux-system:lidarr:tag"}
+      tag: 2.10.3 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
-
     env:
       - name: DOCKER_MODS
         value: linuxserver/mods:lidarr-flac2mp3
-
     resources:
       requests:
         gpu.intel.com/i915: 1
       limits:
         gpu.intel.com/i915: 1
-
     ingress:
       main:
         enabled: true
@@ -40,11 +37,10 @@ spec:
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      tls: 
+      tls:
         secretName: nmoura-pt-tls
         hosts:
           - music.nmoura.pt
-    
     persistence:
       config:
         enabled: true
