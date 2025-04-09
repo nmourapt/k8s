@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/unpackerr
-      tag: latest
+      repository: ghcr.io/hotio/unpackerr # {"$imagepolicy": "flux-system:unpackerr:name"}
+      tag: latest # {"$imagepolicy": "flux-system:unpackerr:tag"}
       pullPolicy: IfNotPresent
 
     env:

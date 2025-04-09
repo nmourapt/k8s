@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/thelounge/thelounge
-      tag: latest
+      repository: ghcr.io/thelounge/thelounge # {"$imagepolicy": "flux-system:thelounge:name"}
+      tag: latest # {"$imagepolicy": "flux-system:thelounge:tag"}
       pullPolicy: Always
 
     persistence:

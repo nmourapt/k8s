@@ -19,8 +19,8 @@ spec:
       TZ: Europe/Lisbon
 
     image:
-      repository: fyb3roptik/threadfin
-      tag: latest
+      repository: fyb3roptik/threadfin # {"$imagepolicy": "flux-system:threadfin:name"}
+      tag: latest # {"$imagepolicy": "flux-system:threadfin:tag"}
       pullPolicy: IfNotPresent
 
     persistence:

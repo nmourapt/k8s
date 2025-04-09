@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/nmourapt/radarr-mkvtoolnix
-      tag: latest
+      repository: ghcr.io/nmourapt/radarr-mkvtoolnix  # {"$imagepolicy": "flux-system:radarr:name"}
+      tag: latest  # {"$imagepolicy": "flux-system:radarr:tag"}
       pullPolicy: IfNotPresent
 
     ingress:

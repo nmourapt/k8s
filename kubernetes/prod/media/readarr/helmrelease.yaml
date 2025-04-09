@@ -15,8 +15,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: ghcr.io/hotio/readarr
-      tag: testing-0.4.13.2760
+      repository: ghcr.io/hotio/readarr # {"$imagepolicy": "flux-system:readarr:name"}
+      tag: testing-0.4.13.2760 # {"$imagepolicy": "flux-system:readarr:tag"}
       pullPolicy: Always
 
     ingress:
