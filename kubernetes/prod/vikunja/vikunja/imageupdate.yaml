@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: vikunja
+  namespace: flux-system
+spec:
+  image: vikunja/vikunja
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: vikunja
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: vikunja
+  filterTags:
+    pattern: '^(?P<semver>[0-9]+\.[0-9]+\.[0-9]+)$'
+    extract: '$semver'
+  policy:
+    semver:
+      range: '>=0.0.0 <1.0.0'

@@ -16,8 +16,8 @@ spec:
   values:
     vikunja: 
       image:
-        repository: vikunja/vikunja
-        tag: latest
+        repository: vikunja/vikunja  # {"$imagepolicy": "flux-system:vikunja:name"}
+        tag: latest  # {"$imagepolicy": "flux-system:vikunja:tag"}
         pullPolicy: IfNotPresent
   
       persistence:
