@@ -89,7 +89,7 @@ data:
         priority: 1
         include_any_tags:
           - noHL
-        max_seeding_time: 7d
+        max_seeding_time: 10d
         cleanup: true
         resume_torrent_after_change: true
         add_group_to_tag: true
@@ -97,7 +97,7 @@ data:
         priority: 2
         include_any_tags:
           - aither.cc
-        max_seeding_time: 7d
+        max_seeding_time: 10d
         cleanup: true
         resume_torrent_after_change: true
         add_group_to_tag: true
@@ -105,7 +105,7 @@ data:
         priority: 3
         include_any_tags:
           - issue
-        max_seeding_time: 7d
+        max_seeding_time: 10d
         cleanup: true
         resume_torrent_after_change: true
         add_group_to_tag: true
