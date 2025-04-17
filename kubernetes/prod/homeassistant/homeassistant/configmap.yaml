@@ -58,19 +58,19 @@ data:
       device_class: tv
       commands:
         turn_off:
-          action: media_player.turn_off
+          service: media_player.turn_off
           target:
             entity_id: media_player.meobox_4k_dv8985
         turn_on:
-          action: media_player.turn_on
+          service: media_player.turn_on
           target:
             entity_id: media_player.meobox_4k_dv8985
         volume_up:
-          action: media_player.volume_up
+          service: media_player.volume_up
           target:
             entity_id: media_player.meobox_4k_dv8985
         volume_down:
-          action: media_player.volume_down
+          service: media_player.volume_down
           target:
             entity_id: media_player.meobox_4k_dv8985
       attributes:
