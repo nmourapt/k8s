@@ -50,8 +50,8 @@ data:
 
     media_player:
       - platform: universal
-        name: sala_tv
-        unique_id: sala_tv
+        name: TV Sala
+        unique_id: lr_tv
         children:
           - media_player.meobox_4k_dv8985
           - media_player.meo_box
