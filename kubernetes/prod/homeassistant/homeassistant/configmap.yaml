@@ -49,35 +49,36 @@ data:
           - cover.shelly2pmg3_e4b3232b5a0c_cover_0
 
     media_player:
-    - platform: universal
-      name: 'TV Sala'
-      children:
-        - media_player.meobox_4k_dv8985
-        - media_player.meo_box
-      browse_media_entity: media_player.meo_box
-      device_class: tv
-      commands:
-        turn_off:
-          service: media_player.turn_off
-          target:
-            entity_id: media_player.meobox_4k_dv8985
-        turn_on:
-          service: media_player.turn_on
-          target:
-            entity_id: media_player.meobox_4k_dv8985
-        volume_up:
-          service: media_player.volume_up
-          target:
-            entity_id: media_player.meobox_4k_dv8985
-        volume_down:
-          service: media_player.volume_down
-          target:
-            entity_id: media_player.meobox_4k_dv8985
-      attributes:
-        state: media_player.meo_box
-        is_volume_muted: media_player.meo_box|is_volume_muted
-        volume_level: media_player.meo_box|volume_level
-        source: media_player.meo_box|app_id
+      - platform: universal
+        name: sala_tv
+        unique_id: sala_tv
+        children:
+          - media_player.meobox_4k_dv8985
+          - media_player.meo_box
+        browse_media_entity: media_player.meo_box
+        device_class: tv
+        commands:
+          turn_off:
+            service: media_player.turn_off
+            data:
+              entity_id: media_player.meobox_4k_dv8985
+          turn_on:
+            service: media_player.turn_on
+            data:
+              entity_id: media_player.meobox_4k_dv8985
+          volume_up:
+            service: media_player.volume_up
+            data:
+              entity_id: media_player.meobox_4k_dv8985
+          volume_down:
+            service: media_player.volume_down
+            data:
+              entity_id: media_player.meobox_4k_dv8985
+        attributes:
+          state: media_player.meo_box
+          is_volume_muted: media_player.meo_box
+          volume_level: media_player.meo_box
+          app_name: media_player.meo_box
 
     sensor:
       - platform: time_date
