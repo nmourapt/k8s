@@ -50,30 +50,34 @@ data:
 
     media_player:
     - platform: universal
-      name: living_room_tv
-      unique_id: living_room_tv
-      device_class: tv
+      name: 'TV Sala'
       children:
-        - remote.meobox_4k_dv8985
+        - media_player.meobox_4k_dv8985
         - media_player.meo_box
       browse_media_entity: media_player.meo_box
+      device_class: tv
       commands:
         turn_off:
           action: media_player.turn_off
-          data:
-            entity_id: remote.meobox_4k_dv8985
+          target:
+            entity_id: media_player.meobox_4k_dv8985
         turn_on:
           action: media_player.turn_on
-          data:
-            entity_id: remote.meobox_4k_dv8985
+          target:
+            entity_id: media_player.meobox_4k_dv8985
         volume_up:
           action: media_player.volume_up
-          data:
-            entity_id: remote.meobox_4k_dv8985
+          target:
+            entity_id: media_player.meobox_4k_dv8985
         volume_down:
           action: media_player.volume_down
-          data:
-            entity_id: remote.meobox_4k_dv8985
+          target:
+            entity_id: media_player.meobox_4k_dv8985
+      attributes:
+        state: media_player.meo_box
+        is_volume_muted: media_player.meo_box|is_volume_muted
+        volume_level: media_player.meo_box|volume_level
+        source: media_player.meo_box|app_id
 
     sensor:
       - platform: time_date
