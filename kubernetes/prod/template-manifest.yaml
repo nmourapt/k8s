@@ -1,0 +1,184 @@
+kind: Cluster
+name: prod
+kubernetes:
+  version: v1.32.3
+talos:
+  version: v1.9.5
+features:
+  backupConfiguration:
+    interval: 12h
+systemExtensions:
+  - siderolabs/iscsi-tools
+  - siderolabs/util-linux-tools
+  - siderolabs/i915
+patches:
+  - name: worker-control-plane
+    inline:
+      cluster:
+        allowSchedulingOnControlPlanes: true
+  - name: disable-flannel
+    inline:
+      cluster:
+        network:
+          dnsDomain: cluster.local
+          podSubnets:
+            - 10.244.0.0/16
+          serviceSubnets:
+            - 10.96.0.0/12
+          cni:
+            name: none 
+        proxy:
+          disabled: true
+---
+kind: ControlPlane
+machines:
+  - 87335400-3eb7-11ef-ad6e-cf6ea0f06f00
+  - b2b24080-3eaf-11ef-a623-226974e21f00
+  - b4343680-3eb8-11ef-80af-6d6dfdff9100
+bootstrapSpec:
+  clusterUUID: 04e06ca7-ace3-419c-a4c0-a4b235e2a139
+  snapshot: FFFFFFFF98128F64.snapshot
+---
+kind: Machine
+name: b2b24080-3eaf-11ef-a623-226974e21f00
+install:
+  disk: /dev/sda
+patches:
+  - name: machinepatch
+    inline:
+      machine:
+        certSANs:
+          - server1.talos.nmoura.pt
+          - talosserver1.nmoura.pt
+          - talos.nmoura.pt
+          - localhost
+        network:
+          interfaces:
+            - interface: enp1s0
+              addresses:
+                - 192.168.202.11/24
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 192.168.202.254
+                  metric: 1024
+              mtu: 1500
+              vip:
+                ip: 192.168.202.10
+          nameservers:
+            - 8.8.8.8
+            - 1.1.1.1
+          hostname: talosserver1
+        disks:
+          - device: /dev/nvme0n1
+            partitions:
+              - mountpoint: /var/lib/longhorn
+        time:
+          disabled: false
+          servers:
+            - 1.pool.ntp.org
+          bootTimeout: 2m0s
+        kubelet:
+          extraMounts:
+            - destination: /var/lib/longhorn
+              type: bind
+              source: /var/lib/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
+---
+kind: Machine
+name: 87335400-3eb7-11ef-ad6e-cf6ea0f06f00
+install:
+  disk: /dev/sda
+patches:
+  - name: machinepatch
+    inline:
+      machine:
+        certSANs:
+          - server2.talos.nmoura.pt
+          - talosserver2.nmoura.pt
+          - talos.nmoura.pt
+          - localhost
+        network:
+          interfaces:
+            - interface: enp1s0
+              addresses:
+                - 192.168.202.12/24
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 192.168.202.254
+                  metric: 1024
+              mtu: 1500
+              vip:
+                ip: 192.168.202.10
+          nameservers:
+            - 8.8.8.8
+            - 1.1.1.1
+          hostname: talosserver2
+        disks:
+          - device: /dev/nvme0n1
+            partitions:
+              - mountpoint: /var/lib/longhorn
+        time:
+          disabled: false
+          servers:
+            - 1.pool.ntp.org
+          bootTimeout: 2m0s
+        kubelet:
+          extraMounts:
+            - destination: /var/lib/longhorn
+              type: bind
+              source: /var/lib/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
+---
+kind: Machine
+name: b4343680-3eb8-11ef-80af-6d6dfdff9100
+install:
+  disk: /dev/sda
+patches:
+  - name: machinepatch
+    inline:
+      machine:
+        certSANs:
+          - server3.talos.nmoura.pt
+          - talosserver3.nmoura.pt
+          - talos.nmoura.pt
+          - localhost
+        network:
+          interfaces:
+            - interface: enp1s0
+              addresses:
+                - 192.168.202.13/24
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 192.168.202.254
+                  metric: 1024
+              mtu: 1500
+              vip:
+                ip: 192.168.202.10
+          nameservers:
+            - 8.8.8.8
+            - 1.1.1.1
+          hostname: talosserver3
+        disks:
+          - device: /dev/nvme0n1
+            partitions:
+              - mountpoint: /var/lib/longhorn
+        time:
+          disabled: false
+          servers:
+            - 1.pool.ntp.org
+          bootTimeout: 2m0s
+        kubelet:
+          extraMounts:
+            - destination: /var/lib/longhorn
+              type: bind
+              source: /var/lib/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
