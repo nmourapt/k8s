@@ -19,28 +19,14 @@ spec:
       tag: release-1.41.6.9685-d301f511a # {"$imagepolicy": "flux-system:plex:tag"}
       pullPolicy: IfNotPresent
     env:
-      #PLEX_CLAIM_TOKEN: claim-1zHA6eWAgEkDQv2zAovZ
+      PLEX_CLAIM_TOKEN: claim-1zHA6eWAgEkDQv2zAovZ
       PLEX_ADVERTISE_URL: https://media.nmoura.pt:443,http://192.168.202.152:32400
       PLEX_NO_AUTH_NETWORKS: 192.168.0.0/16
     resources:
       requests:
-        #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
-        #   # using intel-gpu-plugin (https://github.com/intel/    intel-device-plugins-for-kubernetes)
         gpu.intel.com/i915: 1
-      #   cpu: 200m
-      #   memory: 256Mi
       limits:
-        #   # Hardware acceleration using an Intel iGPU w/ QuickSync and
-        #   # using intel-gpu-plugin (https://github.com/intel/    intel-device-plugins-for-kubernetes)
         gpu.intel.com/i915: 1
-        #   memory: 4096Mi
-    #podSecurityContext:
-    #  runAsUser: 568
-    #  runAsGroup: 568
-    #  fsGroup: 568
-    #  fsGroupChangePolicy: OnRootMismatch
-    #  supplementalGroups: [44, 10000]
-    #  seccompProfile: { type: RuntimeDefault }
     ingress:
       main:
         enabled: true
