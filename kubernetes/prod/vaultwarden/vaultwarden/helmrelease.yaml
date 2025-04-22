@@ -22,13 +22,18 @@ spec:
     serviceAccount:
       create: true
       name: "vaultwarden-svc"
-    data:
-      name: "vaultwarden-data"
-      size: "15Gi"
-      class: longhorn
-      path: "/data"
-      keepPvc: true
-      accessMode: "ReadWriteOnce"
+    
+    storage:
+      existingVolumeClaim:
+        claimName: "restored-data-pvc"
+        dataPath: "/data"
+        attachmentsPath: /data/attachments
+      #name: "vaultwarden-data"
+      #size: "15Gi"
+      #class: longhorn
+      #path: "/data"
+      #keepPvc: true
+      #accessMode: "ReadWriteOnce"
     pushNotifications:
       enabled: true
       existingSecret: "vaultwarden-secrets"
