@@ -42,7 +42,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: homeassistant-config
+            claimName: restored-config-pvc
         - name: configmap-file
           configMap:
             name: homeassistant-configmap
