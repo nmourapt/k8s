@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
-      tag: release-1.29.2.4915 # {"$imagepolicy": "flux-system:prowlarr:tag"}
+      tag: release-1.34.1.5021 # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
     persistence:
       config:
