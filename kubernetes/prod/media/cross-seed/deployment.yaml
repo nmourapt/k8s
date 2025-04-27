@@ -18,7 +18,7 @@ spec:
         app: cross-seed
     spec:
       containers:
-      - image: ghcr.io/cross-seed/cross-seed:6.11.2 # {"$imagepolicy": "flux-system:cross-seed"}
+      - image: ghcr.io/cross-seed/cross-seed:6.12.0 # {"$imagepolicy": "flux-system:cross-seed"}
         name: cross-seed
         args: ["daemon"]
         ports:
