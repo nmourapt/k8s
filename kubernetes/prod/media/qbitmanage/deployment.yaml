@@ -29,7 +29,7 @@ spec:
         - mountPath: /config
           name: qbitmanage-config
       containers:
-      - image: ghcr.io/stuffanthings/qbit_manage:v4.2.1 # {"$imagepolicy": "flux-system:qbitmanage"}
+      - image: ghcr.io/stuffanthings/qbit_manage:v4.2.2 # {"$imagepolicy": "flux-system:qbitmanage"}
         name: qbitmanage
         volumeMounts:
         - mountPath: /synology
