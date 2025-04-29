@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
-      tag: 2.10.3 # {"$imagepolicy": "flux-system:lidarr:tag"}
+      tag: 2.11.2 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
       - name: DOCKER_MODS
