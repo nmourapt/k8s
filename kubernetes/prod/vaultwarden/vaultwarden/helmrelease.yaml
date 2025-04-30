@@ -41,7 +41,7 @@ spec:
       relayUri: "https://api.bitwarden.eu"
       identityUri: "https://identity.bitwarden.eu"
     domain: "https://warden.nmoura.pt"
-    signupsAllowed: false
+    signupsAllowed: true
     ipHeader: "Cf-Connecting-Ip"
     adminToken:
       existingSecret: "vaultwarden-secrets"
