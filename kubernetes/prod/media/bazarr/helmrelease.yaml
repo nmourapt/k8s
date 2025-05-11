@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/bazarr # {"$imagepolicy": "flux-system:bazarr:name"}
-      tag: release-1.5.1 # {"$imagepolicy": "flux-system:bazarr:tag"}
+      tag: release-1.5.2 # {"$imagepolicy": "flux-system:bazarr:tag"}
       pullPolicy: IfNotPresent
     ingress:
       main:
