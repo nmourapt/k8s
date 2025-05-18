@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/nmourapt/radarr-mkvtoolnix # {"$imagepolicy": "flux-system:radarr:name"}
-      tag: 5.22.4.9896 # {"$imagepolicy": "flux-system:radarr:tag"}
+      tag: 5.23.3.9987 # {"$imagepolicy": "flux-system:radarr:tag"}
       pullPolicy: IfNotPresent
     ingress:
       main:
