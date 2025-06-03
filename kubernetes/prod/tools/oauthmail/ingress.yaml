@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: oauthmail
     app.kubernetes.io/name: oauthmail
-  name: oauthmail-80
+  name: oauthmail-1994
   namespace: tools
 spec:
   ingressClassName: traefik
@@ -15,9 +15,9 @@ spec:
       paths:
       - backend:
           service:
-            name: oauthmail-80
+            name: oauthmail-1994
             port:
-              number: 80
+              number: 1994
         path: /
         pathType: Prefix
 status:
