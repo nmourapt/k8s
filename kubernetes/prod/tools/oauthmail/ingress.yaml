@@ -5,19 +5,19 @@ metadata:
   labels:
     app.kubernetes.io/instance: oauthmail
     app.kubernetes.io/name: oauthmail
-  name: oauthmail-1994
+  name: oauthmail-80
   namespace: tools
 spec:
   ingressClassName: traefik
   rules:
-  - host: oauthmail.nmoura.pt
+  - host: relay.nmoura.pt
     http:
       paths:
       - backend:
           service:
-            name: oauthmail-1994
+            name: oauthmail-80
             port:
-              number: 1994
+              number: 80
         path: /
         pathType: Prefix
 status:
