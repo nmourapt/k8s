@@ -31,7 +31,7 @@ spec:
           image: blacktirion/email-oauth2-proxy-docker
           name: oauthmail
           ports:
-            - containerPort: 1994
+            - containerPort: 80
               protocol: TCP
             - containerPort: 2465
               protocol: TCP
