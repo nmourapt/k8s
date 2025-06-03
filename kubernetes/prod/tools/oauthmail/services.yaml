@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: oauthmail-80
+  name: oauthmail-1994
   namespace: tools
 spec:
   type: ClusterIP
   externalIPs:
     - 192.168.202.154
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 1994
+      targetPort: 1994
       protocol: TCP
   selector:
     app: oauthmail
