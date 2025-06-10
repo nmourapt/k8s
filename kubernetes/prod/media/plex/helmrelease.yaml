@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/plex # {"$imagepolicy": "flux-system:plex:name"}
-      tag: release-1.41.7.9823-59f304c16 # {"$imagepolicy": "flux-system:plex:tag"}
+      tag: release-1.41.8.9834-071366d65 # {"$imagepolicy": "flux-system:plex:tag"}
       pullPolicy: IfNotPresent
     env:
       PLEX_CLAIM_TOKEN: claim-xL76hu9vS4wzsCFkthVH
