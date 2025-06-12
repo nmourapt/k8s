@@ -22,6 +22,10 @@ spec:
       repository: ghcr.io/nmourapt/sonarr-mkvtoolnix # {"$imagepolicy": "flux-system:sonarr:name"}
       tag: 4.0.14.2939 # {"$imagepolicy": "flux-system:sonarr:tag"}
       pullPolicy: Always
+    env:
+      SONARR__POSTGRES__HOST: "192.168.202.1"
+      SONARR__POSTGRES__PORT: "10004"
+      
     ingress:
       main:
         enabled: true
