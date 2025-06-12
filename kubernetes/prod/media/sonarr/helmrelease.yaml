@@ -25,7 +25,8 @@ spec:
     env:
       SONARR__POSTGRES__HOST: "192.168.202.1"
       SONARR__POSTGRES__PORT: "10004"
-      SONARR__AUTH__METHOD: "external"
+      SONARR__AUTH__METHOD: "External"
+      SONARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
       
     ingress:
       main:
