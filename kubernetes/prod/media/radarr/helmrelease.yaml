@@ -13,11 +13,20 @@ spec:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: radarr-secrets
+    valuesKey: values.yaml
   values:
     image:
       repository: ghcr.io/nmourapt/radarr-mkvtoolnix # {"$imagepolicy": "flux-system:radarr:name"}
       tag: 5.25.0.10024 # {"$imagepolicy": "flux-system:radarr:tag"}
       pullPolicy: IfNotPresent
+    env:
+      RADARR__POSTGRES__HOST: "192.168.202.1"
+      RADARR__POSTGRES__PORT: "10006"
+      RADARR__AUTH__METHOD: "External"
+      RADARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
     ingress:
       main:
         enabled: true
