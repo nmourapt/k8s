@@ -56,3 +56,7 @@ spec:
         enabled: true
         mountPath: /synology
         existingClaim: pvc-radarr-synology
+    probes:
+      liveness:
+        enabled: false
+        custom: false
