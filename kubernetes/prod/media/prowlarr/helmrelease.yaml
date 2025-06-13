@@ -13,11 +13,20 @@ spec:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: prowlarr-secrets
+    valuesKey: values.yaml
   values:
     image:
       repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
       tag: release-1.37.0.5076 # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
+    env:
+      PROWLARR__POSTGRES__HOST: "192.168.202.1"
+      PROWLARR__POSTGRES__PORT: "10005"
+      PROWLARR__AUTH__METHOD: "External"
+      PROWLARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
     persistence:
       config:
         enabled: true
