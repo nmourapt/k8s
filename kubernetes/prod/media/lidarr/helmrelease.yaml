@@ -13,14 +13,21 @@ spec:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: lidarr-secrets
+    valuesKey: values.yaml
   values:
     image:
       repository: lscr.io/linuxserver/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
       tag: 2.12.4 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
-      - name: DOCKER_MODS
-        value: linuxserver/mods:lidarr-flac2mp3
+      RADARR__POSTGRES__HOST: "192.168.202.1"
+      RADARR__POSTGRES__PORT: "10007"
+      RADARR__AUTH__METHOD: "External"
+      RADARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
+      DOCKER_MODS: "linuxserver/mods:lidarr-flac2mp3"
     resources:
       requests:
         gpu.intel.com/i915: 1
