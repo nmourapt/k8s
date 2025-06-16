@@ -23,10 +23,10 @@ spec:
       tag: 2.12.4 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
-      RADARR__POSTGRES__HOST: "192.168.202.1"
-      RADARR__POSTGRES__PORT: "10007"
-      RADARR__AUTH__METHOD: "External"
-      RADARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
+      LIDARR__POSTGRES__HOST: "192.168.202.1"
+      LIDARR__POSTGRES__PORT: "10007"
+      LIDARR__AUTH__METHOD: "External"
+      LIDARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
       DOCKER_MODS: "linuxserver/mods:lidarr-flac2mp3"
     resources:
       requests:
