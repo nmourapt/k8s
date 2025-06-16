@@ -62,3 +62,7 @@ spec:
         enabled: true
         mountPath: /synology
         existingClaim: pvc-lidarr-synology
+    probes:
+      liveness:
+        enabled: false
+        custom: false
