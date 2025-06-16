@@ -19,7 +19,7 @@ spec:
         app: orb
     spec:
       containers:
-          image: orbforge/orb:latest
+        - image: orbforge/orb:latest
           name: orb
           volumeMounts:
             - mountPath: /root/.config/orb
