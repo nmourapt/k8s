@@ -15,7 +15,7 @@ data:
     qbt:
       # qBittorrent parameters
       # Pass environment variables to the config via !ENV tag
-      host: "http://qbittorrent:8080"
+      host: "http://192.168.202.1:10002"
       user: randomuser
       pass: randompass
     
