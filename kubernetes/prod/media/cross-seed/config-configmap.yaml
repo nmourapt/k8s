@@ -6,7 +6,7 @@ metadata:
 data:
   config.js: |
     module.exports = {
-    	apiKey: undefined,
+    	apiKey: "Tw27*T7D$@kFGQ$&6$vZaknu#4ru3mBE",
     	torznab: [
         "http://prowlarr:9696/1/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // TorrentLeech
         "http://prowlarr:9696/2/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Milkie
@@ -28,26 +28,23 @@ data:
     	host: "0.0.0.0",
     	port: 2468,
     	notificationWebhookUrls: ["https://notify.nmoura.pt/message?token=A3pVGRWINS9-lbD"],
-    	rtorrentRpcUrl: undefined,
-    	qbittorrentUrl: "http://dummyuser:dummypass@192.168.202.1:10002",
-    	transmissionRpcUrl: undefined,
-    	delugeRpcUrl: undefined,
+    	torrentClients: ["qbittorrent:http://username:password@192.168.202.1:10002"],
     	useClientTorrents: true,
     	delay: 30,
-    	dataDirs: ["/synology/media/movies","/synology/media/series","/synology/media/cartoons"],
+    	dataDirs: ["/data/media/movies","/data/media/series","/data/media/cartoons"],
     	linkCategory: "xseed-link",
-    	linkDirs: ["/synology/torrents/xseed-link"],
+    	linkDirs: ["/data/torrents/xseed-link"],
     	linkType: "hardlink",
     	flatLinking: false,
     	matchMode: "partial",
     	skipRecheck: true,
     	autoResumeMaxDownload: 52428800,
     	maxDataDepth: 2,
-    	//torrentDir: "/synology/torrents/torrentfiles",
-    	outputDir: "/synology/torrents/xseed-torrents",
+    	//torrentDir: "/data/torrents/torrentfiles",
+    	outputDir: "/data/torrents/xseed-torrents",
     	includeSingleEpisodes: false,
     	includeNonVideos: false,
-    	seasonFromEpisodes: 0.75,
+    	seasonFromEpisodes: 1,
     	fuzzySizeThreshold: 0.02,
     	excludeOlder: "2 weeks",
     	excludeRecentSearch: "3 days",

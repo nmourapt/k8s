@@ -27,7 +27,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: cross-seed-config
-        - mountPath: /synology
+        - mountPath: /data
           name: cross-seed-synology
         - mountPath: /config/config.js
           subPath: config.js
