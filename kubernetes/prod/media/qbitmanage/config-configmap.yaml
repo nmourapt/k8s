@@ -6,11 +6,11 @@ metadata:
 data:
   config.yml: |
     commands:
-      tag_nohardlinks: False
-      tag_tracker_error: False
-      rem_orphaned: False
-      share_limits: False
-      tag_update: False
+      tag_nohardlinks: True
+      tag_tracker_error: True
+      rem_orphaned: True
+      share_limits: True
+      tag_update: True
 
     qbt:
       # qBittorrent parameters
