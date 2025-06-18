@@ -23,8 +23,8 @@ data:
         "http://prowlarr:9696/18/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // ReelFLiX (API)
         "http://prowlarr:9696/19/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Aither (API)
       ],
-    	sonarr: ["http://sonarr:8989/?apikey=859cd0dabfce4e068e0aed324c3b2207"],
-    	radarr: ["http://radarr:7878/?apikey=05e6d71348a54f85be15c91985e1fd14"],
+    	sonarr: ["http://sonarr:8989/?apikey=ft5U5tqR4UBLq1C%405Umt%23k%21g33Kq%40EHj"],
+    	radarr: ["http://radarr:7878/?apikey=Xe3tn83ebM2Rc%21JDgWKhxEpBkUCSUp%25u"],
     	host: "0.0.0.0",
     	port: 2468,
     	notificationWebhookUrls: ["https://notify.nmoura.pt/message?token=A3pVGRWINS9-lbD"],
