@@ -34,20 +34,20 @@ data:
       tag_stalled_torrents: True # Tags any downloading torrents that are stalled with the `stalledDL` tag when running the tag_update command
     
     directory:
-      root_dir: "/synology/torrents/"
-      orphaned_dir: "/synology/torrents/orphans"
+      root_dir: "/data/torrents/"
+      orphaned_dir: "/data/torrents/orphans"
     
     cat:
       Uncategorized: "/downloads"
-      junk: "/synology/torrents/junk"
-      lidarr: "/synology/torrents/music"
-      radarr: "/synology/torrents/movies"
-      readarr: "/synology/torrents/books"
-      sonarr: "/synology/torrents/series"
-      music: "/synology/media/music"
-      movies: "/synology/media/movies"
-      books: "/synology/media/books"
-      series: "/synology/media/series"
+      junk: "/data/torrents/junk"
+      lidarr: "/data/torrents/music"
+      radarr: "/data/torrents/movies"
+      readarr: "/data/torrents/books"
+      sonarr: "/data/torrents/series"
+      music: "/data/media/music"
+      movies: "/data/media/movies"
+      books: "/data/media/books"
+      series: "/data/media/series"
     
     cat_change:
       CatA.cross-seed: CatA

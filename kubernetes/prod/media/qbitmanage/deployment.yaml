@@ -32,10 +32,8 @@ spec:
       - image: ghcr.io/stuffanthings/qbit_manage:v4.3.0 # {"$imagepolicy": "flux-system:qbitmanage"}
         name: qbitmanage
         volumeMounts:
-        - mountPath: /synology
+        - mountPath: /data
           name: qbitmanage-synology
-        - mountPath: /downloads
-          name: qbitmanage-downloads
         - mountPath: /config
           name: qbitmanage-config
         env:
@@ -46,9 +44,6 @@ spec:
       - name: qbitmanage-synology
         persistentVolumeClaim:
           claimName: pvc-qbitmanage-synology
-      - name: qbitmanage-downloads
-        persistentVolumeClaim:
-          claimName: qbittorrent-downloads
       - name: qbitmanage-config
         persistentVolumeClaim:
           claimName: pvc-qbitmanage-config
