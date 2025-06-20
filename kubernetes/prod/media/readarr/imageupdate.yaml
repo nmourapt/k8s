@@ -16,7 +16,9 @@ spec:
   imageRepositoryRef:
     name: readarr
   filterTags:
-    pattern: '^nightly-(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
+    pattern: '^nightly-(?P<version>\d+\.\d+\.\d+\.\d+)$'
+    extract:
+      group: version
   policy:
     numerical:
       order: asc
