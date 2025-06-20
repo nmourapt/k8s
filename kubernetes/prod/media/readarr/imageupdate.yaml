@@ -20,6 +20,6 @@ spec:
     extract:
       group: version
   policy:
-    numerical:
-      order: asc
+    semver:
+      range: '*'
 ---
