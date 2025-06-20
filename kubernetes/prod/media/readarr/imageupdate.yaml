@@ -19,6 +19,6 @@ spec:
     pattern: '^nightly-(?P<version>\d+\.\d+\.\d+\.\d+)$'
     extract: '$version'
   policy:
-    semver:
-      range: '*'
+    numerical:
+      order: asc
 ---
