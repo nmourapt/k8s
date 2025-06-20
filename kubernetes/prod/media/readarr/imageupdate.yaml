@@ -16,7 +16,7 @@ spec:
   imageRepositoryRef:
     name: readarr
   filterTags:
-    pattern: '^testing-(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
+    pattern: '^nightly-(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<build>\d+)$'
   policy:
     alphabetical:
       order: asc
