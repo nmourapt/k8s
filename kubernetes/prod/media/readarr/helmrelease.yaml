@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/readarr # {"$imagepolicy": "flux-system:readarr:name"}
-      tag: testing-0.4.17.2801 # {"$imagepolicy": "flux-system:readarr:tag"}
+      tag: nightly-0.4.19.2810 # {"$imagepolicy": "flux-system:readarr:tag"}
       pullPolicy: Always
     env:
       READARR__POSTGRES__HOST: "192.168.202.1"
