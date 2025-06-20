@@ -13,11 +13,20 @@ spec:
         kind: HelmRepository
         name: k8s-at-home
         namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: bazarr-secrets
+    valuesKey: values.yaml
   values:
     image:
       repository: ghcr.io/hotio/bazarr # {"$imagepolicy": "flux-system:bazarr:name"}
       tag: release-1.5.2 # {"$imagepolicy": "flux-system:bazarr:tag"}
       pullPolicy: IfNotPresent
+    env:
+      POSTGRES_ENABLED: "True"
+      POSTGRES_HOST: "192.168.202.1"
+      POSTGRES_PORT: "10009"
+      POSTGRES_DATABASE: "bazarr"
     ingress:
       main:
         enabled: true
