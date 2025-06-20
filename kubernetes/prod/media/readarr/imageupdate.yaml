@@ -16,7 +16,7 @@ spec:
   imageRepositoryRef:
     name: readarr
   filterTags:
-    pattern: '^nightly-(?P<version>\d+\.\d+\.\d+\.\d+)$'
+    pattern: '^nightly-\d+\.\d+\.\d+\.(?P<version>\d+)$'
     extract: '$version'
   policy:
     numerical:
