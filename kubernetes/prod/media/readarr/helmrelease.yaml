@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/readarr # {"$imagepolicy": "flux-system:readarr:name"}
-      tag: nightly-0.4.19.2810 # {"$imagepolicy": "flux-system:readarr:tag"}
+      tag: nightly-0.4.19.2811 # {"$imagepolicy": "flux-system:readarr:tag"}
       pullPolicy: Always
     env:
       READARR__POSTGRES__HOST: "192.168.202.1"
@@ -32,16 +32,16 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: books.nmoura.pt
-            paths:
-              - path: /
+        - host: books.nmoura.pt
+          paths:
+          - path: /
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls:
         secretName: nmoura-pt-tls
         hosts:
-          - books.nmoura.pt
+        - books.nmoura.pt
     persistence:
       config:
         enabled: true
