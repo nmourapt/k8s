@@ -19,8 +19,8 @@ spec:
     valuesKey: values.yaml
   values:
     image:
-      repository: lscr.io/linuxserver/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
-      tag: 2.12.4 # {"$imagepolicy": "flux-system:lidarr:tag"}
+      repository: blampe/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
+      tag: 2.13.0-develop # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
       LIDARR__POSTGRES__HOST: "192.168.202.1"
