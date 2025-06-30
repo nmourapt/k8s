@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: blampe/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
-      tag: 2.12.4 # {"$imagepolicy": "flux-system:lidarr:tag"}
+      tag: version-2.12.4.4658 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
       LIDARR__POSTGRES__HOST: "192.168.202.1"
