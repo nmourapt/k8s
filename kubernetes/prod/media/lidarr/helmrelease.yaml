@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: blampe/lidarr # {"$imagepolicy": "flux-system:lidarr:name"}
-      tag: 2.13.0-develop # {"$imagepolicy": "flux-system:lidarr:tag"}
+      tag: 2.12.4 # {"$imagepolicy": "flux-system:lidarr:tag"}
       pullPolicy: IfNotPresent
     env:
       LIDARR__POSTGRES__HOST: "192.168.202.1"
@@ -38,16 +38,16 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: music.nmoura.pt
-            paths:
-              - path: /
+        - host: music.nmoura.pt
+          paths:
+          - path: /
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls:
         secretName: nmoura-pt-tls
         hosts:
-          - music.nmoura.pt
+        - music.nmoura.pt
     persistence:
       config:
         enabled: true
