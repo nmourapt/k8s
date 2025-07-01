@@ -21,10 +21,10 @@ data:
         "http://prowlarr:9696/16/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // FearNoPeer
         "http://prowlarr:9696/17/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // seedpool (API)
         "http://prowlarr:9696/18/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // ReelFLiX (API)
-        "http://prowlarr:9696/19/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Aither (API)
+        "http://prowlarr:9696/22/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // Aither (API)
         "http://prowlarr:9696/20/api?apikey=74d92c7a8d424c89b470bf869c0d740f", // NordicQuality (API)
       ],
-    	sonarr: ["http://sonarr:8989/?apikey=ft5U5tqR4UBLq1C%405Umt%23k%21g33Kq%40EHj"],
+    	sonarr: ["http://sonarr:8989/?apikey=TD7NHk!jm%hpxRKPbWRcUD!W59TxNPh6"],
     	radarr: ["http://radarr:7878/?apikey=Xe3tn83ebM2Rc%21JDgWKhxEpBkUCSUp%25u"],
     	host: "0.0.0.0",
     	port: 2468,
