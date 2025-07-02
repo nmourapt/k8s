@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/nmourapt/autobrr-qbitrace # {"$imagepolicy": "flux-system:autobrr:name"}
-      tag: v1.62.0 # {"$imagepolicy": "flux-system:autobrr:tag"}
+      tag: v1.63.1 # {"$imagepolicy": "flux-system:autobrr:tag"}
       pullPolicy: Always
     persistence:
       config:
