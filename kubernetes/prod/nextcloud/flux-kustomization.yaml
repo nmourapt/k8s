@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: homeassistant-ns
+  name: nextcloud-ns
   namespace: flux-system
 spec:
   interval: 1m  # Check every 1 minute
