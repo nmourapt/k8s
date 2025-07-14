@@ -39,6 +39,8 @@ spec:
                   key: password
             - name: REDIS_HOST
               value: "nextcloud-redis"
+              
+          volumeMounts:
             - mountPath: /var/www/html
               name: varwwwhtml
             #- mountPath: /config/configuration.yaml
