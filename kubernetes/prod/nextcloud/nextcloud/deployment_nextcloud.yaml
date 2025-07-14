@@ -30,8 +30,6 @@ spec:
               value: "nextcloud"
             - name: POSTGRES_USER
               value: "cathouse2344"
-            - name: POSTGRES_PORT
-              value: "10010"
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
