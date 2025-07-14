@@ -15,3 +15,17 @@ spec:
   claimRef:
      namespace: nextcloud
      name: pvc-nextcloud-synology
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nextcloud-synology
+  namespace: nextcloud
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Ti
+  volumeName: pv-nextcloud-synology
+  storageClassName: ""
