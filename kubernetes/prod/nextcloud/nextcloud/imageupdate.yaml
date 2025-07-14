@@ -1,0 +1,24 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: nextcloud
+  namespace: flux-system
+spec:
+  image: nextcloud
+  interval: 1h
+  filterTags:
+    pattern: '^31\.\d+\.\d+-apache$'
+    extract: '^(\d+\.\d+\.\d+)-apache$'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: nextcloud
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: nextcloud
+  policy:
+    semver:
+      range: '~31.0.0'
+---
