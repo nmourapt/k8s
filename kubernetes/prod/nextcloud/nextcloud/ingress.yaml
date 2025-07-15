@@ -16,7 +16,7 @@ spec:
             service:
               name: nextcloud
               port:
-                number: 9000
+                number: 80
           path: /
           pathType: Prefix
     tls: 

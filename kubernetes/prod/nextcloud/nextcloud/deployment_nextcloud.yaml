@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
         - name: nextcloud
-          image: quay.io/eminguez/nextcloud-container-fix-nfs
+          image: nextcloud:31.0.7-apache # {"$imagepolicy": "flux-system:nextcloud"}
           ports:
-            - containerPort: 9000
+            - containerPort: 80
               protocol: TCP
           env:
             - name: POSTGRES_HOST
@@ -40,14 +40,8 @@ spec:
 
           volumeMounts:
             - mountPath: /var/www/html
-              name: varwwwhtml
-            #- mountPath: /config/configuration.yaml
-            #  subPath: configuration.yaml
-            #  name: configmap-file
+              name: pvc-nextcloud-data
       volumes:
-        - name: varwwwhtml
+        - name: pv-nextcloud-data
           persistentVolumeClaim:
-            claimName: pvc-nextcloud-synology
-        #- name: configmap-file
-        #  configMap:
-        #    name: nextcloud-configmap
+            claimName: pvc-nextcloud-data

@@ -29,3 +29,15 @@ spec:
       storage: 10Ti
   volumeName: pv-nextcloud-synology
   storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nextcloud-data
+  namespace: nextcloud
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
