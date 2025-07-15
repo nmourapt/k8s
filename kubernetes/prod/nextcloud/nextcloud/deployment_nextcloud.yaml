@@ -17,7 +17,9 @@ spec:
       labels:
         app: nextcloud
     spec:
-    initContainers:
+      securityContext:
+        fsGroup: 100
+      initContainers:
       - name: fix-permissions
         image: busybox:1.35
         command: ['sh', '-c', 'chown -R 1059:100 /var/www/html && chmod -R 755 /var/www/html']
@@ -30,7 +32,6 @@ spec:
           securityContext:
             runAsUser: 1059
             runAsGroup: 100
-            fsGroup: 100
           ports:
             - containerPort: 80
               protocol: TCP
