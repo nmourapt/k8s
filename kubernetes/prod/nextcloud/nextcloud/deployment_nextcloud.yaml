@@ -40,7 +40,7 @@ spec:
 
           volumeMounts:
             - mountPath: /var/www/html
-              name: pvc-nextcloud-data
+              name: pv-nextcloud-data
       volumes:
         - name: pv-nextcloud-data
           persistentVolumeClaim:
