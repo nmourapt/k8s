@@ -21,7 +21,7 @@ spec:
         - name: nextcloud
           image: quay.io/eminguez/nextcloud-container-fix-nfs
           ports:
-            - containerPort: 80
+            - containerPort: 9000
               protocol: TCP
           env:
             - name: POSTGRES_HOST
