@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: immich-ml
-          image: ghcr.io/immich-app/immich-machine-learning:v1.135.3-openvino # {"$imagepolicy": "flux-system:immich-ml"}
+          image: ghcr.io/immich-app/immich-machine-learning:v1.136.0-openvino # {"$imagepolicy": "flux-system:immich-ml"}
           securityContext:
             privileged: true
           ports:
@@ -29,7 +29,7 @@ spec:
             requests:
               gpu.intel.com/i915: 1
             limits:
-              gpu.intel.com/i915: 1 
+              gpu.intel.com/i915: 1
           volumeMounts:
             - mountPath: /cache
               name: immich-ml-cache
