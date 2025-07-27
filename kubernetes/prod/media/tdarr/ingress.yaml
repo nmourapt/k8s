@@ -1,0 +1,58 @@
+---
+# Optional: Ingress for Web UI access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: tdarr
+    app.kubernetes.io/name: tdarr
+  name: tdarr-ui
+  namespace: media
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: transcode.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: tdarr
+            port:
+              number: 8265
+        path: /
+        pathType: Prefix
+    tls: 
+      secretName: nmoura-pt-tls
+      hosts:
+        - transcode.nmoura.pt
+status:
+  loadBalancer: {}
+---
+# Optional: Ingress for API access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/instance: tdarr
+    app.kubernetes.io/name: tdarr
+  name: tdarr-api
+  namespace: media
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: transcodeapi.nmoura.pt
+    http:
+      paths:
+      - backend:
+          service:
+            name: tdarr
+            port:
+              number: 8266
+        path: /
+        pathType: Prefix
+    tls: 
+      secretName: nmoura-pt-tls
+      hosts:
+        - transcodeapi.nmoura.pt
+status:
+  loadBalancer: {}

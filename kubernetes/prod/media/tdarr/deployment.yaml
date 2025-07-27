@@ -1,0 +1,123 @@
+
+# Tdarr Server Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr-server
+  namespace: media
+  labels:
+    app: tdarr-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: tdarr-server
+  template:
+    metadata:
+      labels:
+        app: tdarr-server
+    spec:
+      containers:
+        - name: tdarr-server
+          image: ghcr.io/haveagitgat/tdarr:latest
+          env:
+            - name: seededApiKey
+              valueFrom:
+                secretKeyRef:
+                  name: tdarr-secrets
+                  key: TDARR_API_KEY
+          ports:
+            - containerPort: 8265
+              protocol: TCP
+            - containerPort: 8266
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/server
+              name: pvc-tdarr-server
+              subPath: server
+            - mountPath: /app/configs
+              name: pvc-tdarr-server
+              subPath: configs
+            - mountPath: /app/logs
+              name: pvc-tdarr-server
+              subPath: logs
+            - mountPath: /temp
+              name: pvc-tdarr-transcode-cache
+            - mountPath: /media
+              name: pvc-tdarr-synology
+      volumes:
+        - name: pvc-tdarr-server
+          persistentVolumeClaim:
+            claimName: pvc-tdarr-server
+        - name: pvc-tdarr-transcode-cache
+          persistentVolumeClaim:
+            claimName: pvc-tdarr-transcode-cache
+        - name: pvc-tdarr-synology
+          persistentVolumeClaim:
+            claimName: pvc-tdarr-synology
+---
+# Tdarr Node (Worker) Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tdarr-node
+  namespace: media
+  labels:
+    app: tdarr-node
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  selector:
+    matchLabels:
+      app: tdarr-node
+  template:
+    metadata:
+      labels:
+        app: tdarr-node
+    spec:
+      # Ensure workers are spread across different nodes
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: tdarr-node
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: tdarr-node
+          image: ghcr.io/haveagitgat/tdarr_node:latest
+          env:
+            - name: serverURL
+              value: "http://tdarr-server:8266"
+            - name: apiKey
+              valueFrom:
+                secretKeyRef:
+                  name: tdarr-secrets
+                  key: TDARR_API_KEY
+          volumeMounts:
+            - mountPath: /temp
+              name: pvc-tdarr-transcode-cache
+            - mountPath: /media
+              name: pvc-tdarr-synology
+          resources:
+            requests:
+              gpu.intel.com/i915: 1
+            limits:
+              gpu.intel.com/i915: 1
+          securityContext:
+            privileged: true
+      volumes:
+        - name: pvc-tdarr-transcode-cache
+          persistentVolumeClaim:
+            claimName: pvc-tdarr-transcode-cache
+        - name: pvc-tdarr-synology
+          persistentVolumeClaim:
+            claimName: pvc-tdarr-synology

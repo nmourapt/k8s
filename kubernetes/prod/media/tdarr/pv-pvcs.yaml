@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-tdarr-synology
+spec:
+  capacity:
+    storage: 10Ti  # Adjust as needed
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: "192.168.202.1"  # Replace with your NFS server
+    path: "/volume1/data"  # Replace with the path on your NFS server
+  persistentVolumeReclaimPolicy: Retain
+  claimRef:
+     namespace: media
+     name: pvc-tdarr-synology
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-tdarr-synology
+  namespace: media
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Ti
+  volumeName: pv-tdarr-synology
+  storageClassName: ""
+---
+# PVC for shared temp/transcode directory (server and workers need access)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-tdarr-transcode-cache
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany  # Required for server + multiple workers
+  resources:
+    requests:
+      storage: 200Gi  # Adjust based on concurrent transcode needs  volumeName: pv-tdarr-synology
+  storageClassName: "longhorn-noreplicas"
+---
+# PVC for Tdarr Server data
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-tdarr-server
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi  

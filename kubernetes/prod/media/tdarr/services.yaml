@@ -1,0 +1,23 @@
+---
+# Service for Tdarr Server
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr-server
+  namespace: media
+spec:
+  type: ClusterIP
+  externalIPs:
+    - 192.168.202.156
+  selector:
+    app: tdarr-server
+  ports:
+    - name: web-ui
+      port: 8265
+      targetPort: 8265
+      protocol: TCP
+    - name: server
+      port: 8266
+      targetPort: 8266
+      protocol: TCP
+---
