@@ -108,8 +108,6 @@ spec:
             - mountPath: /media
               name: pvc-tdarr-synology
           resources:
-            requests:
-              gpu.intel.com/i915: 1
             limits:
               gpu.intel.com/i915: 1
       volumes:
