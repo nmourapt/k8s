@@ -112,8 +112,6 @@ spec:
               gpu.intel.com/i915: 1
             limits:
               gpu.intel.com/i915: 1
-          securityContext:
-            privileged: true
       volumes:
         - name: pvc-tdarr-transcode-cache
           persistentVolumeClaim:
