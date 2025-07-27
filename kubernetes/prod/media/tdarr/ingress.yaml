@@ -16,7 +16,7 @@ spec:
       paths:
       - backend:
           service:
-            name: tdarr
+            name: tdarr-server
             port:
               number: 8265
         path: /
@@ -45,7 +45,7 @@ spec:
       paths:
       - backend:
           service:
-            name: tdarr
+            name: tdarr-server
             port:
               number: 8266
         path: /
