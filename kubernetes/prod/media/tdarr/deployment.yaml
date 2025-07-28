@@ -93,8 +93,6 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: tdarr-node
-          securityContext:
-            privileged: true
           image: ghcr.io/haveagitgat/tdarr_node:latest
           env:
             - name: serverURL
