@@ -59,7 +59,7 @@ spec:
         nameOverride: config
         readOnly: false
         accessMode: ReadWriteOnce
-        size: 40Gi
+        size: 75Gi
         retain: true
       media:
         enabled: true
