@@ -28,6 +28,11 @@ spec:
       LIDARR__AUTH__METHOD: "External"
       LIDARR__AUTH__REQUIRED: "DisabledForLocalAddresses"
       DOCKER_MODS: "linuxserver/mods:lidarr-flac2mp3"
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+      limits:
+        gpu.intel.com/i915: 1
     ingress:
       main:
         enabled: true
