@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: linuxserver/calibre-web # {"$imagepolicy": "flux-system:calibre-web:name"}
-      tag: 0.6.24 # {"$imagepolicy": "flux-system:calibre-web:tag"}
+      tag: 0.6.25 # {"$imagepolicy": "flux-system:calibre-web:tag"}
       pullPolicy: IfNotPresent
     ingress:
       main:
