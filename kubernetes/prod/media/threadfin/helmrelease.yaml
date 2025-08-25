@@ -19,7 +19,7 @@ spec:
       TZ: Europe/Lisbon
     image:
       repository: fyb3roptik/threadfin # {"$imagepolicy": "flux-system:threadfin:name"}
-      tag: 1.3.0 # {"$imagepolicy": "flux-system:threadfin:tag"}
+      tag: 1.2.35 # {"$imagepolicy": "flux-system:threadfin:tag"}
       pullPolicy: IfNotPresent
     persistence:
       config:
