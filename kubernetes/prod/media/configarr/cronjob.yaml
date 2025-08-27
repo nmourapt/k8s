@@ -13,7 +13,7 @@ spec:
         spec:
           containers:
             - name: configarr
-              image: ghcr.io/raydak-labs/configarr:1.14.1 # {"$imagepolicy": "flux-system:configarr"}
+              image: ghcr.io/raydak-labs/configarr:1.15.0 # {"$imagepolicy": "flux-system:configarr"}
               imagePullPolicy: Always
               tty: true # for color support
               envFrom:
