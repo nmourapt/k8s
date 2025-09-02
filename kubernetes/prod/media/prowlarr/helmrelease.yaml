@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
-      tag: release-1.37.0.5076 # {"$imagepolicy": "flux-system:prowlarr:tag"}
+      tag: release-2.0.5.5160 # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
     env:
       PROWLARR__POSTGRES__HOST: "192.168.202.1"
@@ -42,13 +42,13 @@ spec:
         enabled: true
         ingressClassName: traefik
         hosts:
-          - host: indexer.nmoura.pt
-            paths:
-              - path: /
+        - host: indexer.nmoura.pt
+          paths:
+          - path: /
       annotations:
         kubernetes.io/ingress.class: traefik
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       tls:
         secretName: nmoura-pt-tls
         hosts:
-          - indexer.nmoura.pt
+        - indexer.nmoura.pt
