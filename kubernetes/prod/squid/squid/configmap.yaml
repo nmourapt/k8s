@@ -25,6 +25,16 @@ data:
       acl Safe_ports port 591		# filemaker
       acl Safe_ports port 777		# multiling http
       acl CONNECT method CONNECT
+      
+      # DNS Configuration
+      dns_nameservers 8.8.8.8 8.8.4.4
+      positive_dns_ttl 6 hours
+      negative_dns_ttl 1 minute
+      dns_v4_first on
+      
+      # Ignore client DNS settings for CONNECT requests
+      ignore_expect_100 on
+      
       http_access deny !Safe_ports
       http_access deny CONNECT !SSL_ports
       http_access allow localhost manager
@@ -43,11 +53,3 @@ data:
       refresh_pattern \/(Translation-.*)(|\.bz2|\.gz|\.xz)$ 0 0% 0 refresh-ims
       refresh_pattern .		0	20%	4320
       logfile_rotate 0
-
-      # Enable SOCKS proxy on port 1080
-      socks_port 1080
-      
-      # Allow SOCKS connections from your networks
-      acl socks_acl src localnet
-      socks_access allow socks_acl
-      socks_access deny all
