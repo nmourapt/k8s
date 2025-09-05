@@ -20,6 +20,9 @@ spec:
           - containerPort: 3128
             name: squid
             protocol: TCP
+          - containerPort: 1080
+            name: squid-socks
+            protocol: TCP
           volumeMounts:
           - name: squid-config-volume
             mountPath: /etc/squid/squid.conf
