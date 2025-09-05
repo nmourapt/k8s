@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squid
+  namespace: squid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: squid
+  template:
+    metadata:
+      labels:
+        app: squid
+    spec:
+      containers:
+        - name: squid
+          image: ubuntu/squid:6.6-24.04_beta # {"$imagepolicy": "flux-system:squid"}
+          ports:
+          - containerPort: 3128
+            name: squid
+            protocol: TCP
+          volumeMounts:
+          - name: squid-config-volume
+            mountPath: /etc/squid/squid.conf
+            subPath: squid.conf
+          - name: squid-data
+            mountPath: /var/spool/squid
+      volumes:
+        - name: squid-config-volume
+          configMap:
+            name: squid-config
+        - name: squid-data
+          persistentVolumeClaim:
+            claimName: squid-data-pvc

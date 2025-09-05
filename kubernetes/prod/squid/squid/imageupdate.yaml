@@ -1,0 +1,24 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: squid
+  namespace: flux-system
+spec:
+  image: ubuntu/squid
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: squid
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: squid
+  filterTags:
+    pattern: '^(?P<major>6)\.(?P<minor>[0-9]+)-[0-9]+\.[0-9]+_beta$'
+    extract: '$major.$minor'
+  policy:
+    numerical:
+      order: asc
+---
