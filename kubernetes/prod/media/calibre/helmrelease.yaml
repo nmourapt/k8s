@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: linuxserver/calibre # {"$imagepolicy": "flux-system:calibre:name"}
-      tag: 8.10.0 # {"$imagepolicy": "flux-system:calibre:tag"}
+      tag: 8.11.0 # {"$imagepolicy": "flux-system:calibre:tag"}
       pullPolicy: IfNotPresent
     service:
       webserver:
