@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: immich-ml
-          image: ghcr.io/immich-app/immich-machine-learning:v2.0.0-openvino # {"$imagepolicy": "flux-system:immich-ml"}
+          image: ghcr.io/immich-app/immich-machine-learning:v2.0.1-openvino # {"$imagepolicy": "flux-system:immich-ml"}
           securityContext:
             privileged: true
           ports:
