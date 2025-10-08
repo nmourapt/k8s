@@ -9,7 +9,7 @@ spec:
     - 192.168.202.157
   ports:
     - name: squid
-      port: 3128
+      port: 36334
       targetPort: 3128
       protocol: TCP
   selector:
