@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
       - name: chrome
-        image: ghcr.io/browserless/chromium:v2.37.0 # {"$imagepolicy": "flux-system:chromium-rxresume"}
+        image: ghcr.io/browserless/chromium:v2.37.1 # {"$imagepolicy": "flux-system:chromium-rxresume"}
         ports:
         - containerPort: 3000
         env:
