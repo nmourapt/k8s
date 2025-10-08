@@ -134,7 +134,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: amruthpillai/reactive-resume:v4.5.0 # {"$imagepolicy": "flux-system:rxresume"}
+        image: amruthpillai/reactive-resume:v4.5.1 # {"$imagepolicy": "flux-system:rxresume"}
         ports:
         - containerPort: 3000
         env:
