@@ -9,12 +9,12 @@ spec:
   failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 300  # 5 mins after job completion, Job + Pods are deleted
+      ttlSecondsAfterFinished: 300 # 5 mins after job completion, Job + Pods are deleted
       template:
         spec:
           containers:
             - name: configarr
-              image: ghcr.io/raydak-labs/configarr:1.17.0 # {"$imagepolicy": "flux-system:configarr"}
+              image: ghcr.io/raydak-labs/configarr:1.17.1 # {"$imagepolicy": "flux-system:configarr"}
               imagePullPolicy: Always
               tty: true # for color support
               envFrom:
