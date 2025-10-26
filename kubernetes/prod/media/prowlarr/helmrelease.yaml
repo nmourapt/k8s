@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/prowlarr # {"$imagepolicy": "flux-system:prowlarr:name"}
-      tag: release-2.0.5.5160 # {"$imagepolicy": "flux-system:prowlarr:tag"}
+      tag: release-2.1.5.5216 # {"$imagepolicy": "flux-system:prowlarr:tag"}
       pullPolicy: IfNotPresent
     env:
       PROWLARR__POSTGRES__HOST: "192.168.202.1"
