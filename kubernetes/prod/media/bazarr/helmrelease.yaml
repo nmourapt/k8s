@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/bazarr # {"$imagepolicy": "flux-system:bazarr:name"}
-      tag: release-1.5.3 # {"$imagepolicy": "flux-system:bazarr:tag"}
+      tag: release-1.5.4 # {"$imagepolicy": "flux-system:bazarr:tag"}
       pullPolicy: IfNotPresent
     env:
       POSTGRES_ENABLED: "True"
