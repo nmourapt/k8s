@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/instance: nodecast-tv
     app.kubernetes.io/name: nodecast-tv
   name: nodecast-tv
-  namespace: tools
+  namespace: media
 spec:
   ingressClassName: traefik
   rules:
