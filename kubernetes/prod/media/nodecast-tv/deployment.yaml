@@ -18,6 +18,11 @@ spec:
         app: nodecast-tv
     spec:
       containers:
+      - env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT 
+          value: "3000"
       - image: ghcr.io/technomancer702/nodecast-tv:1.0.0 # {"$imagepolicy": "flux-system:nodecast-tv"}
         name: nodecast-tv
         ports:
