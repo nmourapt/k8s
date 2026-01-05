@@ -1,0 +1,24 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: nodecast-tv
+  namespace: flux-system
+spec:
+  image: docker pull ghcr.io/technomancer702/nodecast-tv
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: nodecast-tv
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: nodecast-tv
+  filterTags:
+    pattern: '^(?P<semver>[0-9]+\.[0-9]+\.[0-9]+)$'
+    extract: '$semver'
+  policy:
+    semver:
+      range: '>=1.0.0 <2.0.0'
+---

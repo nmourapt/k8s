@@ -1,9 +1,10 @@
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: orb-config
-  namespace: tools
+  name: pvc-nodecast-tv-appdata
+  namespace: media
 spec:
   accessModes:
   - ReadWriteOnce

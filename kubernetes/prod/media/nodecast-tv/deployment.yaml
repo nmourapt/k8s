@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodecast-tv
+  namespace: media
+  labels:
+    app: nodecast-tv
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nodecast-tv
+  template:
+    metadata:
+      labels:
+        app: nodecast-tv
+    spec:
+      containers:
+      - image: ghcr.io/technomancer702/nodecast-tv:1.0.0 # {"$imagepolicy": "flux-system:nodecast-tv"}
+        name: nodecast-tv
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /app/data
+          name: nodecast-tv-appdata
+      restartPolicy: Always
+      volumes:
+      - name: nodecast-tv-appdata
+        persistentVolumeClaim:
+          claimName: pvc-nodecast-tv-appdata
