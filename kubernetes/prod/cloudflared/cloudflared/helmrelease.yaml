@@ -21,5 +21,5 @@ spec:
   values:
     image:
       repository: cloudflare/cloudflared # {"$imagepolicy": "flux-system:cloudflared:name"}
-      tag: 2026.1.1 # {"$imagepolicy": "flux-system:cloudflared:tag"}
+      tag: 2026.1.2 # {"$imagepolicy": "flux-system:cloudflared:tag"}
     replicaCount: 2
